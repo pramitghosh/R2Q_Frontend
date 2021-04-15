@@ -14,7 +14,7 @@
 			}
 		}
 		
-		$sql2 = "SELECT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
+		$sql2 = "SELECT * FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
 		//echo $sql2 . "\n";
 		$result2 = mysqli_query($conn, $sql2);
 		//print_r($result);
@@ -56,7 +56,6 @@
 						}
 					}
 					
-					else echo "No results to show!";
 					mysqli_close($conn);
 				?>
 			</table>
