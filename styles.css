@@ -1,0 +1,10 @@
+.filters{
+    width:25%;
+    float:left;
+    text-align:left;
+}
+.results{
+    width:75%;
+    float:left;
+    text-align:left;
+}

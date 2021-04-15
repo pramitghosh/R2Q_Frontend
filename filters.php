@@ -29,32 +29,17 @@ mysqli_close($conn);
 */
 ?>
 
-<html>
-	<head>
-		<title>
-			Massnahmenkatalog Frontend
-		</title>
-	</head>
-	<body>
+
 		<div>
 		<h3>Filters</h3>
-		<form action = "test.php" method = "POST">
+		<form action = "index.php" method = "POST">
 			<h4>Resource</h4>
 			<p>
-				<select name="resourceform" multiple>
+				<select name="resourceform[]" multiple>
 					<!-- <option value="">Select...</option> -->
 				  	<?php
-						$servername = "185.149.214.79";
-						$username = "Flemming";
-						$password = "vo5Otei9";
-						$dbname = "r2q";
-						
-						// Create connection
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
-						// Check connection
-						if (!$conn) {
-						  die("Connection failed: " . mysqli_connect_error());
-						}
+						require 'sql.php';
+
 				  		$sql = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource'";
 						$result = mysqli_query($conn, $sql);
 	
@@ -75,5 +60,4 @@ mysqli_close($conn);
 			</p>
 		</form>
 		</div>
-	</body>
-</html>
+	
