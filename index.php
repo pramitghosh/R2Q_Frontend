@@ -1,5 +1,6 @@
 <?php 
 	require_once 'sql.php';
+	
 	$resources = $_POST["resourceform"];
 	$resources_count = count($resources);
 	
@@ -43,7 +44,9 @@
 					<th>Category Index</th>
 				</tr>
 				<?php
-					
+					/* $Parsedown = new Parsedown();
+					echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+				
 					if(mysqli_num_rows($result2) > 0)
 					{
 						//while($row = mysqli_fetch_assoc($result))
