@@ -50,12 +50,11 @@
 						foreach ($result2 as $row2)
 						{
 							echo "<tr><td>" . $row2["id"] . "</td>";
-							echo "<td>" . $row2["name"] . "</td>";
+							echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $row2["name"] . "</a>" . "</td>";
 							echo "<td>" . $row2["ressource"] . "</td>";
 							echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
 						}
-					}
-					
+					}					
 					mysqli_close($conn);
 				?>
 			</table>
