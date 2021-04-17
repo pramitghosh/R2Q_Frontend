@@ -56,6 +56,8 @@
 		
 		$q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
 		
+		$q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
+		
 		
 		
 		
@@ -87,6 +89,7 @@
 		$r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
 		$r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
 		
+		$r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
 		
 	} else echo "Not a valid ID!";
 
@@ -226,6 +229,14 @@
 							?>
 						</ul>
 					</p>
+					
+				<h4>Sammelhinweis</h4>
+					<p>
+						<?php 
+							echo $r_Sammelhinweis;
+						?>
+					</p>
+					
 				
 				
 			
