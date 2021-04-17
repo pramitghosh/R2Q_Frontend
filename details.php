@@ -42,6 +42,8 @@
 		$q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
 		$q_Umsetzungsbeispiel_uptime = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'uptime'";
 		
+		$q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
+		
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -52,6 +54,9 @@
 		$r_Umsetzungsbeispiel_Bild = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Bild));
 		$r_Umsetzungsbeispiel_uptime = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_uptime));
 		
+		$r_Ressource = mysqli_query($conn, $q_Ressource);		
+		$r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
+
 		
 	} else echo "Not a valid ID!";
 
@@ -102,6 +107,20 @@
 							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Umsetzungsbeispiel_uptime)); ?>
 						</small>
 					</p>
+				
+				<h4>Ressource</h4>
+					<p>
+						<ul>
+							<?php 
+								$ress_count = count($r_Ressource);
+								for ($i = 0; $i < $ress_count; $i++)								
+								{
+									echo "<li>" . $r_Ressource[$i][0] . "</li>";
+								}
+							?>
+						</ul>
+					</p>
+				
 			</div>
 		
 		
