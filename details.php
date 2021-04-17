@@ -50,6 +50,11 @@
 		
 		$q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
 		
+		$q_Nutzungsdauer_min = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'min'";
+		$q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
+		$q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
+		
+		
 		
 		
 		
@@ -72,7 +77,11 @@
 		
 		$r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
 		$r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
-
+		
+		$r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
+		$r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
+		$r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
+		
 		
 	} else echo "Not a valid ID!";
 
@@ -188,6 +197,15 @@
 							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[0]['wert']; ?> m²/EW</li>
 							<li>Einheit für den spezifischen Flächenbedarf: <?php echo $r_Flaechenbedarf[1]['wert']; ?> m²/XX</li>
 							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[2]['wert'] ?> m²/XX</li>
+						</ul>
+					</p>
+				
+				<h4>Nutzungsdauer</h4>
+					<p>
+						<ul>
+							<li>minimum: <?php echo $r_Nutzungsdauer_min . " Jahre"; ?> </li>
+							<li>maximum: <?php echo $r_Nutzungsdauer_ueblich . " Jahre"; ?> </li>
+							<li>üblich: <?php echo $r_Nutzungsdauer_ueblich . " Jahre" ?> </li>							
 						</ul>
 					</p>
 				
