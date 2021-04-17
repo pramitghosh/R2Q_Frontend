@@ -44,6 +44,9 @@
 		
 		$q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
 		
+		$q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
+		
+		
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -56,6 +59,9 @@
 		
 		$r_Ressource = mysqli_query($conn, $q_Ressource);		
 		$r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
+		
+		$r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
+		$r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
 
 		
 	} else echo "Not a valid ID!";
@@ -121,6 +127,42 @@
 						</ul>
 					</p>
 				
+				<h4>Wirkung und Funktion</h4>
+				<?php 
+					$rg_wirkungfunktion = array();
+					foreach ($r_wirkungfunktion as $wf)
+					{
+    					$rg_wirkungfunktion[$wf[0]][] = $wf;
+					}
+					$rgwf_keys = array_keys($rg_wirkungfunktion);
+					$rgwf_keys_count = count($rgwf_keys);
+    			?>
+					<p>
+						<ul>
+							<?php 								
+								for ($i = 0; $i < $rgwf_keys_count; $i++)
+								{
+									echo "<li>" . $rgwf_keys[$i] . "</li>";
+									
+									echo "<ul>";
+									
+										$rgwf_subarr = $rg_wirkungfunktion[$rgwf_keys[$i]];
+										$rgwf_subarr_count = count($rgwf_subarr);
+										for ($j = 0; $j < $rgwf_subarr_count; $j++)
+										{
+											echo "<li>" . $rgwf_subarr[$j][1] . "</li>";
+										}
+										
+									echo "</ul>";
+								}
+							?>
+						</ul>
+					</p>
+				
+				
+			
+			
+			
 			</div>
 		
 		
