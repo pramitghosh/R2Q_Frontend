@@ -48,6 +48,8 @@
 		
 		$q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
 		
+		$q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
+		
 		
 		
 		
@@ -67,6 +69,9 @@
 
 		$r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
 		$r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
+		
+		$r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
+		$r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
 
 		
 	} else echo "Not a valid ID!";
@@ -176,7 +181,15 @@
 							?>
 						</ul>
 					</p>
-				
+					
+				<h4>Flächenbedarf</h4>
+					<p>
+						<ul>
+							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[0]['wert']; ?> m²/EW</li>
+							<li>Einheit für den spezifischen Flächenbedarf: <?php echo $r_Flaechenbedarf[1]['wert']; ?> m²/XX</li>
+							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[2]['wert'] ?> m²/XX</li>
+						</ul>
+					</p>
 				
 				
 			

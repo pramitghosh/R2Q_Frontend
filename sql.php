@@ -12,4 +12,10 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
+if (!mysqli_set_charset($conn, "utf8mb4")) {
+	printf("Error loading character set utf8mb4: %s\n", mysqli_error($conn));
+} else {
+	//printf("Current character set: %s\n", mysqli_character_set_name($conn));
+}
+
 ?>
