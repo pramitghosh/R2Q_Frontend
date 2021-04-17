@@ -46,6 +46,8 @@
 		
 		$q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
 		
+		$q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
+		
 		
 		
 		
@@ -62,6 +64,9 @@
 		
 		$r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
 		$r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
+
+		$r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
+		$r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
 
 		
 	} else echo "Not a valid ID!";
@@ -128,15 +133,15 @@
 					</p>
 				
 				<h4>Wirkung und Funktion</h4>
-				<?php 
-					$rg_wirkungfunktion = array();
-					foreach ($r_wirkungfunktion as $wf)
-					{
-    					$rg_wirkungfunktion[$wf[0]][] = $wf;
-					}
-					$rgwf_keys = array_keys($rg_wirkungfunktion);
-					$rgwf_keys_count = count($rgwf_keys);
-    			?>
+					<?php 
+						$rg_wirkungfunktion = array();
+						foreach ($r_wirkungfunktion as $wf)
+						{
+	    					$rg_wirkungfunktion[$wf[0]][] = $wf;
+						}
+						$rgwf_keys = array_keys($rg_wirkungfunktion);
+						$rgwf_keys_count = count($rgwf_keys);
+	    			?>
 					<p>
 						<ul>
 							<?php 								
@@ -158,6 +163,20 @@
 							?>
 						</ul>
 					</p>
+				
+				<h4>Anwendungsebene</h4>
+					<p>
+						<ul>
+							<?php 
+								$anwendugsebene_count = count($r_Anwendungsebene);
+								for ($i = 0; $i < $anwendugsebene_count; $i++)								
+								{
+									echo "<li>" . $r_Anwendungsebene[$i][0] . "</li>";
+								}
+							?>
+						</ul>
+					</p>
+				
 				
 				
 			
