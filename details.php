@@ -54,6 +54,8 @@
 		$q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
 		$q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
 		
+		$q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
+		
 		
 		
 		
@@ -81,6 +83,9 @@
 		$r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
 		$r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
 		$r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
+		
+		$r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
+		$r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
 		
 		
 	} else echo "Not a valid ID!";
@@ -206,6 +211,19 @@
 							<li>minimum: <?php echo $r_Nutzungsdauer_min . " Jahre"; ?> </li>
 							<li>maximum: <?php echo $r_Nutzungsdauer_ueblich . " Jahre"; ?> </li>
 							<li>üblich: <?php echo $r_Nutzungsdauer_ueblich . " Jahre" ?> </li>							
+						</ul>
+					</p>
+					
+				<h4>Entwicklungsstand</h4>
+					<p>
+						<ul>
+							<?php 
+								$ent_count = count($r_Entwicklungsstand);
+								for ($i = 0; $i < $ent_count; $i++)
+								{
+									echo "<li>" . $r_Entwicklungsstand[$i][0] . "</li>";									
+								}
+							?>
 						</ul>
 					</p>
 				
