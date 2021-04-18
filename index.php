@@ -1,6 +1,8 @@
 <?php 
 	require_once 'sql.php';
 	
+	$post_set = $_POST?1:0;
+	
 	$resources = $_POST["resourceform"];
 	$resources_count = count($resources);
 	
@@ -36,31 +38,42 @@
 			?>
 		</div>
 		<div class = "results">
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Resource</th>
-					<th>Category Index</th>
-				</tr>
-				<?php
-					/* $Parsedown = new Parsedown();
-					echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
-				
-					if(mysqli_num_rows($result2) > 0)
-					{
-						//while($row = mysqli_fetch_assoc($result))
-						foreach ($result2 as $row2)
-						{
-							echo "<tr><td>" . $row2["id"] . "</td>";
-							echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $row2["name"] . "</a>" . "</td>";
-							echo "<td>" . $row2["ressource"] . "</td>";
-							echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
-						}
-					}					
-					mysqli_close($conn);
-				?>
-			</table>
+			<form action="details.php" method="GET">
+				<label for="id">Bitte geben Sie Massnahmen ID ein, um direkt zu gehen: </label>
+				<input type="text" name="id">
+				<input type="submit" value="Submit">				
+			</form>
+			<?php
+				if($post_set)
+				{
+					echo "
+						<table>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Resource</th>
+								<th>Category Index</th>
+							</tr>
+						";
+							/* $Parsedown = new Parsedown();
+							echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+						
+							if(mysqli_num_rows($result2) > 0)
+							{
+								//while($row = mysqli_fetch_assoc($result))
+								foreach ($result2 as $row2)
+								{
+									echo "<tr><td>" . $row2["id"] . "</td>";
+									echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $row2["name"] . "</a>" . "</td>";
+									echo "<td>" . $row2["ressource"] . "</td>";
+									echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+								}
+							}					
+							mysqli_close($conn);
+						
+					echo "</table>";
+				}
+			?>
 		</div>
 	</body>
 </html>
