@@ -15,7 +15,7 @@
 						{
 							while($row = mysqli_fetch_assoc($result))
 							{
-								echo "<option value=" . $row['ebene2'] . ">" . $row['ebene2'] . "</option>";
+								echo "<option selected value=" . $row['ebene2'] . ">" . $row['ebene2'] . "</option>";
 							}
 						}
 						
