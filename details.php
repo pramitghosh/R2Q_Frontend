@@ -116,7 +116,12 @@
 			?>
 		</div>
 		<div class = "results">
-			<div>
+			<div class="tab">
+			  <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Kurzinformation')">Kurzinformation</button>
+			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
+			</div>
+			
+			<div id="Kurzinformation" class="tabcontent">
 				<h2>Kurzinformation</h2>
 				<h3><?php echo $r_Titel; ?></h3>
 				
@@ -235,12 +240,12 @@
 						<?php 
 							echo $r_Sammelhinweis;
 						?>
-					</p>
-					
-				
-				
+					</p>			
+			</div>
 			
+			<div id="Detailinformation" class="tabcontent">
 			
+				Test
 			
 			</div>
 		
@@ -254,5 +259,24 @@
 		
 		
 		</div>
+	 <script>			
+		function openCity(evt, cityName)
+		{
+		  var i, tabcontent, tablinks;
+		  tabcontent = document.getElementsByClassName("tabcontent");
+		  for (i = 0; i < tabcontent.length; i++) {
+		    tabcontent[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablinks");
+		  for (i = 0; i < tablinks.length; i++) {
+		    tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  }
+		  document.getElementById(cityName).style.display = "block";
+		  evt.currentTarget.className += " active";
+		}
+		
+		document.getElementById("defaultOpen").click();
+		
+	 </script>
 	</body>
 </html>
