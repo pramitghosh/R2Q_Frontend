@@ -67,6 +67,9 @@
 		$q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
 		$q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		
+		$q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
+		
+		
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -107,7 +110,8 @@
 		$r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
 		$r_Planung_table = mysqli_query($conn, $q_Planung_table);
 		$r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
-		var_dump($r_Planung_table);
+		
+		$r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
 		
 	} else echo "Not a valid ID!";
 
@@ -308,6 +312,16 @@
 							echo "</table>";
 						}
 					?>
+				
+				<h4>Aufwand und Kosten</h4>
+					<p>
+						<?php 
+							$parsedown_Aufwand = new Parsedown();
+							echo $parsedown_Aufwand->text($r_Aufwand_freetext);
+						?>
+					</p>
+				
+				
 				
 						
 			
