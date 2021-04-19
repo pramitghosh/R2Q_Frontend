@@ -60,6 +60,10 @@
 		
 		$q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
 		
+		$q_Systemskizze_Beschriftung = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Beschriftung'";
+		$q_Systemskizze_Bild = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Bild'";
+		$q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
+		
 		
 		
 		
@@ -94,6 +98,10 @@
 		$r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
 		
 		$r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
+		
+		$r_Systemskizze_Beschriftung = extract_wert(mysqli_query($conn, $q_Systemskizze_Beschriftung));
+		$r_Systemskizze_Bild = extract_wert(mysqli_query($conn, $q_Systemskizze_Bild));
+		$r_Systemskizze_uptime = extract_wert(mysqli_query($conn, $q_Systemskizze_uptime));
 		
 	} else echo "Not a valid ID!";
 
@@ -255,6 +263,19 @@
 							$parsedown_Funktionsbeschreibung = new Parsedown();
 							echo $parsedown_Funktionsbeschreibung->text($r_Funktionsbeschreibung);
 						?>
+					</p>
+				
+				<h4>Systemskizze</h4>
+					<p>
+						<figure>
+							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
+							<figcaption><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
+						</figure>	
+					</p>
+					<p>
+						<small>
+							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Systemskizze_uptime)); ?>
+						</small>
 					</p>
 			
 			</div>
