@@ -58,6 +58,8 @@
 		
 		$q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
 		
+		$q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
+		
 		
 		
 		
@@ -91,6 +93,8 @@
 		
 		$r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
 		
+		$r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
+		
 	} else echo "Not a valid ID!";
 
 
@@ -122,7 +126,7 @@
 			</div>
 			
 			<div id="Kurzinformation" class="tabcontent">
-				<h2>Kurzinformation</h2>
+				<!-- <h2>Kurzinformation</h2> -->
 				<h3><?php echo $r_Titel; ?></h3>
 				
 				<h4>Kurzbeschreibung</h4>
@@ -244,8 +248,14 @@
 			</div>
 			
 			<div id="Detailinformation" class="tabcontent">
-			
-				Test
+				
+				<h4>Funktionsbeschreibung und Aufbau</h4>
+					<p>
+						<?php
+							$parsedown_Funktionsbeschreibung = new Parsedown();
+							echo $parsedown_Funktionsbeschreibung->text($r_Funktionsbeschreibung);
+						?>
+					</p>
 			
 			</div>
 		
