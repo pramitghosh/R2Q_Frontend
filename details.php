@@ -65,7 +65,7 @@
 		$q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
 		
 		$q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
-		$q_Planung_table = $q_template . "(ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
+		$q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		
 		
 		
@@ -107,6 +107,7 @@
 		$r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
 		$r_Planung_table = mysqli_query($conn, $q_Planung_table);
 		$r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
+		var_dump($r_Planung_table);
 		
 	} else echo "Not a valid ID!";
 
@@ -290,20 +291,23 @@
 							echo $parsedown_Planung->text($r_Planung_freetext);
 						?>
 					</p>
-					<table>
-						<tr>
-							<th>Norm</th>
-							<th>Titel</th>
-						</tr>
-						<?php 
-							for ($i = 0; $i < 5; $i++)
-							{
-								echo "<tr><td>" . $r_Planung_table[$i][0] . "</td>";
-								echo "<td>" . $r_Planung_table[$i+5][0] . "</td></tr>";
-							}
-						?>
-					</table>
-				
+					<?php 
+						if(!empty($r_Planung_table))
+						{
+							echo "
+							<table>
+									<tr>
+										<th>Norm</th>
+										<th>Titel</th>
+									</tr>";
+									for ($i = 0; $i < 5; $i++)
+									{
+										echo "<tr><td>" . $r_Planung_table[$i][0] . "</td>";
+										echo "<td>" . $r_Planung_table[$i+5][0] . "</td></tr>";
+									}							
+							echo "</table>";
+						}
+					?>
 				
 						
 			
