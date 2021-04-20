@@ -80,6 +80,9 @@
 		$q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
 		$q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
 		
+		$q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
+		$q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
+		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
 		
@@ -133,10 +136,10 @@
 		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
 		$r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
 		
+		$r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
+		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
-		
-		
-		
+				
 	} else echo "Not a valid ID!";
 
 
@@ -354,10 +357,10 @@
 								
 								if(!empty(${"r_Aufwand_i$i"}[0][0]))
 								{
-									echo "<li>Investitionskosten $i (in €):</li>";
-									echo "<ul><li>Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
-									echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
-									echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li></ul>";									
+									echo "<li>Investitionskosten $i:</li>";
+									echo "<ul><li>Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
+									echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
+									echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li></ul>";									
 								}
 								
 								echo "</ul>";
@@ -375,10 +378,10 @@
 								
 								if(!empty(${"r_Aufwand_b$i"}[0][0]))
 								{
-									echo "<li>Betriebskosten $i (in €):</li>";
-									echo "<ul><li>Minimum: " . ${"r_Aufwand_b" . $i}[1][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
-									echo "<li>Maximum: " . ${"r_Aufwand_b" . $i}[2][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
-									echo "<li>Üblich: " . ${"r_Aufwand_b" . $i}[3][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li></ul>";									
+									echo "<li>Betriebskosten $i:</li>";
+									echo "<ul><li>Minimum: " . ${"r_Aufwand_b" . $i}[1][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+									echo "<li>Maximum: " . ${"r_Aufwand_b" . $i}[2][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+									echo "<li>Üblich: " . ${"r_Aufwand_b" . $i}[3][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li></ul>";									
 								}
 								
 								echo "</ul>";
@@ -393,7 +396,32 @@
 						?>
 					</p>
 				
-				
+				<h4>Weitergehende Hinweise</h4>				
+					<p>
+						<?php 
+							$parsedown_Weitergehende_freetext = new Parsedown();
+							echo $parsedown_Weitergehende_freetext->text($r_Weitergehende_freetext);
+						?>
+					</p>
+					<p>
+						<?php 
+							if(!empty($r_Weitergehende_table))
+							{
+								echo "
+								<table>
+										<tr>
+											<th>Parameter</th>
+											<th>Wert</th>
+										</tr>";
+										for ($i = 0; $i < 5; $i++)
+										{
+											echo "<tr><td>" . $r_Weitergehende_table[$i][0] . "</td>";
+											echo "<td>" . $r_Weitergehende_table[$i+5][0] . "</td></tr>";
+										}							
+								echo "</table>";
+							}
+						?>
+					</p>
 						
 			
 			</div>
