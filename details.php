@@ -73,7 +73,11 @@
 		$q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
 		$q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
 		$q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
-		
+		$q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
+		$q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
+		$q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
+		$q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
+		$q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -121,6 +125,13 @@
 		$r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
 		$r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
 		$r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
+		$r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
+		$r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
+		$r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
+		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
+		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
+		
+		
 		
 		
 		
@@ -332,6 +343,7 @@
 						?>
 					</p>
 					<p>
+						<h5>Investitionskosten</h5>						
 						<?php 
 							for ($i = 1; $i < 6; $i++)
 							{
@@ -348,9 +360,29 @@
 								
 								echo "</ul>";
 								//echo ${"r_Aufwand_i$i`[1][0]`"};
-							}
-							
+							}							
 						?>
+					</p>
+					<p>						
+						<h5>Betriebskosten</h5>
+						<?php 
+							for ($i = 1; $i < 6; $i++)
+							{
+								
+								echo "<ul>";
+								
+								if(!empty(${"r_Aufwand_b$i"}[0][0]))
+								{
+									echo "<li>Betriebskosten $i (in €):</li>";
+									echo "<ul><li>Minimum: " . ${"r_Aufwand_b" . $i}[1][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+									echo "<li>Maximum: " . ${"r_Aufwand_b" . $i}[2][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+									echo "<li>Üblich: " . ${"r_Aufwand_b" . $i}[3][0] . " " . ${"r_Aufwand_b" . $i}[0][0] . "</li></ul>";									
+								}
+								
+								echo "</ul>";
+							}							
+						?>
+					</p>
 				
 				
 						
