@@ -78,6 +78,7 @@
 		$q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
 		$q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
 		$q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
+		$q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -130,6 +131,7 @@
 		$r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
 		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
 		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
+		$r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
 		
 		
 		
@@ -381,6 +383,13 @@
 								
 								echo "</ul>";
 							}							
+						?>
+					</p>
+					<p>
+						<h5>Hinweis</h5>
+						<?php 
+							$parsedown_Aufwand_hinweis = new Parsedown();
+							echo $parsedown_Aufwand_hinweis->text($r_Aufwand_hinweis);
 						?>
 					</p>
 				
