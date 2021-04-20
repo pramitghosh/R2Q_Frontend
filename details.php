@@ -68,7 +68,11 @@
 		$q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		
 		$q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
-		
+		$q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
+		$q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
+		$q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
+		$q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
+		$q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
 		
 		
 		
@@ -112,6 +116,13 @@
 		$r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
 		
 		$r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
+		$r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
+		$r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
+		$r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
+		$r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
+		$r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
+		
+		
 		
 	} else echo "Not a valid ID!";
 
@@ -320,7 +331,26 @@
 							echo $parsedown_Aufwand->text($r_Aufwand_freetext);
 						?>
 					</p>
-				
+					<p>
+						<?php 
+							for ($i = 1; $i < 6; $i++)
+							{
+								
+								echo "<ul>";
+								
+								if(!empty(${"r_Aufwand_i$i"}[0][0]))
+								{
+									echo "<li>Investitionskosten $i (in €):</li>";
+									echo "<ul><li>Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
+									echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
+									echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " " . ${"r_Aufwand_i" . $i}[0][0] . "</li></ul>";									
+								}
+								
+								echo "</ul>";
+								//echo ${"r_Aufwand_i$i`[1][0]`"};
+							}
+							
+						?>
 				
 				
 						
