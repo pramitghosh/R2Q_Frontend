@@ -444,9 +444,12 @@
 							<?php 
 								for ($i = 0; $i < 6; $i++)
 								{
+									${"parsedown_Rsyn_$i"} = new Parsedown();
+									${"parsedown_Rziel_$i"} = new Parsedown();
+									
 									echo "<tr><td>" . $r_Ressourcenuebergreifende_cat[$i][0] . "</td>";
-									echo "<td>" . $r_Ressourcenuebergreifende_syn[$i][0] . "</td>";
-									echo "<td>" . $r_Ressourcenuebergreifende_ziel[$i][0] . "</td></tr>";									
+									echo "<td>" . ${"parsedown_Rsyn_$i"}->text($r_Ressourcenuebergreifende_syn[$i][0]) . "</td>";
+									echo "<td>" . ${"parsedown_Rziel_$i"}->text($r_Ressourcenuebergreifende_ziel[$i][0]) . "</td></tr>";									
 								}
 							?>
 						</table>
