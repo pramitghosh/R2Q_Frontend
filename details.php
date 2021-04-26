@@ -86,7 +86,9 @@
 		$q_Ressourcenuebergreifende_cat = "SELECT DISTINCT ebene3 FROM r2q.joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressourcenübergreifende Aspekte' ORDER BY ebene3";
 		$q_Ressourcenuebergreifende_syn = "SELECT wert FROM r2q.joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressourcenübergreifende Aspekte' AND ebene2 = 'Synergien' ORDER BY ebene3";
 		$q_Ressourcenuebergreifende_ziel = $q_template . "ebene1 = 'Ressourcenübergreifende Aspekte' AND ebene2 = 'Zielkonflikte' ORDER BY ebene3";
-
+		
+		$q_Kombinationsmoeglichkeiten = $q_template . "ebene1 = 'Kombinationsmöglichkeiten'";
+		
 		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
@@ -149,6 +151,8 @@
 		$r_Ressourcenuebergreifende_syn = mysqli_query($conn, $q_Ressourcenuebergreifende_syn);
 		$r_Ressourcenuebergreifende_syn = mysqli_fetch_all($r_Ressourcenuebergreifende_syn);
 		$r_Ressourcenuebergreifende_ziel = mysqli_fetch_all(mysqli_query($conn, $q_Ressourcenuebergreifende_ziel));
+		
+		$r_Kombinationsmoeglichkeiten = mysqli_fetch_all(mysqli_query($conn, $q_Kombinationsmoeglichkeiten));
 				
 	} else echo "Not a valid ID!";
 
@@ -454,6 +458,21 @@
 							?>
 						</table>
 					</p>
+				
+				<h4>Kombinationsmöglichkeiten</h4>
+					<p>
+						<ul>
+							<?php 
+								$kombi_cnt = count($r_Kombinationsmoeglichkeiten);
+								for ($i = 0; $i < $kombi_cnt; $i++)
+								{
+									if(!empty($r_Kombinationsmoeglichkeiten[$i][0]))
+									{
+										echo "<li>" . $r_Kombinationsmoeglichkeiten[$i][0] . "</li>";
+									}
+								}
+							?>
+						</ul>
 			
 			</div>
 		
