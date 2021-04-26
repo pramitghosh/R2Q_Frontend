@@ -83,6 +83,11 @@
 		$q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
 		$q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
 		
+		$q_Ressourcenuebergreifende_cat = "SELECT DISTINCT ebene3 FROM r2q.joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressourcenübergreifende Aspekte' ORDER BY ebene3";
+		$q_Ressourcenuebergreifende_syn = "SELECT wert FROM r2q.joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressourcenübergreifende Aspekte' AND ebene2 = 'Synergien' ORDER BY ebene3";
+		$q_Ressourcenuebergreifende_ziel = $q_template . "ebene1 = 'Ressourcenübergreifende Aspekte' AND ebene2 = 'Zielkonflikte' ORDER BY ebene3";
+
+		
 		
 		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
 		
@@ -139,6 +144,11 @@
 		$r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
 		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
+		$r_Ressourcenuebergreifende_cat = mysqli_fetch_all(mysqli_query($conn, $q_Ressourcenuebergreifende_cat));
+		
+		$r_Ressourcenuebergreifende_syn = mysqli_query($conn, $q_Ressourcenuebergreifende_syn);
+		$r_Ressourcenuebergreifende_syn = mysqli_fetch_all($r_Ressourcenuebergreifende_syn);
+		$r_Ressourcenuebergreifende_ziel = mysqli_fetch_all(mysqli_query($conn, $q_Ressourcenuebergreifende_ziel));
 				
 	} else echo "Not a valid ID!";
 
@@ -422,7 +432,25 @@
 							}
 						?>
 					</p>
-						
+				
+				<h4>Ressourcenübergreifende Aspekte</h4>
+					<p>
+						<table>
+							<tr>
+								<th>Ressource</th>
+								<th>Synergien</th>
+								<th>Zielkonflikte</th>
+							</tr>
+							<?php 
+								for ($i = 0; $i < 6; $i++)
+								{
+									echo "<tr><td>" . $r_Ressourcenuebergreifende_cat[$i][0] . "</td>";
+									echo "<td>" . $r_Ressourcenuebergreifende_syn[$i][0] . "</td>";
+									echo "<td>" . $r_Ressourcenuebergreifende_ziel[$i][0] . "</td></tr>";									
+								}
+							?>
+						</table>
+					</p>
 			
 			</div>
 		
