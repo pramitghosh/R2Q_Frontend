@@ -5,35 +5,6 @@
 	margin-top: 5%;
 }
 
-.results {
-	width: 75%;
-	float: left;
-	text-align: left;
-}
-
-figure {
-    display: block;
-    flex-flow: column;
-    max-width: 600px;
-    padding: 5px;
-    margin: auto;
-}
-
-figcaption {
-    background-color: #1cbbff;
-    color: #fff;
-    font: italic sans-serif;
-    padding: 3px;
-    text-align: center;
-}
-
-.img_center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -68,4 +39,31 @@ figcaption {
   padding: 6px 12px;
   border: none;
   border-top: none;
+}
+
+.results {
+	width: 75%;
+	float: left;
+	text-align: left;
+}
+
+figure_bsp {
+    display: block;
+    flex-flow: column;
+    max-width: 600px;
+    padding: 5px;
+    margin: auto;
+}
+
+figcaption {
+    font: italic sans-serif;
+    padding: 3px;
+    text-align: center;
+}
+
+.img_center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

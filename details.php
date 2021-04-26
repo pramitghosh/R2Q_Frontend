@@ -33,14 +33,13 @@
 	{	
 		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 		
-		
+		#Titel
 		$q_Titel = $q_template . "ebene1 = 'Titel'";
 		
 		$q_Kurzbeschreibung = $q_template . "ebene1 = 'Kurzbeschreibung'";
 		
 		$q_Umsetzungsbeispiel_Beschriftung = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Beschriftung'";
 		$q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
-		$q_Umsetzungsbeispiel_uptime = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'uptime'";
 		
 		$q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
 		
@@ -169,7 +168,8 @@
 			  <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Kurzinformation')">Kurzinformation</button>
 			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
 			</div>
-			
+
+			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
 				<!-- <h2>Kurzinformation</h2> -->
 				<h3><?php echo $r_Titel; ?></h3>
@@ -184,10 +184,10 @@
 				
 				<h4>Umsetzungsbeispiel</h4>
 					<p>
-						<figure>
+						<figure_bsp>
 							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
 							<figcaption><?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
-						</figure>	
+						</figure_bsp>	
 					</p>
 					<p>
 						<small>
@@ -304,10 +304,10 @@
 				
 				<h4>Systemskizze</h4>
 					<p>
-						<figure>
+						<figure_bsp>
 							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
 							<figcaption><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
-						</figure>	
+						</figure_bsp>	
 					</p>
 					<p>
 						<small>
