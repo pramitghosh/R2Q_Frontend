@@ -31,7 +31,7 @@
 	
 	if (!is_null($m_id))
 	{	
-		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
+		$q_template = "SELECT wert FROM r2q.joined_massnahme WHERE id = " . $m_id . " AND ";
 		
 		
 		$q_Titel = $q_template . "ebene1 = 'Titel'";
@@ -88,6 +88,10 @@
 		$q_Ressourcenuebergreifende_ziel = $q_template . "ebene1 = 'Ressourcenübergreifende Aspekte' AND ebene2 = 'Zielkonflikte' ORDER BY ebene3";
 		
 		$q_Kombinationsmoeglichkeiten = $q_template . "ebene1 = 'Kombinationsmöglichkeiten'";
+		
+		$q_Vorteile = $q_template . "ebene1 = 'Vor- und Nachteile' AND ebene2 = 'Vorteile' ORDER BY ABS(ebene3)";
+		$q_Nachteile = $q_template . "ebene1 = 'Vor- und Nachteile' AND ebene2 = 'Nachteile' ORDER BY ABS(ebene3)";
+		
 		
 		
 		
@@ -153,6 +157,10 @@
 		$r_Ressourcenuebergreifende_ziel = mysqli_fetch_all(mysqli_query($conn, $q_Ressourcenuebergreifende_ziel));
 		
 		$r_Kombinationsmoeglichkeiten = mysqli_fetch_all(mysqli_query($conn, $q_Kombinationsmoeglichkeiten));
+		
+		$r_Vorteile = mysqli_fetch_all(mysqli_query($conn, $q_Vorteile));
+		$r_Nachteile = mysqli_fetch_all(mysqli_query($conn, $q_Nachteile));
+		
 				
 	} else echo "Not a valid ID!";
 
@@ -473,6 +481,30 @@
 								}
 							?>
 						</ul>
+				
+				<h4>Vor- und Nachteile</h4>
+					<p>
+						<table>
+							<tr>
+								<th>Vorteile</th>
+								<th>Nachteile</th>
+							</tr>
+							<?php 
+								$VorNach_cnt = count($r_Vorteile);
+								for ($i = 0; $i < $VorNach_cnt; $i++)
+								{
+									$Vorteile = $r_Vorteile[$i][0];
+									$Nachteile = $r_Nachteile[$i][0];
+									
+									if(!empty($Vorteile) or !empty($Nachteile))
+									{
+										echo "<tr><td>" . $Vorteile . "</td>";
+										echo "<td>" . $Nachteile . "</td></tr>";
+									}
+								}
+							?>
+						</table>
+				
 			
 			</div>
 		
