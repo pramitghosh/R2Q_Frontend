@@ -41,10 +41,69 @@
   border-top: none;
 }
 
+[type="checkbox"] {
+  outline: 2px solid lightblue;
+}
+
+/* [type="checkbox"] {
+  position: relative;
+  left: 15px;
+  top: -4px;
+  z-index: 0;
+  -webkit-appearance: none;
+}
+[type="checkbox"] + label {
+  position: absolute;
+}
+[type="checkbox"] + label::before {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  border: 2px solid #8cad2d;
+  background-color: #fff;
+  display: block;
+  content: "";
+  float: left;
+  margin-right: 5px;
+  z-index: 5;
+  position: relative;
+}
+[type="checkbox"]:checked+label::before {
+  box-shadow: inset 0px 0px 0px 3px #fff;
+  background-color: #8cad2d;
+} */
+
 .results {
 	width: 75%;
 	float: left;
 	text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: green;
+}
+
+.greenBox {
+  padding: 0px 12px;
+  border: solid green 3px;
+  background-color: #00854949;
+}
+
+h4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: green;
+}
+
+h5 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #767171;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 figure_bsp {
@@ -56,9 +115,20 @@ figure_bsp {
 }
 
 figcaption {
-    font: italic sans-serif;
+    font-style: italic;
     padding: 4px;
     text-align: center;
+}
+figcaptionPre {
+  font-weight: bold;
+}
+
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: green;
+  margin-top: 6px;
+  margin-bottom: 0;
 }
 
 .img_center {

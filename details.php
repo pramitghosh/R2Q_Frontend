@@ -29,116 +29,157 @@
 		return $wert;
 	}
 	
+	function get_wertParsedown($e1, $e2=NAN, $e3=NAN)
+	{ 	global $conn;
+		global $m_id;
+		if (is_nan($e2))  {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
+		} elseif (is_nan($e3)) {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
+		} else {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
+		}
+		$wert = "";
+		foreach ($query_result as $qr)
+			$wert = $qr["wert"];
+			$wert = text($wert); 
+		return $wert;
+	}
+
+	function get_wert($e1, $e2=NAN, $e3=NAN)
+	{ 	global $conn;
+		global $m_id;
+		if (is_nan($e2))  {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
+		} elseif (is_nan($e3)) {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
+		} else {
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
+		}
+		$wert = "";
+		foreach ($query_result as $qr)
+			$wert = $qr["wert"];
+		return $wert;
+	}
+ 
 	if (!is_null($m_id))
 	{	
-		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
+		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 		
-		#Titel
-		$q_Titel = $q_template . "ebene1 = 'Titel'";
+		// $q_Titel = $q_template . "ebene1 = 'Titel'";
 		
-		$q_Kurzbeschreibung = $q_template . "ebene1 = 'Kurzbeschreibung'";
+		// $q_Kurzbeschreibung = $q_template . "ebene1 = 'Kurzbeschreibung'";
 		
-		$q_Umsetzungsbeispiel_Beschriftung = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Beschriftung'";
-		$q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
+		// $q_Umsetzungsbeispiel_Beschriftung = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Beschriftung'";
+		// $q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
 		
-		$q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
+		// $q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
 		
-		$q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
+		// $q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
 		
-		$q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
+		// $q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
 		
-		$q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
+		// $q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
 		
-		$q_Nutzungsdauer_min = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'min'";
-		$q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
-		$q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
+		// $q_Nutzungsdauer_min = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'min'";
+		// $q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
+		// $q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
 		
-		$q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
+		// $q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
 		
-		$q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
+		// $q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
 		
-		$q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
+		// $q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
 		
-		$q_Systemskizze_Beschriftung = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Beschriftung'";
-		$q_Systemskizze_Bild = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Bild'";
-		$q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
+		// $q_Systemskizze_Beschriftung = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Beschriftung'";
+		// $q_Systemskizze_Bild = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Bild'";
+		// $q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
 		
-		$q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
-		$q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
+		// $q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
+		// $q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		
-		$q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
-		$q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
-		$q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
-		$q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
-		$q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
-		$q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
-		$q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
-		$q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
-		$q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
-		$q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
-		$q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
-		$q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
+		// $q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
+		// $q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
+		// $q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
+		// $q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
+		// $q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
+		// $q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
+		// $q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
+		// $q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
+		// $q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
+		// $q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
+		// $q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
+		// $q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
 		
-		$q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
-		$q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
+		// $q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
+		// $q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
 		
 		
-		$r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
+		// $r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
 		
-		$r_Kurzbeschreibung = extract_wert(mysqli_query($conn, $q_Kurzbeschreibung));
+		// $r_Kurzbeschreibung = extract_wert(mysqli_query($conn, $q_Kurzbeschreibung));
+		// $r_Umsetzungsbeispiel_Beschriftung = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Beschriftung));
+		// $r_Umsetzungsbeispiel_Bild = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Bild));
 		
-		$r_Umsetzungsbeispiel_Beschriftung = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Beschriftung));
-		$r_Umsetzungsbeispiel_Bild = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Bild));
-		$r_Umsetzungsbeispiel_uptime = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_uptime));
+		// $r_Ressource = mysqli_query($conn, $q_Ressource);		
+		// $r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
 		
-		$r_Ressource = mysqli_query($conn, $q_Ressource);		
-		$r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
-		
-		$r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
-		$r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
+		// $r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
+		// $r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
 
-		$r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
-		$r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
+		// $r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
+		// $r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
 		
-		$r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
-		$r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
+		// $r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
+		// $r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
 		
-		$r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
-		$r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
-		$r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
+		// $r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
+		// $r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
+		// $r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
 		
-		$r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
-		$r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
+		// $r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
+		// $r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
 		
-		$r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
+		// $r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
 		
-		$r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
+		// $r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
 		
-		$r_Systemskizze_Beschriftung = extract_wert(mysqli_query($conn, $q_Systemskizze_Beschriftung));
-		$r_Systemskizze_Bild = extract_wert(mysqli_query($conn, $q_Systemskizze_Bild));
-		$r_Systemskizze_uptime = extract_wert(mysqli_query($conn, $q_Systemskizze_uptime));
+		// $r_Systemskizze_Beschriftung = extract_wert(mysqli_query($conn, $q_Systemskizze_Beschriftung));
+		// $r_Systemskizze_Bild = extract_wert(mysqli_query($conn, $q_Systemskizze_Bild));
+		// $r_Systemskizze_uptime = extract_wert(mysqli_query($conn, $q_Systemskizze_uptime));
 		
-		$r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
-		$r_Planung_table = mysqli_query($conn, $q_Planung_table);
-		$r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
+		// $r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
+		// $r_Planung_table = mysqli_query($conn, $q_Planung_table);
+		// $r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
 		
-		$r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
-		$r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
-		$r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
-		$r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
-		$r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
-		$r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
-		$r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
-		$r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
-		$r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
-		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
-		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
-		$r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
+		// $r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
+		// $r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
+		// $r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
+		// $r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
+		// $r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
+		// $r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
+		// $r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
+		// $r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
+		// $r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
+		// $r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
+		// $r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
+		// $r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
 		
-		$r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
-		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
+		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
+		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
-				
+		$r_Titel = get_wert("'Titel'");
+		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
+		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
+		$r_Umsetzungsbeispiel_Bild = get_wert("'Umsetzungsbeispiel'","'Bild'");
+		$r_ResNiederschlag = get_wert("'Ressource'","'Niederschlagswasser'");
+		$r_ResSchmutzwasser = get_wert("'Ressource'","'Schmutzwasser'");
+		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
+		$r_ResEnergie = get_wert("'Ressource'","'Energie'");
+		$r_ResFläche = get_wert("'Ressource'","'Fläche'");
+		
+		
+
 	} else echo "Not a valid ID!";
 
 
@@ -171,43 +212,49 @@
 
 			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
-				<!-- <h2>Kurzinformation</h2> -->
+
+
+
+
+				<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				<h3><?php echo $r_Titel; ?></h3>
+
 				
-				<h4>Kurzbeschreibung</h4>
-					<p>
-						<?php 
-							$Parsedown = new Parsedown();
-							echo $Parsedown->text($r_Kurzbeschreibung); 
-						?>
-					</p>
-				
+					<h5>Kurzinformation</h5>
+					<div id="kurzBox" class="greenBox"> 
+						<p>
+							<?php 
+								$Parsedown = new Parsedown();
+								echo $Parsedown->text($r_Kurzbeschreibung);
+							?>
+						</p>
+						</div>
 				<h4>Umsetzungsbeispiel</h4>
 					<p>
 						<figure_bsp>
 							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
-							<figcaption><?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
+							
+							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
 						</figure_bsp>	
 					</p>
-					<p>
-						<small>
-							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Umsetzungsbeispiel_uptime)); ?>
-						</small>
-					</p>
-				
-				<h4>Ressource</h4>
-					<p>
-						<ul>
-							<?php 
-								$ress_count = count($r_Ressource);
-								for ($i = 0; $i < $ress_count; $i++)								
-								{
-									echo "<li>" . $r_Ressource[$i][0] . "</li>";
-								}
-							?>
-						</ul>
-					</p>
-				
+				<div id="resBox" class="greenBox">
+					<h6>Ressource</h6>
+					<input type="checkbox"  <?php echo ($r_ResNiederschlag=1)? "checked":""; ?> onclick="return false;">
+					<input type="checkbox" onclick="return false;">
+						<!-- <p>
+							<ul>
+								<?php 
+									
+									// $ress_count = count($r_Ressource);
+									// for ($i = 0; $i < $ress_count; $i++)								
+									// {
+									// 	echo "<li>" . $r_Ressource[$i][0] . "</li>";
+									// }
+								?>
+							</ul>
+						</p> -->
+				</div>
+
 				<h4>Wirkung und Funktion</h4>
 					<?php 
 						$rg_wirkungfunktion = array();
