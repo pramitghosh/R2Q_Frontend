@@ -92,6 +92,8 @@
 		$q_Vorteile = $q_template . "ebene1 = 'Vor- und Nachteile' AND ebene2 = 'Vorteile' ORDER BY ABS(ebene3)";
 		$q_Nachteile = $q_template . "ebene1 = 'Vor- und Nachteile' AND ebene2 = 'Nachteile' ORDER BY ABS(ebene3)";
 		
+		$q_Fallbeispiele = $q_template . "ebene1 = 'Fallbeispiele' ORDER BY ebene2, ebene3";
+		
 		
 		
 		
@@ -160,6 +162,9 @@
 		
 		$r_Vorteile = mysqli_fetch_all(mysqli_query($conn, $q_Vorteile));
 		$r_Nachteile = mysqli_fetch_all(mysqli_query($conn, $q_Nachteile));
+		
+		$r_Fallbeispiele = mysqli_fetch_all(mysqli_query($conn, $q_Fallbeispiele));
+
 		
 				
 	} else echo "Not a valid ID!";
@@ -500,6 +505,34 @@
 									{
 										echo "<tr><td>" . $Vorteile . "</td>";
 										echo "<td>" . $Nachteile . "</td></tr>";
+									}
+								}
+							?>
+						</table>
+					
+				<h4>Fallbeispiele</h4>
+					<p>
+						<table>
+							<tr>
+								<th>Projektname</th>
+								<th>Stadt</th>
+								<th>Land</th>
+								<th>Erläuterung</th>
+							</tr>
+							<?php 
+								for ($i = 0; $i < 3; $i++)
+								{
+									$projectname = $r_Fallbeispiele[($i*3)+2][0];
+									$stadt = $r_Fallbeispiele[($i*3)+3][0];
+									$land = $r_Fallbeispiele[($i*3)+1][0];
+									$erlaeuterung = $r_Fallbeispiele[$i*3][0];
+									
+									if(!empty($projectname))
+									{
+										echo "<tr><td>" . $projectname . "</td>";
+										echo "<td>" . $stadt . "</td>";
+										echo "<td>" . $land . "</td>";
+										echo "<td>" . $erlaeuterung . "</td></tr>";
 									}
 								}
 							?>
