@@ -177,8 +177,11 @@
 		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
 		$r_ResEnergie = get_wert("'Ressource'","'Energie'");
 		$r_ResFläche = get_wert("'Ressource'","'Fläche'");
-		
-		
+
+
+
+		$r_funkNiederschlagGewässer = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Gewässerschutz'");
+		$r_funkNiederschlagBodenschutz = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Bodenschutz'");
 
 	} else echo "Not a valid ID!";
 
@@ -239,20 +242,17 @@
 					</p>
 				<div id="resBox" class="greenBox">
 					<h6>Ressource</h6>
-					<input type="checkbox"  <?php echo ($r_ResNiederschlag=1)? "checked":""; ?> onclick="return false;">
-					<input type="checkbox" onclick="return false;">
-						<!-- <p>
-							<ul>
-								<?php 
-									
-									// $ress_count = count($r_Ressource);
-									// for ($i = 0; $i < $ress_count; $i++)								
-									// {
-									// 	echo "<li>" . $r_Ressource[$i][0] . "</li>";
-									// }
-								?>
-							</ul>
-						</p> -->
+						<table class="resTable">
+							<tbody>
+								<tr>
+									<td><input type="checkbox"  <?php echo ($r_ResNiederschlag==1)? "checked":""; ?> onclick="return false;"> Niederschlagswasser</td>
+									<td><input type="checkbox"  <?php echo ($r_ResSchmutzwasser==1)? "checked":""; ?> onclick="return false;"> Schmutzwasser</td>
+									<td><input type="checkbox"  <?php echo ($r_ResBaustoffe==1)? "checked":""; ?> onclick="return false;">  Baustoffe</td>
+									<td><input type="checkbox"  <?php echo ($r_ResEnergie==1)? "checked":""; ?> onclick="return false;"> Energie</td>
+									<td><input type="checkbox"  <?php echo ($r_ResFläche==1)? "checked":""; ?> onclick="return false;"> Fläche</td>
+								</tr>
+							</tbody>
+						</table>
 				</div>
 
 				<h4>Wirkung und Funktion</h4>
