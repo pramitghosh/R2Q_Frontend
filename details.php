@@ -29,29 +29,29 @@
 		return $wert;
 	}
 	
-	function get_wertParsedown($e1, $e2=NAN, $e3=NAN)
-	{ 	global $conn;
-		global $m_id;
-		if (is_nan($e2))  {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
-		} elseif (is_nan($e3)) {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
-		} else {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
-		}
-		$wert = "";
-		foreach ($query_result as $qr)
-			$wert = $qr["wert"];
-			$wert = text($wert); 
-		return $wert;
-	}
+	// function get_wertParsedown($e1, $e2=NULL, $e3=NULL)
+	// { 	global $conn;
+	// 	global $m_id;
+	// 	if (is_null($e2))  {
+	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
+	// 	} elseif (is_null($e3)) {
+	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
+	// 	} else {
+	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
+	// 	}
+	// 	$wert = "";
+	// 	foreach ($query_result as $qr)
+	// 		$wert = $qr["wert"];
+	// 		$wert = text($wert); 
+	// 	return $wert;
+	// }
 
-	function get_wert($e1, $e2=NAN, $e3=NAN)
+	function get_wert($e1, $e2=NULL, $e3=NULL)
 	{ 	global $conn;
 		global $m_id;
-		if (is_nan($e2))  {
+		if (is_null($e2))  {
 			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
-		} elseif (is_nan($e3)) {
+		} elseif (is_null($e3)) {
 			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
 		} else {
 			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
@@ -182,15 +182,37 @@
 
 		$r_funkNiederschlagGewässer = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Gewässerschutz'");
 		$r_funkNiederschlagBodenschutz = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Bodenschutz'");
+		$r_funkNiederschlagÜberflutungsschutz = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Überflutungsschutz'");
+		$r_funkNiederschlagKlimaanpassung = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Klimaanpassung'");
 
-	} else echo "Not a valid ID!";
+		$r_funkBaustoffeBOM = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'BOM Bill of Material'");
+		$r_funkBaustoffeMonomaterial = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Monomaterial'");
+		$r_funkBaustoffeEinsparung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Einsparung von Primärmaterialien'");
+		$r_funkBaustoffeNachwachsend = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Nachwachsender Rohstoff'");
+		$r_funkBaustoffeRohstofferhalt = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstofferhalt'");
+		$r_funkBaustoffeRohstoffverfügbarkeit = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffverfügbarkeit'");
+		$r_funkBaustoffeRohstoffaufwand = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffaufwand (gesamt)'");
 
+		$r_funkFlächeInfrastrukturversorgung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Infrastrukturversorgung'");
+		$r_funkFlächeNutzungsvielfalt = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Nutzungsvielfalt'");
+		$r_funkFlächeEinsparung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Einsparung natürlicher Ressourcen'");
+		$r_funkFlächeLuftreinhaltung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Luftreinhaltung'");
+		$r_funkFlächeBiodiversität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Biodiversität'");
+		$r_funkFlächeAufenthaltsqualität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Aufenthalts-/ Freiraumqualität'");
 
+		$r_funkSchmutzwasserGesundheitsvorsorge = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Gesundheitsvorsorge'");
+		$r_funkSchmutzwasserGewässerschutz = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Gewässerschutz'");
+		$r_funkSchmutzwasserTrinwassereinsparung = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Trinwassereinsparung'");
+		$r_funkSchmutzwasserNährstoffrückgewinnung = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Nährstoffrückgewinnung'");
 
+		$r_funkEnergieElektrizität = get_wert("'Wirkung/Funktion'", "'Energie'", "'Elektrizität'");
+		$r_funkEnergieWärme = get_wert("'Wirkung/Funktion'", "'Energie'", "'Wärme'");
+		$r_funkEnergieBrennstoffe = get_wert("'Wirkung/Funktion'", "'Energie'", "'Brennstoffe'");
+		$r_funkEnergieErzeugung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Erzeugung'");
+		$r_funkEnergieVerteilung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Verteilung'");
+		$r_funkEnergieVerbrauch = get_wert("'Wirkung/Funktion'", "'Energie'", "'Verbrauch'");
 
-
-
-
+	} else echo "Not a valid ID!"; 
 
 ?>
 
@@ -255,16 +277,83 @@
 						</table>
 				</div>
 
+				<div id="funktionBox" class="whiteBox">
 				<h4>Wirkung und Funktion</h4>
-					<?php 
-						$rg_wirkungfunktion = array();
-						foreach ($r_wirkungfunktion as $wf)
-						{
-	    					$rg_wirkungfunktion[$wf[0]][] = $wf;
-						}
-						$rgwf_keys = array_keys($rg_wirkungfunktion);
-						$rgwf_keys_count = count($rgwf_keys);
-	    			?>
+							<table class="resTable">
+								<tbody>
+									<tr>
+										<td class="gray"> Niederschlagswasser </td>
+										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagGewässer==1)? "checked":""; ?> onclick="return false;"> Gewässerschutz</td>
+										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagBodenschutz==1)? "checked":""; ?> onclick="return false;">  Bodenschutz</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagÜberflutungsschutz==1)? "checked":""; ?> onclick="return false;"> Überflutungsschutz</td>
+										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagKlimaanpassung==1)? "checked":""; ?> onclick="return false;">  Klimaanpassung</td>
+									</tr>
+									<tr class="hline">
+										<td class="gray"> Schmutzwasser </td>
+										<td><input type="checkbox"  <?php echo ($r_funkSchmutzwasserGesundheitsvorsorge==1)? "checked":""; ?> onclick="return false;"> Gesundheitsvorsorge</td>
+										<td><input type="checkbox"  <?php echo ($r_funkSchmutzwasserGewässerschutz==1)? "checked":""; ?> onclick="return false;"> Gewässerschutz</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkSchmutzwasserTrinwassereinsparung==1)? "checked":""; ?> onclick="return false;"> Trinkwassereinsparung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkSchmutzwasserNährstoffrückgewinnung==1)? "checked":""; ?> onclick="return false;">  Nährstoffrückgewinnung</td>
+									</tr>
+									<tr class="hline">
+										<td class="gray"> Baustoffe </td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeBOM==1)? "checked":""; ?> onclick="return false;"> BOM Bill of Material</td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeMonomaterial==1)? "checked":""; ?> onclick="return false;">  Monomaterial</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeEinsparung==1)? "checked":""; ?> onclick="return false;"> Einsparung von Primärmaterialien</td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeNachwachsend==1)? "checked":""; ?> onclick="return false;">  Nachwachsender Rohstoff</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeRohstofferhalt==1)? "checked":""; ?> onclick="return false;"> Rohstofferhalt</td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeRohstoffverfügbarkeit==1)? "checked":""; ?> onclick="return false;">  Rohstoffverfügbarkeit</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeRohstoffaufwand==1)? "checked":""; ?> onclick="return false;"> Rohstoffaufwand (gesamt)</td>
+										<td></td>
+									</tr>
+									<tr class="hline">
+										<td class="gray"> Energie </td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieElektrizität==1)? "checked":""; ?> onclick="return false;"> Elektrizität</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieErzeugung==1)? "checked":""; ?> onclick="return false;">  Erzeugung</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieWärme==1)? "checked":""; ?> onclick="return false;"> Wärme</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieVerteilung==1)? "checked":""; ?> onclick="return false;">  Verteilung</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieBrennstoffe==1)? "checked":""; ?> onclick="return false;"> Brennstoffe</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieVerbrauch==1)? "checked":""; ?> onclick="return false;">  Verbrauch</td>
+									</tr>
+									<tr class="hline">
+										<td class="gray"> Fläche </td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeInfrastrukturversorgung==1)? "checked":""; ?> onclick="return false;"> Infrastrukturversorgung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeNutzungsvielfalt==1)? "checked":""; ?> onclick="return false;">  Nutzungsvielfalt</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeEinsparung==1)? "checked":""; ?> onclick="return false;"> Einsparung natürlicher Ressourcen</td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeLuftreinhaltung==1)? "checked":""; ?> onclick="return false;">  Luftreinhaltung</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeBiodiversität==1)? "checked":""; ?> onclick="return false;"> Biodiversität</td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeAufenthaltsqualität==1)? "checked":""; ?> onclick="return false;">  Aufenthalts-/ Freiraumqualität</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
 					<p>
 						<ul>
 							<?php 								
