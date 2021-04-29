@@ -65,6 +65,7 @@ h3 {
 
 .whiteBox {
   padding: 0px 12px;
+  width: 1000px;
 }
 
 h4 {
@@ -112,7 +113,6 @@ h6 {
 }
 
 .resTable{
-  border-top: 2px solid black;
   margin-top: 6px;
   word-break: break-all;
   min-width: 1000px;
@@ -131,4 +131,16 @@ tr.hline {
 
 td.gray {
   color: #555555cb;
+}
+.boldGray {
+  color: #555555cb;
+  font-weight: bold;
+}
+
+thead.header {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: green;
+  margin-bottom: 6px;
+  font-weight: bold;
 }

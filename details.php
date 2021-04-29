@@ -4,22 +4,7 @@
 	require 'sql.php';
 	$m_id = $_GET["id"];
 	//echo mysqli_ping($conn) ? 'true' : 'false';
-	
-/* 	function m_values($id, $e1, $e2, $e3):mysqli_result
-	{
-		$q = "SELECT wert FROM joined_massnahme WHERE id = " . $id . " AND ebene1 = '" . $e1 . "'";
-		if (!isset($e2)) {
-			$q = $q . " AND ebene2 = '" . $e2 . "'";
-			if(!isset($e3))
-			{
-				$q = $q . " AND ebene3 = '" . $e3 . "'";
-			}
-		}
-		echo $q;
-		$r = mysqli_query($conn, $q);
-		return $r;
-	}
-	$details_r = m_values(1, 'Titel'); */
+
 	
 	function extract_wert($query_result)
 	{
@@ -29,23 +14,6 @@
 		return $wert;
 	}
 	
-	// function get_wertParsedown($e1, $e2=NULL, $e3=NULL)
-	// { 	global $conn;
-	// 	global $m_id;
-	// 	if (is_null($e2))  {
-	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
-	// 	} elseif (is_null($e3)) {
-	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
-	// 	} else {
-	// 		$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
-	// 	}
-	// 	$wert = "";
-	// 	foreach ($query_result as $qr)
-	// 		$wert = $qr["wert"];
-	// 		$wert = text($wert); 
-	// 	return $wert;
-	// }
-
 	function get_wert($e1, $e2=NULL, $e3=NULL)
 	{ 	global $conn;
 		global $m_id;
@@ -63,7 +31,7 @@
 	}
  
 	if (!is_null($m_id))
-	{	
+	{
 		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 		
 		// $q_Titel = $q_template . "ebene1 = 'Titel'";
@@ -150,7 +118,7 @@
 		
 		// $r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
 		// $r_Planung_table = mysqli_query($conn, $q_Planung_table);
-		// $r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_NUM);
+		// $r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_ASSOC);
 		
 		// $r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
 		// $r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
@@ -168,6 +136,8 @@
 		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
 		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
+		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
+
 		$r_Titel = get_wert("'Titel'");
 		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
 		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
@@ -177,8 +147,6 @@
 		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
 		$r_ResEnergie = get_wert("'Ressource'","'Energie'");
 		$r_ResFläche = get_wert("'Ressource'","'Fläche'");
-
-
 
 		$r_funkNiederschlagGewässer = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Gewässerschutz'");
 		$r_funkNiederschlagBodenschutz = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Bodenschutz'");
@@ -211,6 +179,35 @@
 		$r_funkEnergieErzeugung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Erzeugung'");
 		$r_funkEnergieVerteilung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Verteilung'");
 		$r_funkEnergieVerbrauch = get_wert("'Wirkung/Funktion'", "'Energie'", "'Verbrauch'");
+
+		$r_anwendungsebeneGebäude = get_wert("'Anwendungsebene'", "'Gebäudeebene'");
+		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
+		$r_anwendungsebeneQuartier = get_wert("'Anwendungsebene'", "'Quartiersebene'");
+
+		$r_FlaechenbedarfEW = get_wert("'Flächenbedarf'","'m²/EW'");
+		$r_FlaechenbedarfXX = get_wert("'Flächenbedarf'","'XX'");
+		$r_Flaechenbedarfm2XX = get_wert("'Flächenbedarf'","'m²/XX'");
+
+		$r_Nutzungsdauer_min = get_wert("'Nutzungsdauer'","'min'");
+		$r_Nutzungsdauer_max = get_wert("'Nutzungsdauer'","'max'");
+		$r_Nutzungsdauer_ueblich = get_wert("'Nutzungsdauer'","'üblich'");
+
+		$r_EntwicklungsstandWissenschaftTechnik = get_wert("'Entwicklungsstand'","'Stand der Wissenschaft und Technik'");
+		$r_EntwicklungsstandTechnik = get_wert("'Entwicklungsstand'","'Stand der Technik'");
+		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'mAllgemein annerkannter Stand der Technikin'");
+		$r_Sammelhinweis = get_wert("'Sammelhinweis'","'Hinweis'");
+
+		$r_Funktionsbeschreibung = get_wert("'Funktionsbeschreibung und Aufbau'");
+		$r_Systemskizze_Bild = get_wert("'Systemskizze'","'Bild'");
+		$r_Systemskizze_Beschriftung = get_wert("'Systemskizze'","'Beschriftung'");
+		$r_Systemskizze_uptime = get_wert("'Systemskizze'","'uptime'");
+
+		$r_Planung_freetext = get_wert("'Planung, Bemessung und rechtliche Aspekte'","'Fließtext'");
+		$q_PlanungNormen = $q_template . "(ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
+		$r_PlanungNormen = mysqli_query($conn, $q_PlanungNormen);
+		$r_PlanungNormen = mysqli_fetch_all($r_PlanungNormen, MYSQLI_ASSOC);
+		
+		
 
 	} else echo "Not a valid ID!"; 
 
@@ -266,7 +263,7 @@
 					<h6>Ressource</h6>
 						<table class="resTable">
 							<tbody>
-								<tr>
+								<tr class="hline">
 									<td><input type="checkbox"  <?php echo ($r_ResNiederschlag==1)? "checked":""; ?> onclick="return false;"> Niederschlagswasser</td>
 									<td><input type="checkbox"  <?php echo ($r_ResSchmutzwasser==1)? "checked":""; ?> onclick="return false;"> Schmutzwasser</td>
 									<td><input type="checkbox"  <?php echo ($r_ResBaustoffe==1)? "checked":""; ?> onclick="return false;">  Baustoffe</td>
@@ -281,7 +278,7 @@
 				<h4>Wirkung und Funktion</h4>
 							<table class="resTable">
 								<tbody>
-									<tr>
+									<tr class="hline">
 										<td class="gray"> Niederschlagswasser </td>
 										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagGewässer==1)? "checked":""; ?> onclick="return false;"> Gewässerschutz</td>
 										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagBodenschutz==1)? "checked":""; ?> onclick="return false;">  Bodenschutz</td>
@@ -354,129 +351,117 @@
 								</tbody>
 							</table>
 							</div>
-					<p>
-						<ul>
-							<?php 								
-								for ($i = 0; $i < $rgwf_keys_count; $i++)
-								{
-									echo "<li>" . $rgwf_keys[$i] . "</li>";
-									
-									echo "<ul>";
-									
-										$rgwf_subarr = $rg_wirkungfunktion[$rgwf_keys[$i]];
-										$rgwf_subarr_count = count($rgwf_subarr);
-										for ($j = 0; $j < $rgwf_subarr_count; $j++)
-										{
-											echo "<li>" . $rgwf_subarr[$j][1] . "</li>";
-										}
-										
-									echo "</ul>";
-								}
-							?>
-						</ul>
-					</p>
-				
-				<h4>Anwendungsebene</h4>
-					<p>
-						<ul>
-							<?php 
-								$anwendugsebene_count = count($r_Anwendungsebene);
-								for ($i = 0; $i < $anwendugsebene_count; $i++)								
-								{
-									echo "<li>" . $r_Anwendungsebene[$i][0] . "</li>";
-								}
-							?>
-						</ul>
-					</p>
-					
-				<h4>Flächenbedarf</h4>
-					<p>
-						<ul>
-							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[0]['wert']; ?> m²/EW</li>
-							<li>Einheit für den spezifischen Flächenbedarf: <?php echo $r_Flaechenbedarf[1]['wert']; ?> m²/XX</li>
-							<li>spezifische Fläche: <?php echo $r_Flaechenbedarf[2]['wert'] ?> m²/XX</li>
-						</ul>
-					</p>
-				
-				<h4>Nutzungsdauer</h4>
-					<p>
-						<ul>
-							<li>minimum: <?php echo $r_Nutzungsdauer_min . " Jahre"; ?> </li>
-							<li>maximum: <?php echo $r_Nutzungsdauer_ueblich . " Jahre"; ?> </li>
-							<li>üblich: <?php echo $r_Nutzungsdauer_ueblich . " Jahre" ?> </li>							
-						</ul>
-					</p>
-					
-				<h4>Entwicklungsstand</h4>
-					<p>
-						<ul>
-							<?php 
-								$ent_count = count($r_Entwicklungsstand);
-								for ($i = 0; $i < $ent_count; $i++)
-								{
-									echo "<li>" . $r_Entwicklungsstand[$i][0] . "</li>";									
-								}
-							?>
-						</ul>
-					</p>
-					
-				<h4>Sammelhinweis</h4>
-					<p>
-						<?php 
-							echo $r_Sammelhinweis;
-						?>
-					</p>			
+						<br>
+						<br>
+
+						<div class="whiteBox">
+						<table class="resTable">
+							<thead class="header">
+								<td>Anwendungsebene</td>
+								<td>Flächenbedarf</td>
+								<td>Nutzungsdauer (Jahre)</td>
+								<td>Entwicklungsstand</td>
+								
+							</thead>
+							<tbody>
+								<tr class="hline">
+									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneGebäude==1)? "checked":""; ?> onclick="return false;"> Gebäude</td>
+									<td><?php echo $r_FlaechenbedarfEW ?> m²/EW</td>
+									<td>Mindestens: <?php echo $r_Nutzungsdauer_min ?></td>
+									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandWissenschaftTechnik==1)? "checked":""; ?> onclick="return false;"> Stand der Wissenschaft und Technik</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneGrundstück==1)? "checked":""; ?> onclick="return false;"> Grundstück</td>
+									<td><?php echo $r_FlaechenbedarfXX ?> m²/<?php echo $r_Flaechenbedarfm2XX ?></td>
+									<td>Maximal: &nbsp &nbsp &nbsp<?php echo $r_Nutzungsdauer_max ?></td>
+									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandTechnik==1)? "checked":""; ?> onclick="return false;"> Stand der Technik</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneQuartier==1)? "checked":""; ?> onclick="return false;"> Quartier</td>
+									<td></td>
+									<td>Üblich:&nbsp &nbsp &nbsp &nbsp &nbsp<?php echo $r_Nutzungsdauer_ueblich ?></td>
+									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandAnerkanntTechnik==1)? "checked":""; ?> onclick="return false;"> Allgemein annerkanter Stand der Technik</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<p>
+							<Div class="boldGray">Hinweis:</Div> <?php echo $r_Sammelhinweis ?>
+						</p>
+					</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
 			</div>
 			
+			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 			<div id="Detailinformation" class="tabcontent">
-				
-				<h4>Funktionsbeschreibung und Aufbau</h4>
+			
+			<h3><?php echo $r_Titel; ?></h3>
+				<h5>Detailinformationen</h5>
+				<div id="resBox" class="greenBox">
+					<h6>Funktionsbeschreibung und Aufbau</h6>
+					
 					<p>
-						<?php
-							$parsedown_Funktionsbeschreibung = new Parsedown();
-							echo $parsedown_Funktionsbeschreibung->text($r_Funktionsbeschreibung);
+						<?php 
+							$Parsedown = new Parsedown();
+							echo $Parsedown->text($r_Funktionsbeschreibung);
 						?>
 					</p>
+				</div>
+
+
+
+				<div class="whiteBox">
 				
-				<h4>Systemskizze</h4>
+					<h4>Systemskizze</h4>
 					<p>
 						<figure_bsp>
 							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
-							<figcaption><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
+							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
 						</figure_bsp>	
 					</p>
-					<p>
+					<!-- <p>
 						<small>
 							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Systemskizze_uptime)); ?>
 						</small>
-					</p>
+					</p> -->
 				
-				<h4>Planung, Bemessung und rechtliche Aspekte</h4>
+					<h4>Planung, Bemessung und rechtliche Aspekte</h4>
+				
 					<p>
 						<?php
 							$parsedown_Planung = new Parsedown();
 							echo $parsedown_Planung->text($r_Planung_freetext);
 						?>
 					</p>
+					
 					<?php 
-						if(!empty($r_Planung_table))
+						if(!empty($r_PlanungNormen))
 						{
 							echo "
 							<table>
-									<tr>
+									<thead>
 										<th>Norm</th>
 										<th>Titel</th>
-									</tr>";
+									</thead>";
 									for ($i = 0; $i < 5; $i++)
 									{
-										echo "<tr><td>" . $r_Planung_table[$i][0] . "</td>";
-										echo "<td>" . $r_Planung_table[$i+5][0] . "</td></tr>";
+										if (implode('|',$r_PlanungNormen[$i])!="" and implode('|',$r_PlanungNormen[$i+5])!="" ) {
+											echo "<tr><td>" . implode('|',$r_PlanungNormen[$i]) . "</td>";
+												echo "<td>" . implode('|',$r_PlanungNormen[$i+5]) . "</td></tr>";
+										}
+										
 									}							
 							echo "</table>";
 						}
 					?>
 				
-				<h4>Aufwand und Kosten</h4>
+					<h4>Aufwand und Kosten</h4>
 					<p>
 						<?php 
 							$parsedown_Aufwand = new Parsedown();
@@ -532,7 +517,7 @@
 						?>
 					</p>
 				
-				<h4>Weitergehende Hinweise</h4>				
+					<h4>Weitergehende Hinweise</h4>				
 					<p>
 						<?php 
 							$parsedown_Weitergehende_freetext = new Parsedown();
@@ -558,7 +543,7 @@
 							}
 						?>
 					</p>
-						
+				</div>	
 			
 			</div>
 		

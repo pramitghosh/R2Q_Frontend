@@ -39,7 +39,7 @@
 		</div>
 		<div class = "results">
 			<form action="details.php" method="GET">
-				<label for="id">Bitte geben Sie Massnahmen ID ein, um direkt zu gehen: </label>
+				<label for="id">Bitte geben Sie Massnahmen ID ein, für die Direktsuche: </label>
 				<input type="text" name="id">
 				<input type="submit" value="Submit">				
 			</form>
