@@ -206,8 +206,60 @@
 		$q_PlanungNormen = $q_template . "(ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		$r_PlanungNormen = mysqli_query($conn, $q_PlanungNormen);
 		$r_PlanungNormen = mysqli_fetch_all($r_PlanungNormen, MYSQLI_ASSOC);
+
+		$r_Aufwand_freetext = get_wert("'Aufwand und Kosten'","'Fließtext'");
+		// $q_Aufwand_Investitionskosten  = $q_template . "(ebene2 LIKE 'Betriebskosten_' OR ebene2 LIKE 'Investitionskosten_') ORDER BY ebene2";
+		// $r_Aufwand_Investitionskosten  = mysqli_query($conn, $q_Aufwand_Investitionskosten );
+		// $r_Aufwand_Investitionskosten  = mysqli_fetch_all($r_Aufwand_Investitionskosten , MYSQLI_ASSOC);
+		$q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
+		$q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
+		$q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
+		$q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
+		$q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
+		$q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
+		$q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
+		$q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
+		$q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
+		$q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
+
+		$r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
+		$r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
+		$r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
+		$r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
+		$r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
+		$r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
+		$r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
+		$r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
+		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
+		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
+		$r_Aufwand_hinweis = get_wert("'Aufwand und Kosten'","'Hinweis'");
+
+		$r_Weitergehende_freetext = get_wert("'Weitergehende Hinweise'","'Fließtext'");
+		$q_Weitergehende_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
+
+		$r_AspekteSynNiederschlag = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Niederschlagswasser'");
+		$r_AspekteSynSchmutzwasser = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Schmutzwasser'");
+		$r_AspekteSynBaustoffe = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Baustoffe'");
+		$r_AspekteSynEnergie = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Energie'");
+		$r_AspekteSynFläche = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Fläche'");
+		$r_AspekteSynÖkobilanz = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Ökobilanz'");
+		$r_AspekteKonfNiederschlag = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Niederschlagswasser'");
+		$r_AspekteKonfSchmutzwasser = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Schmutzwasser'");
+		$r_AspekteKonfBaustoffe = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Baustoffe'");
+		$r_AspekteKonfEnergie = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Energie'");
+		$r_AspekteKonfFläche = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Fläche'");
+		$r_AspekteKonfÖkobilanz = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Ökobilanz'");
 		
-		
+		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
+
+		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
+		$r_Fallbsp1 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp1), MYSQLI_NUM);
+		$q_Fallbsp2 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '2'";
+		$r_Fallbsp2 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp2), MYSQLI_NUM);
+		$q_Fallbsp3 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '3'";
+		$r_Fallbsp3 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp3), MYSQLI_NUM);
 
 	} else echo "Not a valid ID!"; 
 
@@ -239,6 +291,10 @@
 
 
 				<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+				<br>
+				<br>
+				<br>
+				<br>
 				<h3><?php echo $r_Titel; ?></h3>
 
 				
@@ -263,7 +319,7 @@
 					<h6>Ressource</h6>
 						<table class="resTable">
 							<tbody>
-								<tr class="hline">
+								<tr class="hlineHead">
 									<td><input type="checkbox"  <?php echo ($r_ResNiederschlag==1)? "checked":""; ?> onclick="return false;"> Niederschlagswasser</td>
 									<td><input type="checkbox"  <?php echo ($r_ResSchmutzwasser==1)? "checked":""; ?> onclick="return false;"> Schmutzwasser</td>
 									<td><input type="checkbox"  <?php echo ($r_ResBaustoffe==1)? "checked":""; ?> onclick="return false;">  Baustoffe</td>
@@ -278,7 +334,7 @@
 				<h4>Wirkung und Funktion</h4>
 							<table class="resTable">
 								<tbody>
-									<tr class="hline">
+									<tr class="hlineHead">
 										<td class="gray"> Niederschlagswasser </td>
 										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagGewässer==1)? "checked":""; ?> onclick="return false;"> Gewässerschutz</td>
 										<td><input type="checkbox"  <?php echo ($r_funkNiederschlagBodenschutz==1)? "checked":""; ?> onclick="return false;">  Bodenschutz</td>
@@ -372,7 +428,7 @@
 								</tr>
 								<tr>
 									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneGrundstück==1)? "checked":""; ?> onclick="return false;"> Grundstück</td>
-									<td><?php echo $r_FlaechenbedarfXX ?> m²/<?php echo $r_Flaechenbedarfm2XX ?></td>
+									<td><?php echo $r_Flaechenbedarfm2XX ?> m²/<?php echo $r_FlaechenbedarfXX ?></td>
 									<td>Maximal: &nbsp &nbsp &nbsp<?php echo $r_Nutzungsdauer_max ?></td>
 									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandTechnik==1)? "checked":""; ?> onclick="return false;"> Stand der Technik</td>
 								</tr>
@@ -386,9 +442,14 @@
 						</table>
 
 						<p>
-							<Div class="boldGray">Hinweis:</Div> <?php echo $r_Sammelhinweis ?>
+							<Div class="boldGray">Hinweis:</Div>
+							<?php 
+								$parsedown_Sammelhinweis = new Parsedown();
+								echo $parsedown_Sammelhinweis->text($r_Sammelhinweis);
+							?>
 						</p>
 					</div>
+
 						<br>
 						<br>
 						<br>
@@ -401,6 +462,11 @@
 
 			<div id="Detailinformation" class="tabcontent">
 			
+			<br>
+			<br>
+			<br>
+			<br>
+
 			<h3><?php echo $r_Titel; ?></h3>
 				<h5>Detailinformationen</h5>
 				<div id="resBox" class="greenBox">
@@ -444,15 +510,19 @@
 						if(!empty($r_PlanungNormen))
 						{
 							echo "
-							<table>
-									<thead>
-										<th>Norm</th>
-										<th>Titel</th>
+							<table class='resTable'>
+								<colgroup>
+									<col style='width:30%'>
+									<col style='width:70%'>
+								</colgroup>
+									<thead class='headerBlack'>
+										<td>Norm/Regelwerk</td>
+										<td>Titel</td>
 									</thead>";
 									for ($i = 0; $i < 5; $i++)
 									{
-										if (implode('|',$r_PlanungNormen[$i])!="" and implode('|',$r_PlanungNormen[$i+5])!="" ) {
-											echo "<tr><td>" . implode('|',$r_PlanungNormen[$i]) . "</td>";
+										if (implode('|',$r_PlanungNormen[$i])!="" or implode('|',$r_PlanungNormen[$i+5])!="" ) {
+											echo "<tr class='hline'><td>" . implode('|',$r_PlanungNormen[$i]) . "</td>";
 												echo "<td>" . implode('|',$r_PlanungNormen[$i+5]) . "</td></tr>";
 										}
 										
@@ -468,49 +538,94 @@
 							echo $parsedown_Aufwand->text($r_Aufwand_freetext);
 						?>
 					</p>
-					<p>
-						<h5>Investitionskosten</h5>						
+
+					<p>			
 						<?php 
-							for ($i = 1; $i < 6; $i++)
-							{
-								
-								echo "<ul>";
-								
-								if(!empty(${"r_Aufwand_i$i"}[0][0]))
-								{
-									echo "<li>Investitionskosten $i:</li>";
-									echo "<ul><li>Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
-									echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li>";
-									echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "</li></ul>";									
+						echo "<table class='resTable'>
+							<colgroup>
+								<col style='width:10%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:10%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+								<col style='width:6.66666%'>
+							</colgroup>
+						<thead class='headerBlack'><td colspan='6'>Investitionskosten</td><td colspan='6'>Betriebskosten</td></thead>
+							<tr><td>&nbsp</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_i" . $i}[0][0]!="")?"<td class='gray'>€/" . ${"r_Aufwand_i" . $i}[0][0] . "</td>":"<td>&nbsp</td>";
 								}
+								echo "<td class='gray'>&nbsp</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_b" . $i}[0][0]!="")?"<td class='gray'>€/" . ${"r_Aufwand_b" . $i}[0][0] . "</td>":"<td>&nbsp</td>";
+								}
+							echo "</tr>";
+							echo "<tr class='hline'><td class='gray'>min</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_i" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
+								}
+								echo "<td class='gray'>min</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_b" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
+								}
+							echo "</tr>";
+							echo "<tr class='hline'><td class='gray'>max</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_i" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
+								}
+								echo "<td class='gray'>max</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_b" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
+								}
+							echo "</tr>";
+							echo "<tr class='hline'><td class='gray'>üblich</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_i" . $i}[3][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[3][0] . "</td>":"<td>&nbsp</td>";
+								}
+								echo "<td class='gray'>üblich</td>";
+								for ($i = 1; $i < 6; $i++)
+								{echo ( ${"r_Aufwand_b" . $i}[3][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[3][0] . "</td>":"<td>&nbsp</td>";
+								}
+							echo "</tr>";
+
+
+								// echo "Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "";
+								// echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "";
+								// echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . ;									
+														
 								
-								echo "</ul>";
 								//echo ${"r_Aufwand_i$i`[1][0]`"};
-							}							
+							
+						echo "</table>";					
 						?>
 					</p>
-					<p>						
-						<h5>Betriebskosten</h5>
-						<?php 
-							for ($i = 1; $i < 6; $i++)
-							{
-								
-								echo "<ul>";
-								
-								if(!empty(${"r_Aufwand_b$i"}[0][0]))
-								{
-									echo "<li>Betriebskosten $i:</li>";
-									echo "<ul><li>Minimum: " . ${"r_Aufwand_b" . $i}[1][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
-									echo "<li>Maximum: " . ${"r_Aufwand_b" . $i}[2][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
-									echo "<li>Üblich: " . ${"r_Aufwand_b" . $i}[3][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li></ul>";									
-								}
-								
-								echo "</ul>";
-							}							
-						?>
-					</p>
+																		<!-- <p>
+																			<?php 
+																				for ($i = 1; $i < 6; $i++)
+																				{
+																					
+																					echo "<ul>";
+																					
+																					if(!empty(${"r_Aufwand_b$i"}[0][0]))
+																					{
+																						echo "<li>Betriebskosten $i:</li>";
+																						echo "<ul><li>Minimum: " . ${"r_Aufwand_b" . $i}[1][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+																						echo "<li>Maximum: " . ${"r_Aufwand_b" . $i}[2][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li>";
+																						echo "<li>Üblich: " . ${"r_Aufwand_b" . $i}[3][0] . " €/" . ${"r_Aufwand_b" . $i}[0][0] . "</li></ul>";									
+																					}
+																					
+																					echo "</ul>";
+																				}							
+																			?>
+																		</p> -->
 					<p>
-						<h5>Hinweis</h5>
+					<Div class="boldGray">Hinweis:</Div>
 						<?php 
 							$parsedown_Aufwand_hinweis = new Parsedown();
 							echo $parsedown_Aufwand_hinweis->text($r_Aufwand_hinweis);
@@ -529,24 +644,163 @@
 							if(!empty($r_Weitergehende_table))
 							{
 								echo "
-								<table>
-										<tr>
-											<th>Parameter</th>
-											<th>Wert</th>
-										</tr>";
-										for ($i = 0; $i < 5; $i++)
-										{
-											echo "<tr><td>" . $r_Weitergehende_table[$i][0] . "</td>";
-											echo "<td>" . $r_Weitergehende_table[$i+5][0] . "</td></tr>";
-										}							
+								<table class='resTable'>
+									<colgroup>
+										<col style='width:30%'>
+										<col style='width:70%'>
+									</colgroup>
+									<thead class='headerBlack'>
+										<td>Parameter</td>
+										<td>Wert</td>
+									</thead>";
+									for ($i = 0; $i < 20; $i++)
+									{
+										if ($r_Weitergehende_table[$i][1]!="" or $r_Weitergehende_table[$i+20][1]!="") {
+											$parsedown_Weitergehende_table0 = new Parsedown();
+											$parsedown_Weitergehende_table1 = new Parsedown();
+
+											echo "<tr class='hline'><td>" . $parsedown_Weitergehende_table0->text($r_Weitergehende_table[$i][1]) . "</td>";
+											echo "<td>" . $parsedown_Weitergehende_table1->text($r_Weitergehende_table[$i+20][1]) . "</td></tr>";
+										} 
+									}							
 								echo "</table>";
 							}
 						?>
 					</p>
+
+					<p>
+					<h4>Ressourcenübergreifende Aspekte</h4>	
+						<?php 
+							if(!empty($r_Weitergehende_table))
+							{
+								echo "
+								<table class='resTable'>
+									<colgroup>
+										<col style='width:20%'>
+										<col style='width:40%'>
+										<col style='width:40%'>
+									</colgroup>
+									<thead class='headerBlack'>
+										<td></td>
+										<td>Synergien</td>
+										<td>Zielkonflikte</td>
+									</thead>";
+											$parsedown_table_syn = new Parsedown();
+											$parsedown_table_konf = new Parsedown();
+											echo "<tr class='hline'>
+											<td class='gray'>Niederschlagswasser</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynNiederschlag) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfNiederschlag) . "</td></tr>";
+
+											echo "<tr class='hline'>
+											<td class='gray'>Schmutzwasser</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynSchmutzwasser) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfSchmutzwasser) . "</td></tr>";
+											
+											echo "<tr class='hline'>
+											<td class='gray'>Baustoffe</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynBaustoffe) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfBaustoffe) . "</td></tr>";
+
+											echo "<tr class='hline'>
+											<td class='gray'>Energie</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynEnergie) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfEnergie) . "</td></tr>";
+
+											echo "<tr class='hline'>
+											<td class='gray'>Fläche</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynFläche) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfFläche) . "</td></tr>";
+
+											echo "<tr class='hline'>
+											<td class='gray'>Ökobilanz</td>
+											<td>" . $parsedown_table_syn->text($r_AspekteSynÖkobilanz) . "</td>";
+											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfÖkobilanz) . "</td></tr>";
+								echo "</table>";
+							}
+						?>
+					</p>
+					<h4>Kombinationsmöglichkeiten (in Arbeit)</h4>
+					<p>
+					<h4>Vor- und Nachteile</h4>
+						<?php 
+							if(!empty($r_VorNach_table))
+							{
+								echo "
+								<table class='resTable'>
+									<colgroup>
+										<col style='width:50%'>
+										<col style='width:50%'>
+									</colgroup>
+									<thead class='headerBlack'>
+										<td>Vorteile</td>
+										<td>Nachteile</td>
+									</thead>";
+									for ($i = 0; $i < 10; $i++)
+									{
+										if ($r_VorNach_table[$i][1]!="" or $r_VorNach_table[$i+10][1]!="") {
+											$parsedown_Vorteile = new Parsedown();
+											$parsedown_Nachteile = new Parsedown();
+
+											echo "<tr class='hline'><td>" . $parsedown_Vorteile->text($r_VorNach_table[$i+10][1]) . "</td>";
+											echo "<td>" . $parsedown_Nachteile->text($r_VorNach_table[$i][1]) . "</td></tr>";
+										} 
+									}							
+								echo "</table>";
+							}
+						?>
+					</p>
+
+					<p>			
+						<?php 
+						echo "<table class='resTable'>
+							<colgroup>
+								<col style='width:20'>
+								<col style='width:15%'>
+								<col style='width:15%'>
+								<col style='width:50%'>
+							</colgroup>
+							<thead class='headerBlack'><td>Projektname</td><td>Stadt</td><td>Land</td><td>Erläuterung</td></thead>
+							<tr class='hline'>";
+									$parsedown_Fallbeispiele = new Parsedown();
+								if ($r_Fallbsp1[0][0]!="" or $r_Fallbsp1[1][0]!="" or $r_Fallbsp1[2][0]!="" or $r_Fallbsp1[3][0]!="") {
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp1[2][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp1[3][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp1[1][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp1[0][0]) . "</td>";
+								}
+							echo "</tr>
+							<tr class='hline'>";
+								if ($r_Fallbsp2[0][0]!="" or $r_Fallbsp2[1][0]!="" or $r_Fallbsp2[2][0]!="" or $r_Fallbsp2[3][0]!="") {
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp2[2][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp2[3][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp2[1][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp2[0][0]) . "</td>";
+								}
+							echo "</tr>
+							<tr class='hline'>";
+								if ($r_Fallbsp3[0][0]!="" or $r_Fallbsp3[1][0]!="" or $r_Fallbsp3[2][0]!="" or $r_Fallbsp3[3][0]!="") {
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp3[2][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp3[3][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp3[1][0]) . "</td>";
+									echo "<td>" . $parsedown_Fallbeispiele->text($r_Fallbsp3[0][0]) . "</td>";
+								}
+							echo "</tr>";
+								
+						echo "</table>";					
+						?>
+					</p>
+
+
 				</div>	
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
 			
 			</div>
-		
 		
 		
 		

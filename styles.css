@@ -8,8 +8,10 @@
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
   background-color: #f1f1f1;
+  position: fixed;
+  top: 10px;
+  border-radius: 6px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -21,6 +23,10 @@
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  text-align: center;
+  font-size: 22px;
+  border: solid green 3px;
+  border-radius: 5px;
 }
 
 /* Change background color of buttons on hover */
@@ -30,7 +36,8 @@
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: #00854949;
+    font-weight: bold;
 }
 
 /* Style the tab content */
@@ -70,14 +77,15 @@ h3 {
 
 h4 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   color: green;
   margin-bottom: 6px;
+  margin-top: 40px;
 }
 
 h5 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   color: #767171;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -101,7 +109,7 @@ figcaptionPre {
 
 h6 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   color: green;
   margin-top: 6px;
   margin-bottom: 0;
@@ -114,11 +122,9 @@ h6 {
 
 .resTable{
   margin-top: 6px;
-  word-break: break-all;
   min-width: 1000px;
   /* font-size: 0.9em; */
   border-collapse: collapse;
-
 }
 .resTable td{
   padding: 6px 10px;
@@ -126,21 +132,48 @@ h6 {
 }
 
 tr.hline {
+  border-top: 1px solid rgb(161, 161, 161);
+}
+tr.hlineHead{
   border-top: 2px solid black;
 }
 
 td.gray {
-  color: #555555cb;
+  color: rgb(161, 161, 161);
+  font-weight: bold;
 }
+td.grayBorderL {
+  color: rgb(161, 161, 161);
+  font-weight: bold;
+  border-left: 2px solid black;
+}
+td.BorderL {
+  border-left: 2px solid black;
+}
+
+
 .boldGray {
-  color: #555555cb;
+  color: rgb(161, 161, 161);
   font-weight: bold;
 }
 
 thead.header {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 21px;
   color: green;
   margin-bottom: 6px;
   font-weight: bold;
+  border-bottom: solid 2px black;
 }
+
+thead.headerBlack {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 6px;
+  padding-top: 30px;
+  font-weight: bold;
+  border-bottom: solid 2px black;
+}
+
+
