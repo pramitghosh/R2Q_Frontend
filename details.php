@@ -14,9 +14,8 @@
 		return $wert;
 	}
 	
-	function get_wert($e1, $e2=NULL, $e3=NULL)
-	{ 	global $conn;
-		global $m_id;
+	function get_wert_id($m_id, $e1, $e2=NULL, $e3=NULL){
+		global $conn;
 		if (is_null($e2))  {
 			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
 		} elseif (is_null($e3)) {
@@ -28,6 +27,27 @@
 		foreach ($query_result as $qr)
 			$wert = $qr["wert"];
 		return $wert;
+	}
+
+	function get_id($m_name){
+		global $conn;
+		
+		$query_result = mysqli_query($conn, "SELECT id FROM massnahmen WHERE massnahmen.name = ". $m_name);
+		$id = "";
+		foreach ($query_result as $qr)
+			$id = $qr["id"];
+		return $id;
+	}
+
+	
+
+
+
+	function get_wert($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+
+		return get_wert_id($m_id, $e1, $e2, $e3);
 	}
  
 	if (!is_null($m_id))
@@ -260,6 +280,12 @@
 		$r_Fallbsp2 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp2), MYSQLI_NUM);
 		$q_Fallbsp3 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '3'";
 		$r_Fallbsp3 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp3), MYSQLI_NUM);
+
+		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
+		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
+
+		$r_test = get_id("'Gründach'");
+
 
 	} else echo "Not a valid ID!"; 
 
@@ -721,7 +747,22 @@
 						?>
 					</p>
 					<h4>Kombinationsmöglichkeiten (in Arbeit)</h4>
+					
+					<?php 
+					echo "<table>";
+					
+					for($i = 0; $i < 2; $i++){
+						echo "<tr><td><a href='http://localhost/R2Q_Frontend/details.php?id=1'>";
+						// get_wert_id($r_Kombi[$i][1],"'Titel'");
+						echo $r_test;
+
+
+						echo "</a></td></tr>";
+					}
+					echo "</table>";
+					?>
 					<p>
+
 					<h4>Vor- und Nachteile</h4>
 						<?php 
 							if(!empty($r_VorNach_table))
