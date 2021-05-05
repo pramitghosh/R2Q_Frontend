@@ -39,7 +39,7 @@
 		return $id;
 	}
 
-	
+
 
 
 
@@ -49,7 +49,7 @@
 
 		return get_wert_id($m_id, $e1, $e2, $e3);
 	}
- 
+
 	if (!is_null($m_id))
 	{
 		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
@@ -283,8 +283,31 @@
 
 		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
+		$r_Kombi_titel = $r_Kombi;
 
-		$r_test = get_id("'Gründach'");
+		// for ($i=0; $i < 20 ; $i++) {
+		// 	if (is_null($r_Kombi[$i][1]) or $r_Kombi[$i][1]="") {
+		// 		$r_Kombi[$i][1]="";
+		// 		$r_Kombi_titel[$i][1]="";
+		// 	} else {
+		// 		$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
+		// 		$r_Kombi_id = get_id($r_Kombi[$i][1]);
+		// 		// $r_Kombi_titel[$i][1]= get_wert_id($r_Kombi_id,"'Titel'");
+		// 	}
+		// }
+		
+		for ($i=0; $i < 20 ; $i++) {
+			$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
+			$r_Kombi[$i][0] = get_id("'" . $r_Kombi[$i][1] . "'");
+			$name_kombi = get_wert_id("'" . $r_Kombi[$i][0] . "'","'Titel'");
+			if ($name_kombi!="") {
+				$r_Kombi[$i][1] = $name_kombi;
+			} else {if ($r_Kombi[$i][0]!="") {
+				$r_Kombi[$i][1] = "Achtung: Titel der Zielmaßnahme wurde noch nicht eingetragen!";
+			}
+			}
+			
+		}
 
 
 	} else echo "Not a valid ID!"; 
@@ -746,18 +769,17 @@
 							}
 						?>
 					</p>
-					<h4>Kombinationsmöglichkeiten (in Arbeit)</h4>
+					<h4>Kombinationsmöglichkeiten</h4>
 					
 					<?php 
 					echo "<table>";
 					
-					for($i = 0; $i < 2; $i++){
-						echo "<tr><td><a href='http://localhost/R2Q_Frontend/details.php?id=1'>";
-						// get_wert_id($r_Kombi[$i][1],"'Titel'");
-						echo $r_test;
-
-
+					for($i = 0; $i < 20; $i++){
+						if ($r_Kombi[$i][1]!="") {						
+						echo "<tr><td><a class='bold' href='http://localhost/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
+						echo $r_Kombi[$i][1];
 						echo "</a></td></tr>";
+						}
 					}
 					echo "</table>";
 					?>
