@@ -51,8 +51,10 @@
 	}
 
 	if (!is_null($m_id))
+
 	{
 		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
+
 		
 		// $q_Titel = $q_template . "ebene1 = 'Titel'";
 		
@@ -102,8 +104,13 @@
 		// $q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
 		// $q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
 		
-		
+
 		// $r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
+
+		
+		
+		
+
 		
 		// $r_Kurzbeschreibung = extract_wert(mysqli_query($conn, $q_Kurzbeschreibung));
 		// $r_Umsetzungsbeispiel_Beschriftung = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Beschriftung));
@@ -252,7 +259,9 @@
 		$r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
 		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
 		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
+
 		$r_Aufwand_hinweis = get_wert("'Aufwand und Kosten'","'Hinweis'");
+
 
 		$r_Weitergehende_freetext = get_wert("'Weitergehende Hinweise'","'Fließtext'");
 		$q_Weitergehende_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
@@ -814,6 +823,7 @@
 						?>
 					</p>
 
+
 					<p>			
 						<?php 
 						echo "<table class='resTable'>
@@ -862,6 +872,7 @@
 				<br>
 				<br>
 				<br>
+=
 			
 			</div>
 		
