@@ -3,7 +3,7 @@
 	<form action = "index.php" method = "POST">
 			<h4>Resource</h4>
 			<p>
-				<select name="resourceform[]" multiple>
+				<select class="resSelect" name="resourceform[]" multiple>
 					<!-- <option value="">Select...</option> -->
 				  	<?php
 						require 'sql.php';
