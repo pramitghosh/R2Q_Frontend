@@ -169,7 +169,7 @@
 		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
 		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
 		$r_Umsetzungsbeispiel_Bild = get_wert("'Umsetzungsbeispiel'","'Bild'");
-		$r_Umsetzungsbeispiel_Bild = substr($r_Umsetzungsbeispiel_Bild, 6);
+		$r_Umsetzungsbeispiel_Bild = substr($r_Umsetzungsbeispiel_Bild, 2);
 		$r_ResNiederschlag = get_wert("'Ressource'","'Niederschlagswasser'");
 		$r_ResSchmutzwasser = get_wert("'Ressource'","'Schmutzwasser'");
 		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
