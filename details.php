@@ -169,7 +169,6 @@
 		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
 		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
 		$r_Umsetzungsbeispiel_Bild = get_wert("'Umsetzungsbeispiel'","'Bild'");
-		$r_Umsetzungsbeispiel_Bild = substr($r_Umsetzungsbeispiel_Bild, 2);
 		$r_ResNiederschlag = get_wert("'Ressource'","'Niederschlagswasser'");
 		$r_ResSchmutzwasser = get_wert("'Ressource'","'Schmutzwasser'");
 		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
@@ -227,6 +226,7 @@
 
 		$r_Funktionsbeschreibung = get_wert("'Funktionsbeschreibung und Aufbau'");
 		$r_Systemskizze_Bild = get_wert("'Systemskizze'","'Bild'");
+		$r_Systemskizze_Bild = substr($r_Systemskizze_Bild, 2);
 		$r_Systemskizze_Beschriftung = get_wert("'Systemskizze'","'Beschriftung'");
 		$r_Systemskizze_uptime = get_wert("'Systemskizze'","'uptime'");
 
