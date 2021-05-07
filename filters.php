@@ -3,7 +3,7 @@
 	<form action = "index.php" method = "POST">
 			<h4>Resource</h4>
 			<p>
-				<select name="resourceform[]" multiple>
+<!-- 				<select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
 				  	<?php
 						require 'sql.php';
@@ -15,7 +15,7 @@
 						{
 							while($row = mysqli_fetch_assoc($result))
 							{
-								echo "<option selected value=" . $row['ebene2'] . ">" . $row['ebene2'] . "</option>";
+								echo "<input checked='true' type='checkbox' name='resourceform[]' value='" . $row['ebene2'] . "'> " . $row['ebene2'] . "<br>";
 							}
 						}
 						
