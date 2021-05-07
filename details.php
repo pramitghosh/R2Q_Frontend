@@ -162,6 +162,7 @@
 		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
 		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
 		$r_Umsetzungsbeispiel_Bild = get_wert("'Umsetzungsbeispiel'","'Bild'");
+		$r_Umsetzungsbeispiel_Bild = substr($r_Umsetzungsbeispiel_Bild, 6);
 		$r_ResNiederschlag = get_wert("'Ressource'","'Niederschlagswasser'");
 		$r_ResSchmutzwasser = get_wert("'Ressource'","'Schmutzwasser'");
 		$r_ResBaustoffe = get_wert("'Ressource'","'Baustoffe'");
@@ -284,17 +285,6 @@
 		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
 		$r_Kombi_titel = $r_Kombi;
-
-		// for ($i=0; $i < 20 ; $i++) {
-		// 	if (is_null($r_Kombi[$i][1]) or $r_Kombi[$i][1]="") {
-		// 		$r_Kombi[$i][1]="";
-		// 		$r_Kombi_titel[$i][1]="";
-		// 	} else {
-		// 		$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
-		// 		$r_Kombi_id = get_id($r_Kombi[$i][1]);
-		// 		// $r_Kombi_titel[$i][1]= get_wert_id($r_Kombi_id,"'Titel'");
-		// 	}
-		// }
 		
 		for ($i=0; $i < 20 ; $i++) {
 			$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
@@ -359,7 +349,7 @@
 				<h4>Umsetzungsbeispiel</h4>
 					<p>
 						<figure_bsp>
-							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
+							<img src=<?php echo "'/home/shiny/r2q_app/" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
 							
 							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
 						</figure_bsp>	
@@ -536,7 +526,7 @@
 					<h4>Systemskizze</h4>
 					<p>
 						<figure_bsp>
-							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
+							<img src=<?php echo "'/home/shiny/r2q_app/" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
 							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
 						</figure_bsp>	
 					</p>
