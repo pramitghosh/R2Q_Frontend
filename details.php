@@ -358,7 +358,7 @@
 				<h4>Umsetzungsbeispiel</h4>
 					<p>
 						<figure_bsp>
-							<img src=<?php echo "'/home/shiny/r2q_app/" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
+							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
 							
 							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
 						</figure_bsp>	
@@ -535,7 +535,7 @@
 					<h4>Systemskizze</h4>
 					<p>
 						<figure_bsp>
-							<img src=<?php echo "'/home/shiny/r2q_app/" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
+							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
 							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
 						</figure_bsp>	
 					</p>
