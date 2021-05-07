@@ -346,23 +346,25 @@
 				<h3><?php echo $r_Titel; ?></h3>
 
 				
-					<h5>Kurzinformation</h5>
-					<div id="kurzBox" class="greenBox"> 
-						<p>
-							<?php 
-								$Parsedown = new Parsedown();
-								echo $Parsedown->text($r_Kurzbeschreibung);
-							?>
-						</p>
-						</div>
-				<h4>Umsetzungsbeispiel</h4>
+				<h5>Kurzinformation</h5>
+				<div id="kurzBox" class="greenBox"> 
 					<p>
-						<figure_bsp>
-							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
-							
-							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
-						</figure_bsp>	
+						<?php 
+							$Parsedown = new Parsedown();
+							echo $Parsedown->text($r_Kurzbeschreibung);
+						?>
 					</p>
+				</div>
+				<div id="imageBox" class="whiteBox">
+					<h4>Umsetzungsbeispiel</h4>
+						<p>
+							<div id="imageCenter" class="img_center">
+								<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
+							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
+							</div>
+						</p>
+				</div>
+
 				<div id="resBox" class="greenBox">
 					<h6>Ressource</h6>
 						<table class="resTable">
