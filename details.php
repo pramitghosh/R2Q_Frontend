@@ -360,6 +360,8 @@
 						<p>
 							<div id="imageCenter" class="img_center">
 								<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
+								<br>
+								<br>
 							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
 							</div>
 						</p>
@@ -536,16 +538,13 @@
 				
 					<h4>Systemskizze</h4>
 					<p>
-						<figure_bsp>
-							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
+						<div class="img_center">
+							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
+							<br>
+							<br>
 							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
-						</figure_bsp>	
+						</div>
 					</p>
-					<!-- <p>
-						<small>
-							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Systemskizze_uptime)); ?>
-						</small>
-					</p> -->
 				
 					<h4>Planung, Bemessung und rechtliche Aspekte</h4>
 				
