@@ -226,6 +226,7 @@
 
 		$r_Funktionsbeschreibung = get_wert("'Funktionsbeschreibung und Aufbau'");
 		$r_Systemskizze_Bild = get_wert("'Systemskizze'","'Bild'");
+		$r_Systemskizze_Bild = substr($r_Systemskizze_Bild, 2);
 		$r_Systemskizze_Beschriftung = get_wert("'Systemskizze'","'Beschriftung'");
 		$r_Systemskizze_uptime = get_wert("'Systemskizze'","'uptime'");
 
@@ -293,17 +294,6 @@
 		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
 		$r_Kombi_titel = $r_Kombi;
-
-		// for ($i=0; $i < 20 ; $i++) {
-		// 	if (is_null($r_Kombi[$i][1]) or $r_Kombi[$i][1]="") {
-		// 		$r_Kombi[$i][1]="";
-		// 		$r_Kombi_titel[$i][1]="";
-		// 	} else {
-		// 		$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
-		// 		$r_Kombi_id = get_id($r_Kombi[$i][1]);
-		// 		// $r_Kombi_titel[$i][1]= get_wert_id($r_Kombi_id,"'Titel'");
-		// 	}
-		// }
 		
 		for ($i=0; $i < 20 ; $i++) {
 			$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
@@ -356,23 +346,27 @@
 				<h3><?php echo $r_Titel; ?></h3>
 
 				
-					<h5>Kurzinformation</h5>
-					<div id="kurzBox" class="greenBox"> 
-						<p>
-							<?php 
-								$Parsedown = new Parsedown();
-								echo $Parsedown->text($r_Kurzbeschreibung);
-							?>
-						</p>
-						</div>
-				<h4>Umsetzungsbeispiel</h4>
+				<h5>Kurzinformation</h5>
+				<div id="kurzBox" class="greenBox"> 
 					<p>
-						<figure_bsp>
-							<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?> class = "img_center">
-							
-							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
-						</figure_bsp>	
+						<?php 
+							$Parsedown = new Parsedown();
+							echo $Parsedown->text($r_Kurzbeschreibung);
+						?>
 					</p>
+				</div>
+				<div id="imageBox" class="whiteBox">
+					<h4>Umsetzungsbeispiel</h4>
+						<p>
+							<div id="imageCenter" class="img_center">
+								<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
+								<br>
+								<br>
+							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
+							</div>
+						</p>
+				</div>
+
 				<div id="resBox" class="greenBox">
 					<h6>Ressource</h6>
 						<table class="resTable">
@@ -544,16 +538,13 @@
 				
 					<h4>Systemskizze</h4>
 					<p>
-						<figure_bsp>
-							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?> class = "img_center">
+						<div class="img_center">
+							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
+							<br>
+							<br>
 							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
-						</figure_bsp>	
+						</div>
 					</p>
-					<!-- <p>
-						<small>
-							Updated on: <?php echo date('d/M/Y H:i:s', strtotime($r_Systemskizze_uptime)); ?>
-						</small>
-					</p> -->
 				
 					<h4>Planung, Bemessung und rechtliche Aspekte</h4>
 				
@@ -871,9 +862,7 @@
 				<br>
 				<br>
 				<br>
-				<br>
-=
-			
+				<br>			
 			</div>
 		
 		
