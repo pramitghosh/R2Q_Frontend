@@ -32,7 +32,7 @@
 								
 				$funcats_count = count($funcats_result);
 				
-				if(mysqli_num_rows($result) > 0)
+				if($funcats_count > 0)
 				{
 					for ($i = 0; $i < $funcats_count; $i++)
 					{
@@ -56,6 +56,24 @@
 				}				
 			?>
 			</p>
+			
+			<h4>Anwendungsebene</h4>
+			<p>
+			<?php 
+				$anwendung_query = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1='Anwendungsebene'";
+				$anwendungs_result = mysqli_fetch_all(mysqli_query($conn, $anwendung_query));
+				
+				$anwendungs_count = count($anwendungs_result);
+				
+				if($anwendungs_count > 0)
+				{
+					for ($i = 0; $i < $anwendungs_count; $i++)
+					{
+						echo "<input checked='true' type='checkbox' name='anwendungsform[]' value='" . $anwendungs_result[$i][0] . "'>" . $anwendungs_result[$i][0] . "<br>";
+					}
+				}
+				
+			?>
 			
 			
 			
