@@ -8,7 +8,7 @@
 				  	<?php
 						require 'sql.php';
 
-				  		$sql = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource'";
+				  		$sql = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource'";
 						$result = mysqli_query($conn, $sql);
 	
 						if(mysqli_num_rows($result) > 0)

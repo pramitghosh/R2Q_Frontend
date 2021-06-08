@@ -17,7 +17,7 @@
 			}
 		}
 		
-		$sql2 = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
+		$sql2 = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
 		//echo $sql2 . "\n";
 		$result2 = mysqli_query($conn, $sql2);
 		//print_r($result);
