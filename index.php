@@ -4,24 +4,70 @@
 	$post_set = $_POST?1:0;
 	
 	$resources = $_POST["resourceform"];
-	$resources_count = count($resources);
+	$funcs = $_POST["functionsform"];
+	$anwendungs = $_POST["anwendungsform"];
 	
-	if ($resources_count > 0) {
+	$resources_count = count($resources);
+	$funcs_count = count($funcs);
+	$anwendungs_count = count($anwendungs);
+	
+	if ($resources_count > 0)
+	{
 		$ebene2_prefix = "ebene2 = ";
 		$ebene2 = "";
-		for ($i = 0; $i < $resources_count; $i++) {
+		for ($i = 0; $i < $resources_count; $i++)
+		{
 			//echo $resources[$i] . "<br>";
 			$ebene2 = $ebene2 . $ebene2_prefix . "'" . $resources[$i] . "'";
-			if ($i != $resources_count - 1) {
+			if ($i != $resources_count - 1)
+			{
 				$ebene2 = $ebene2 . " OR ";
 			}
 		}
 		
-		$sql2 = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
+		$resource_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
 		//echo $sql2 . "\n";
-		$result2 = mysqli_query($conn, $sql2);
+		//$result2 = mysqli_query($conn, $resource_sql);
 		//print_r($result);
 	}
+	
+	if ($funcs_count > 0)
+	{
+		$func_prefix = "ebene3 = ";
+		$ebene3 = "";
+		for($i = 0; $i < $funcs_count; $i++)
+		{
+			$ebene3 = $ebene3 . $func_prefix . "'" . $funcs[$i] . "'";
+			if($i != $funcs_count - 1)
+			{
+				$ebene3 = $ebene3 . " OR ";
+			}
+		}
+		
+		$func_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND (" . $ebene3 . ")";
+		//echo $func_sql;
+	}
+	
+	if($anwendungs_count > 0)
+	{
+		$anwendungs_prefix = "ebene2 = ";
+		$anwendungs_ebene2 = "";
+		for ($i = 0; $i < $anwendungs_count; $i++)
+		{
+			$anwendungs_ebene2 = $anwendungs_ebene2 . $anwendungs_prefix . "'" . $anwendungs[$i] . "'";
+			if($i != $anwendungs_count - 1)
+			{
+				$anwendungs_ebene2 = $anwendungs_ebene2 . " OR ";
+			}
+		}
+		
+		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
+	}
+	
+	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . "))";
+	//echo $filter_query;
+	$result2 = mysqli_query($conn, $filter_query);
+	
 ?>
 
 <html>

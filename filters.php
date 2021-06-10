@@ -17,9 +17,7 @@
 							{
 								echo "<input checked='true' type='checkbox' name='resourceform[]' value='" . $row['ebene2'] . "'> " . $row['ebene2'] . "<br>";
 							}
-						}
-						
-						
+						}						
 					?>
 				</select>
 			</p>
