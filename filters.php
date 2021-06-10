@@ -1,7 +1,7 @@
 <div>
-	<h3>Filters</h3>
+	<h3>Filter</h3>
 	<form action = "index.php" method = "POST">
-			<h4>Resource</h4>
+			<h4>Ressource</h4>
 			<p>
 <!-- 				<select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
@@ -22,7 +22,7 @@
 				</select>
 			</p>
 			
-			<h4>Function</h4>
+			<h4>Funktion</h4>
 			<p>
 			<?php 
 				$funcats = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1='Wirkung/Funktion'";
