@@ -72,10 +72,31 @@
 
 <html>
 	<head>
+		
 		<link rel="stylesheet" href="styles.css">
 		<title>
 			Massnahmenkatalog Frontend
-		</title>
+		</title>		
+				<script type="text/javascript">  
+            		function selects(cat_name)
+            		{  
+	                	var ele=document.getElementsByName(cat_name);  
+	                	for(var i=0; i<ele.length; i++)
+                		{  
+		                    if(ele[i].type=='checkbox')  
+		                    ele[i].checked=true;  
+                		}  
+            		}  
+            		function deSelect(cat_name)
+            		{  
+                		var ele=document.getElementsByName(cat_name);  
+                		for(var i=0; i<ele.length; i++)
+                		{  
+                    		if(ele[i].type=='checkbox')  
+                        	ele[i].checked=false;  
+                        }
+                    }             
+        		</script>		
 	</head>
 	<body>
 		<div class = "filters">

@@ -1,10 +1,14 @@
+
+
+
 <div>
 	<h3>Filter</h3>
 	<form action = "index.php" method = "POST">
 			<h4>Ressource</h4>
 			<p>
-<!-- 				<select name="resourceform[]" multiple> -->
+					<!-- <select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
+					
 				  	<?php
 						require 'sql.php';
 
@@ -12,14 +16,16 @@
 						$result = mysqli_query($conn, $sql);
 	
 						if(mysqli_num_rows($result) > 0)
-						{
+						{							
 							while($row = mysqli_fetch_assoc($result))
 							{
 								echo "<input checked='true' type='checkbox' name='resourceform[]' value='" . $row['ebene2'] . "'> " . $row['ebene2'] . "<br>";
 							}
 						}						
 					?>
-				</select>
+					<input type="button" onclick='selects("resourceform[]")' value="Select All"/>
+					<input type="button" onclick='deSelect("resourceform[]")' value="Deselect All"/>
+				
 			</p>
 			
 			<h4>Funktion</h4>
@@ -53,6 +59,8 @@
 					}
 				}				
 			?>
+			<input type="button" onclick='selects("functionsform[]")' value="Select All"/>
+			<input type="button" onclick='deSelect("functionsform[]")' value="Deselect All"/>
 			</p>
 			
 			<h4>Anwendungsebene</h4>
@@ -69,9 +77,10 @@
 					{
 						echo "<input checked='true' type='checkbox' name='anwendungsform[]' value='" . $anwendungs_result[$i][0] . "'>" . $anwendungs_result[$i][0] . "<br>";
 					}
-				}
-				
+				}				
 			?>
+			<input type="button" onclick='selects("anwendungsform[]")' value="Select All"/>
+			<input type="button" onclick='deSelect("anwendungsform[]")' value="Deselect All"/>
 			
 			
 			
