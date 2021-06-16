@@ -3,6 +3,8 @@
 	
 	$post_set = $_POST?1:0;
 	
+	$search_query = $_POST["massnahme_search"];
+	
 	$resources = $_POST["resourceform"];
 	$funcs = $_POST["functionsform"];
 	$anwendungs = $_POST["anwendungsform"];
@@ -10,6 +12,12 @@
 	$resources_count = count($resources);
 	$funcs_count = count($funcs);
 	$anwendungs_count = count($anwendungs);
+	
+	if(!is_null($search_query))
+	{
+		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE name LIKE '%" . $search_query . "%'";
+		//echo $search_sql;
+	}
 	
 	if ($resources_count > 0)
 	{
@@ -66,7 +74,7 @@
 	
 	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . "))";
 	//echo $filter_query;
-	$result2 = mysqli_query($conn, $filter_query);
+	$result2 = mysqli_query($conn, is_null($search_sql)?$filter_query:$search_sql);
 	
 ?>
 

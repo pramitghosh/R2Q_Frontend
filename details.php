@@ -32,7 +32,7 @@
 	function get_id($m_name){
 		global $conn;
 		
-		$query_result = mysqli_query($conn, "SELECT id FROM massnahmen WHERE massnahmen.name = ". $m_name);
+		$query_result = mysqli_query($conn, "SELECT id FROM joined_massnahme2 WHERE name = ". $m_name);
 		$id = "";
 		foreach ($query_result as $qr)
 			$id = $qr["id"];

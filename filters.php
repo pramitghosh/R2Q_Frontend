@@ -2,6 +2,13 @@
 
 
 <div>
+	<h3>Search</h3>
+		<form action = "index.php" method = "POST">			
+  			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
+  			<input type = "Submit">&ensp;<input type = "Reset">
+		</form>
+
+
 	<h3>Filter</h3>
 	<form action = "index.php" method = "POST">
 			<h4>Ressource</h4>
