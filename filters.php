@@ -2,7 +2,7 @@
 
 
 <div>
-	<h3>Search</h3>
+	<h3>Suche</h3>
 		<form action = "index.php" method = "POST">			
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
   			<input type = "Submit">&ensp;<input type = "Reset">
@@ -88,9 +88,6 @@
 			?>
 			<input type="button" onclick='selects("anwendungsform[]")' value="Select All"/>
 			<input type="button" onclick='deSelect("anwendungsform[]")' value="Deselect All"/>
-			
-			
-			
 			
 			
 			
