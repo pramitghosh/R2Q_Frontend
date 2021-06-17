@@ -891,11 +891,10 @@
 				<br>			
 			</div>
 		
-		
-		
-		
-		
-		
+			
+			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+			
+			<?php include 'comments.php'; ?>
 		
 		
 		
