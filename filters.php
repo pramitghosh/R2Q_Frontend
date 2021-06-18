@@ -19,7 +19,7 @@
 				  	<?php
 						require 'sql.php';
 
-				  		$sql = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource'";
+				  		$sql = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource'";
 						$result = mysqli_query($conn, $sql);
 	
 						if(mysqli_num_rows($result) > 0)
@@ -38,7 +38,7 @@
 			<h4>Funktion</h4>
 			<p>
 			<?php 
-				$funcats = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1='Wirkung/Funktion'";
+				$funcats = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1='Wirkung/Funktion'";
 				$funcats_result = mysqli_fetch_all(mysqli_query($conn, $funcats));
 								
 				$funcats_count = count($funcats_result);
@@ -50,7 +50,7 @@
 						$this_cat = $funcats_result[$i][0];
 						echo "<b>" . $this_cat . "</b><br>";
 						
-						$funs_query = "SELECT DISTINCT ebene3 FROM r2q.joined_massnahme2 WHERE ebene2='" . $this_cat . "' AND ebene1='Wirkung/Funktion'";
+						$funs_query = "SELECT DISTINCT ebene3 FROM r2q.joined_massnahme WHERE ebene2='" . $this_cat . "' AND ebene1='Wirkung/Funktion'";
 						$funs_result = mysqli_fetch_all(mysqli_query($conn, $funs_query));
 						#var_dump($funs_result);
 						
@@ -73,7 +73,7 @@
 			<h4>Anwendungsebene</h4>
 			<p>
 			<?php 
-				$anwendung_query = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme2 WHERE ebene1='Anwendungsebene'";
+				$anwendung_query = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1='Anwendungsebene'";
 				$anwendungs_result = mysqli_fetch_all(mysqli_query($conn, $anwendung_query));
 				
 				$anwendungs_count = count($anwendungs_result);

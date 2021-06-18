@@ -15,7 +15,7 @@
 	
 	if(!is_null($search_query))
 	{
-		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE name LIKE '%" . $search_query . "%'";
+		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE name LIKE '%" . $search_query . "%'";
 		//echo $search_sql;
 	}
 	
@@ -33,7 +33,7 @@
 			}
 		}
 		
-		$resource_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
+		$resource_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Ressource' AND wert = '1' AND (" . $ebene2 . ")";
 		//echo $sql2 . "\n";
 		//$result2 = mysqli_query($conn, $resource_sql);
 		//print_r($result);
@@ -52,7 +52,7 @@
 			}
 		}
 		
-		$func_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND (" . $ebene3 . ")";
+		$func_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND (" . $ebene3 . ")";
 		//echo $func_sql;
 	}
 	
@@ -69,7 +69,7 @@
 			}
 		}
 		
-		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme2 WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
+		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
 	}
 	
 	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . "))";

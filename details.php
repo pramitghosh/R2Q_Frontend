@@ -17,11 +17,11 @@
 	function get_wert_id($m_id, $e1, $e2=NULL, $e3=NULL){
 		global $conn;
 		if (is_null($e2))  {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = ".$e1);
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = ".$e1);
 		} elseif (is_null($e3)) {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2);
 		} else {
-			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
+			$query_result = mysqli_query($conn, "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = " . $e1 . " AND ebene2 = " . $e2 . " AND ebene3 = " . $e3);
 		}
 		$wert = "";
 		foreach ($query_result as $qr)
@@ -32,7 +32,7 @@
 	function get_id($m_name){
 		global $conn;
 		
-		$query_result = mysqli_query($conn, "SELECT id FROM joined_massnahme2 WHERE name = ". $m_name);
+		$query_result = mysqli_query($conn, "SELECT id FROM joined_massnahme WHERE name = ". $m_name);
 		$id = "";
 		foreach ($query_result as $qr)
 			$id = $qr["id"];
@@ -163,7 +163,7 @@
 		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
 		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
-		$q_template = "SELECT wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ";
+		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 
 		$r_Titel = get_wert("'Titel'");
 		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
@@ -277,7 +277,7 @@
 
 
 		$r_Weitergehende_freetext = get_wert("'Weitergehende Hinweise'","'Fließtext'");
-		$q_Weitergehende_table = "SELECT ebene3, wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$q_Weitergehende_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 
 		$r_AspekteSynNiederschlag = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Niederschlagswasser'");
@@ -293,7 +293,7 @@
 		$r_AspekteKonfFläche = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Fläche'");
 		$r_AspekteKonfÖkobilanz = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Ökobilanz'");
 		
-		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
 
 		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
@@ -303,7 +303,7 @@
 		$q_Fallbsp3 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '3'";
 		$r_Fallbsp3 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp3), MYSQLI_NUM);
 
-		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme2 WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
+		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
 		$r_Kombi_titel = $r_Kombi;
 		
