@@ -116,7 +116,7 @@
 			<form action="details.php" method="GET">
 				<label for="id">Bitte geben Sie Massnahmen ID ein, für die Direktsuche: </label>
 				<input type="text" name="id">
-				<input type="submit" value="Submit">				
+				<input type="submit" value="Bestätigen">				
 			</form>
 			<?php
 				if($post_set)

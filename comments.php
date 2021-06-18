@@ -43,7 +43,7 @@
 		<form action = "details.php?id=<?php echo $id;?>" method = "POST">				
   			<textarea id="new_comment" name="new_comment" rows=4 cols=50></textarea>
   			<br><br>
-  			<input type = "Submit">&ensp;<input type = "Reset">
+  			<input type = "Submit" value = "Bestätigen">&ensp;<input type = "Reset" value = "Zurücksetzen">
 		</form>
 		
 		

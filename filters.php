@@ -5,7 +5,7 @@
 	<h3>Suche</h3>
 		<form action = "index.php" method = "POST">			
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
-  			<input type = "Submit">&ensp;<input type = "Reset">
+  			<input type = "Submit" value = "Bestätigen">&ensp;<input type = "Reset" value = "Zurücksetzen">
 		</form>
 
 
@@ -30,8 +30,8 @@
 							}
 						}						
 					?>
-					<input type="button" onclick='selects("resourceform[]")' value="Select All"/>
-					<input type="button" onclick='deSelect("resourceform[]")' value="Deselect All"/>
+					<input type="button" onclick='selects("resourceform[]")' value="Alle auswählen"/>
+					<input type="button" onclick='deSelect("resourceform[]")' value="Alle abwählen"/>
 				
 			</p>
 			
@@ -66,8 +66,8 @@
 					}
 				}				
 			?>
-			<input type="button" onclick='selects("functionsform[]")' value="Select All"/>
-			<input type="button" onclick='deSelect("functionsform[]")' value="Deselect All"/>
+			<input type="button" onclick='selects("functionsform[]")' value="Alle auswählen"/>
+			<input type="button" onclick='deSelect("functionsform[]")' value="Alle abwählen"/>
 			</p>
 			
 			<h4>Anwendungsebene</h4>
@@ -86,14 +86,14 @@
 					}
 				}				
 			?>
-			<input type="button" onclick='selects("anwendungsform[]")' value="Select All"/>
-			<input type="button" onclick='deSelect("anwendungsform[]")' value="Deselect All"/>
+			<input type="button" onclick='selects("anwendungsform[]")' value="Alle auswählen"/>
+			<input type="button" onclick='deSelect("anwendungsform[]")' value="Alle abwählen"/>
 			
 			
 			
 			<?php mysqli_close($conn); ?>
 			<p>
-				<input type = "Submit">&ensp;<input type = "Reset">
+				<input type = "Submit" value = "Bestätigen">&ensp;<input type = "Reset" value = "Zurücksetzen">
 			</p>
 		</form>
 </div>
