@@ -15,7 +15,7 @@
 	
 	if(!is_null($search_query))
 	{
-		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE name LIKE '%" . $search_query . "%'";
+		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE name LIKE '%" . $search_query . "%' ORDER BY ressource, name";
 		//echo $search_sql;
 	}
 	
