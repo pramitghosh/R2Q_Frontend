@@ -72,7 +72,7 @@
 		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
 	}
 	
-	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . "))";
+	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . ")) ORDER BY ressource, name";
 	//echo $filter_query;
 	$result2 = mysqli_query($conn, is_null($search_sql)?$filter_query:$search_sql);
 	
