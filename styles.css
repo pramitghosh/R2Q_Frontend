@@ -27,6 +27,7 @@
   font-size: 22px;
   border-radius: 5px;
   color: rgb(199, 199, 199);
+  margin-right: 20px;
 }
 
 /* Change background color of buttons on hover */
@@ -99,7 +100,7 @@ h5 {
 figure_bsp {
     display: block;
     flex-flow: column;
-    max-width: 600px;
+    max-width: 600px;v
     padding: 5px;
 }
 
