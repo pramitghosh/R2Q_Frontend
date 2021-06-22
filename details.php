@@ -795,7 +795,7 @@
 					
 					for($i = 0; $i < 20; $i++){
 						if ($r_Kombi[$i][1]!="") {						
-						echo "<tr><td><a class='bold' href='http://localhost/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
+						echo "<tr><td><a class='bold' href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
 						echo $r_Kombi[$i][1];
 						echo "</a></td></tr>";
 						}

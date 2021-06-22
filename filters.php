@@ -5,13 +5,22 @@
 	<h3>Suche</h3>
 		<form action = "index.php" method = "POST">			
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
-  			<input type = "Submit" value = "Bestätigen">&ensp;<input type = "Reset" value = "Zurücksetzen">
+  			<input class="buttonFilter" type = "Submit" value = "Bestätigen">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
 		</form>
 
+	<div id="filterField" class="filterField">
+		<form action = "index.php" method = "POST">
+		
+		
+			<p class="filterHeader">
+				Filter
+			</p>
 
-	<h3>Filter</h3>
-	<form action = "index.php" method = "POST">
+			<input class="buttonFilter" type = "Submit" value = "Bestätigen">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
+			
+
 			<h4>Ressource</h4>
+			<div id="filterBox" class="filterBox">
 			<p>
 					<!-- <select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
@@ -30,12 +39,16 @@
 							}
 						}						
 					?>
-					<input type="button" onclick='selects("resourceform[]")' value="Alle auswählen"/>
-					<input type="button" onclick='deSelect("resourceform[]")' value="Alle abwählen"/>
+					<br>
+					<input class="buttonSelect" type="button" onclick='selects("resourceform[]")' value="Alle auswählen"/>
+					<input class="buttonSelect" type="button" onclick='deSelect("resourceform[]")' value="Alle abwählen"/>
 				
 			</p>
-			
+			</div>
+
 			<h4>Funktion</h4>
+			<div id="filterBox" class="filterBox">
+				
 			<p>
 			<?php 
 				$funcats = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1='Wirkung/Funktion'";
@@ -63,14 +76,17 @@
 								echo "<input checked='true' type='checkbox' name='functionsform[]' value='" . $funs_result[$j][0] . "'>" . $funs_result[$j][0] . "<br>";
 							}
 						}
+						echo "<br>";
 					}
 				}				
 			?>
-			<input type="button" onclick='selects("functionsform[]")' value="Alle auswählen"/>
-			<input type="button" onclick='deSelect("functionsform[]")' value="Alle abwählen"/>
+			<input class="buttonSelect" type="button" onclick='selects("functionsform[]")' value="Alle auswählen"/>
+			<input class="buttonSelect" type="button" onclick='deSelect("functionsform[]")' value="Alle abwählen"/>
 			</p>
-			
+			</div>
+
 			<h4>Anwendungsebene</h4>
+			<div id="filterBox" class="filterBox">
 			<p>
 			<?php 
 				$anwendung_query = "SELECT DISTINCT ebene2 FROM r2q.joined_massnahme WHERE ebene1='Anwendungsebene'";
@@ -86,15 +102,15 @@
 					}
 				}				
 			?>
-			<input type="button" onclick='selects("anwendungsform[]")' value="Alle auswählen"/>
-			<input type="button" onclick='deSelect("anwendungsform[]")' value="Alle abwählen"/>
-			
-			
-			
-			<?php mysqli_close($conn); ?>
-			<p>
-				<input type = "Submit" value = "Bestätigen">&ensp;<input type = "Reset" value = "Zurücksetzen">
+			<br>
+			<input class="buttonSelect" type="button" onclick='selects("anwendungsform[]")' value="Alle auswählen"/>
+			<input class="buttonSelect" type="button" onclick='deSelect("anwendungsform[]")' value="Alle abwählen"/>
 			</p>
+			</div>
+
+			<?php mysqli_close($conn); ?>
+			
 		</form>
+	</div>
 </div>
 	
