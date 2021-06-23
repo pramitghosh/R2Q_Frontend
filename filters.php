@@ -2,21 +2,27 @@
 
 
 <div>
-	<h3>Suche</h3>
+	
+	<img class="Logo" src="R2Q_Logo.png">
+	<p class="sucheHeader">
+		Suche
+	</p>
 		<form action = "index.php" method = "POST">			
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
-  			<input class="buttonFilter" type = "Submit" value = "Bestätigen">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
+  			<input class="buttonFilter" type = "Submit" value = "Suchen">&ensp;<input class="buttonFilter" type = "Reset" value = "Eingabe löschen">
 		</form>
+
+
+		<p class="filterHeader">
+			Filter
+		</p>
 
 	<div id="filterField" class="filterField">
 		<form action = "index.php" method = "POST">
 		
-		
-			<p class="filterHeader">
-				Filter
-			</p>
-
-			<input class="buttonFilter" type = "Submit" value = "Bestätigen">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
+		<br>
+			
+			<input class="buttonFilter" type = "Submit" value = "Anwenden">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
 			
 
 			<h4>Ressource</h4>

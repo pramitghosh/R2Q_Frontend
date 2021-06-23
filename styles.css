@@ -1,5 +1,10 @@
+.Logo {
+  margin: 5px;
+  max-width: 400px;
+}
+
 .filters {
-	width: 20%;
+	width: 25%;
 	float: left;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,14 +19,14 @@
   /* border: solid black 2px; */
   box-sizing: border-box;
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
 }
 
 .filterBox {
   padding: 0px 12px;
   border: solid green 3px;
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
 }
 
 .buttonFilter{
@@ -55,6 +60,21 @@
   border-color: #00000000;
   border-radius: 5px;
 }
+
+.resultsTable, th, td{
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 18px;
+}
+
+thead.resultsTableHeader{
+  border-bottom: solid black 2px;
+  color: green;
+  font-weight: bold;
+}
+
 
 /* Style the tab */
 .tab {
@@ -104,11 +124,12 @@
   padding: 6px 12px;
   border: none;
   border-top: none;
+  text-align: justify;
 }
 
 
 .results {
-	width: 75%;
+	width: 70%;
 	float: left;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
@@ -159,14 +180,24 @@ h5 {
   font-size: 30px;
   color: #767171;
   padding-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
   font-weight: bold;
 }
 
-figure_bsp {
-    display: block;
-    flex-flow: column;
-    max-width: 600px;v
-    padding: 5px;
+.sucheHeader {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: green;
+  padding-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.figure_bsp {
+  max-width: 1000px;
+  max-height: 800px;
 }
 
 figcaptionPre {
