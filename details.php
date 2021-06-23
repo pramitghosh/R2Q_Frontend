@@ -163,6 +163,8 @@
 		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
 		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 		
+		$parsedown = new Parsedown();
+
 		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 
 		$r_Titel = get_wert("'Titel'");
@@ -374,7 +376,7 @@
 								<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
 								<br>
 								<br>
-							<figcaption><figcaptionPre>Abb.1: </figcaptionPre> <?php echo $r_Umsetzungsbeispiel_Beschriftung ?></figcaption>
+							<?php $Parsedown = new Parsedown(); echo $Parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung) ?></figcaption>
 							</div>
 						</p>
 				</div>
@@ -500,20 +502,20 @@
 							<tbody>
 								<tr class="hline">
 									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneGebäude==1)? "checked":""; ?> onclick="return false;"> Gebäude</td>
-									<td><?php echo $r_FlaechenbedarfEW ?> m²/EW</td>
-									<td>Mindestens: <?php echo $r_Nutzungsdauer_min ?></td>
+									<td><?php $Parsedown = new Parsedown(); echo $Parsedown->text($r_FlaechenbedarfEW . " m²/EW") ?> </td>
+									<td><?php $Parsedown = new Parsedown(); echo $Parsedown->text("Mindestens: " . $r_Nutzungsdauer_min) ?></td>
 									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandWissenschaftTechnik==1)? "checked":""; ?> onclick="return false;"> Stand der Wissenschaft und Technik</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneGrundstück==1)? "checked":""; ?> onclick="return false;"> Grundstück</td>
 									<td><?php echo $r_Flaechenbedarfm2XX ?> m²/<?php echo $r_FlaechenbedarfXX ?></td>
-									<td>Maximal: &nbsp &nbsp &nbsp<?php echo $r_Nutzungsdauer_max ?></td>
+									<td><?php $Parsedown = new Parsedown(); echo $Parsedown->text("Maximal: &nbsp; &nbsp; &nbsp;" . $r_Nutzungsdauer_max) ?></td>
 									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandTechnik==1)? "checked":""; ?> onclick="return false;"> Stand der Technik</td>
 								</tr>
 								<tr>
 									<td><input type="checkbox"  <?php echo ($r_anwendungsebeneQuartier==1)? "checked":""; ?> onclick="return false;"> Quartier</td>
 									<td></td>
-									<td>Üblich:&nbsp &nbsp &nbsp &nbsp &nbsp<?php echo $r_Nutzungsdauer_ueblich ?></td>
+									<td><?php $Parsedown = new Parsedown(); echo $Parsedown->text("Üblich:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" . $r_Nutzungsdauer_ueblich) ?></td>
 									<td><input type="checkbox"  <?php echo ($r_EntwicklungsstandAnerkanntTechnik==1)? "checked":""; ?> onclick="return false;"> Allgemein annerkanter Stand der Technik</td>
 								</tr>
 							</tbody>
@@ -522,8 +524,8 @@
 						<p>
 							<Div class="boldGray">Hinweis:</Div>
 							<?php 
-								$parsedown_Sammelhinweis = new Parsedown();
-								echo $parsedown_Sammelhinweis->text($r_Sammelhinweis);
+								
+								echo $parsedown->text($r_Sammelhinweis);
 							?>
 						</p>
 					</div>
@@ -568,7 +570,7 @@
 							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
 							<br>
 							<br>
-							<figcaption><figcaptionPre>Abb.2: </figcaptionPre><?php echo $r_Systemskizze_Beschriftung ?></figcaption>
+							<figcaption><?php $Parsedown = new Parsedown(); echo $Parsedown->text("<figcaptionPre>Abb. 2: </figcaptionPre>" . $r_Systemskizze_Beschriftung) ?></figcaption>
 						</div>
 					</p>
 				
@@ -597,8 +599,8 @@
 									for ($i = 0; $i < 5; $i++)
 									{
 										if (implode('|',$r_PlanungNormen[$i])!="" or implode('|',$r_PlanungNormen[$i+5])!="" ) {
-											echo "<tr class='hline'><td>" . implode('|',$r_PlanungNormen[$i]) . "</td>";
-												echo "<td>" . implode('|',$r_PlanungNormen[$i+5]) . "</td></tr>";
+											$Parsedown = new Parsedown(); echo $Parsedown->text("<tr class='hline'><td>" . implode('|',$r_PlanungNormen[$i]) . "</td>");
+											$Parsedown = new Parsedown(); echo $Parsedown->text("<td>" . implode('|',$r_PlanungNormen[$i+5]) . "</td></tr>");
 										}
 										
 									}							
@@ -633,7 +635,7 @@
 							</colgroup>
 						<thead class='headerBlack'><td colspan='6'>Investitionskosten</td><td colspan='6'>Betriebskosten</td></thead>
 							<tr><td>&nbsp</td>";
-								for ($i = 1; $i < 6; $i++)
+							for ($i = 1; $i < 6; $i++)
 								{echo ( ${"r_Aufwand_i" . $i}[0][0]!="")?"<td class='gray'>€/" . ${"r_Aufwand_i" . $i}[0][0] . "</td>":"<td>&nbsp</td>";
 								}
 								echo "<td class='gray'>&nbsp</td>";
@@ -668,15 +670,6 @@
 								{echo ( ${"r_Aufwand_b" . $i}[3][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[3][0] . "</td>":"<td>&nbsp</td>";
 								}
 							echo "</tr>";
-
-
-								// echo "Minimum: " . ${"r_Aufwand_i" . $i}[1][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "";
-								// echo "<li>Maximum: " . ${"r_Aufwand_i" . $i}[2][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . "";
-								// echo "<li>Üblich: " . ${"r_Aufwand_i" . $i}[3][0] . " €/" . ${"r_Aufwand_i" . $i}[0][0] . ;									
-														
-								
-								//echo ${"r_Aufwand_i$i`[1][0]`"};
-							
 						echo "</table>";					
 						?>
 					</p>
@@ -802,7 +795,7 @@
 					
 					for($i = 0; $i < 20; $i++){
 						if ($r_Kombi[$i][1]!="") {						
-						echo "<tr><td><a class='bold' href='http://localhost/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
+						echo "<tr><td><a class='bold' href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
 						echo $r_Kombi[$i][1];
 						echo "</a></td></tr>";
 						}
