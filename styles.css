@@ -1,6 +1,10 @@
 .Logo {
-  margin: 5px;
+  padding: 5px;
+  padding-right: 10px;
+  width: 100%;
   max-width: 400px;
+  display: block;
+  box-sizing: border-box;
 }
 
 .filters {
@@ -78,7 +82,8 @@ thead.resultsTableHeader{
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
+  padding: 10px;
+  overflow: visible;
   position: fixed;
   top: 10px;
   border-radius: 6px;
@@ -86,8 +91,9 @@ thead.resultsTableHeader{
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
+  border: none;
   background-color: rgb(177, 177, 177);
-  border: 2px solid rgb(0, 0, 0);
+  box-shadow: 1px 1px 3px #0003;
   float: left;
   outline: none;
   cursor: pointer;
@@ -98,14 +104,15 @@ thead.resultsTableHeader{
   border-radius: 5px;
   color: rgb(255, 255, 255);
   margin-right: 20px;
+  width: 11em;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: rgb(209, 209, 209);
-  border: 2px solid rgb(209, 209, 209);
   color: rgb(255, 254, 254);
-  
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
 }
 
 /* Create an active/current tablink class */
@@ -114,7 +121,6 @@ thead.resultsTableHeader{
   background-color: rgb(4,180,219);
   font-weight: bold;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-  border: 2px solid black;
   color: #ffffff;
 }
 
@@ -141,6 +147,7 @@ h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: green;
+  text-align: start;
 }
 
 
@@ -274,4 +281,14 @@ thead.headerBlack {
 
 a.bold{
   font-weight: bold;
+}
+
+@media print {
+  .filters {
+    display: none;
+  }
+
+  .tab {
+    display: none;
+  }
 }
