@@ -333,6 +333,7 @@
 		<title>
 			Massnahmenkatalog Frontend
 		</title>
+		<script type="text/javascript" src = "selectdeselect.js"></script>
 	</head>
 	<body>
 		<div class = "filters">
