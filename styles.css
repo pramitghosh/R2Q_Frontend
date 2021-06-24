@@ -143,6 +143,30 @@ thead.resultsTableHeader{
   padding-left: 5%;
 }
 
+.comments {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+.commentText{
+  width: 80%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: solid rgb(128, 128, 128) 1px;
+  padding: 2px 8px;
+  margin-right: 10px;
+}
+
+.timestamp {
+  width: 20%;
+  text-align:center;
+  border-radius: 5px;
+  background-color: #cfcfcf;
+  height: 20px;
+  padding-top: 3px;
+}
+
 h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
