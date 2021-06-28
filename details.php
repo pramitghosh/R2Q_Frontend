@@ -336,7 +336,12 @@
 		<script type="text/javascript" src = "selectdeselect.js"></script>
 	</head>
 	<body>
+
+		<!-- <div class="Logo" id="logo"> 
+			 
+		</div>  -->
 		<div class = "filters">
+		
 			<?php
 				include 'filters.php';
 			?>
@@ -374,7 +379,8 @@
 					<h4>Umsetzungsbeispiel</h4>
 						<p>
 							<div id="imageCenter" class="img_center">
-								<img src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
+								<img class="figure_bsp" src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
+								<!-- <img class="figure_bsp" src="Umsetzungsbeispiele/N_004_Gruendachbsp.png"> -->
 								<br>
 								<br>
 							<?php $Parsedown = new Parsedown(); echo $Parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung) ?></figcaption>
@@ -398,7 +404,7 @@
 				</div>
 
 				<div id="funktionBox" class="whiteBox">
-				<h4>Wirkung und Funktion</h4>
+				<h4>Funktion</h4>
 							<table class="resTable">
 								<tbody>
 									<tr class="hlineHead">
@@ -568,7 +574,8 @@
 					<h4>Systemskizze</h4>
 					<p>
 						<div class="img_center">
-							<img src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
+							<img class="figure_bsp" src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
+							<!-- <img class="figure_bsp" src="Umsetzungsbeispiele/N_004_Gruendachbsp.png"> -->
 							<br>
 							<br>
 							<figcaption><?php $Parsedown = new Parsedown(); echo $Parsedown->text("<figcaptionPre>Abb. 2: </figcaptionPre>" . $r_Systemskizze_Beschriftung) ?></figcaption>

@@ -1,5 +1,14 @@
+.Logo {
+  padding: 5px;
+  padding-right: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  box-sizing: border-box;
+}
+
 .filters {
-	width: 20%;
+	width: 25%;
 	float: left;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,14 +23,14 @@
   /* border: solid black 2px; */
   box-sizing: border-box;
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
 }
 
 .filterBox {
   padding: 0px 12px;
   border: solid green 3px;
   border-radius: 5px;
-  width: 80%;
+  width: 90%;
 }
 
 .buttonFilter{
@@ -56,9 +65,25 @@
   border-radius: 5px;
 }
 
+.resultsTable, th, td{
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 18px;
+}
+
+thead.resultsTableHeader{
+  border-bottom: solid black 2px;
+  color: green;
+  font-weight: bold;
+}
+
+
 /* Style the tab */
 .tab {
-  overflow: hidden;
+  padding: 10px;
+  overflow: visible;
   position: fixed;
   top: 10px;
   border-radius: 6px;
@@ -66,8 +91,9 @@
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
+  border: none;
   background-color: rgb(177, 177, 177);
-  border: 2px solid rgb(0, 0, 0);
+  box-shadow: 1px 1px 3px #0003;
   float: left;
   outline: none;
   cursor: pointer;
@@ -78,14 +104,15 @@
   border-radius: 5px;
   color: rgb(255, 255, 255);
   margin-right: 20px;
+  width: 11em;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
   background-color: rgb(209, 209, 209);
-  border: 2px solid rgb(209, 209, 209);
   color: rgb(255, 254, 254);
-  
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
 }
 
 /* Create an active/current tablink class */
@@ -94,7 +121,6 @@
   background-color: rgb(4,180,219);
   font-weight: bold;
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
-  border: 2px solid black;
   color: #ffffff;
 }
 
@@ -104,11 +130,12 @@
   padding: 6px 12px;
   border: none;
   border-top: none;
+  text-align: justify;
 }
 
 
 .results {
-	width: 75%;
+	width: 70%;
 	float: left;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
@@ -116,10 +143,35 @@
   padding-left: 5%;
 }
 
+.comments {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+
+.commentText{
+  width: 80%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: solid rgb(128, 128, 128) 1px;
+  padding: 2px 8px;
+  margin-right: 10px;
+}
+
+.timestamp {
+  width: 20%;
+  text-align:center;
+  border-radius: 5px;
+  background-color: #cfcfcf;
+  height: 20px;
+  padding-top: 3px;
+}
+
 h3 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: green;
+  text-align: start;
 }
 
 
@@ -159,14 +211,24 @@ h5 {
   font-size: 30px;
   color: #767171;
   padding-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
   font-weight: bold;
 }
 
-figure_bsp {
-    display: block;
-    flex-flow: column;
-    max-width: 600px;v
-    padding: 5px;
+.sucheHeader {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: green;
+  padding-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.figure_bsp {
+  max-width: 1000px;
+  max-height: 800px;
 }
 
 figcaptionPre {
@@ -243,4 +305,14 @@ thead.headerBlack {
 
 a.bold{
   font-weight: bold;
+}
+
+@media print {
+  .filters {
+    display: none;
+  }
+
+  .tab {
+    display: none;
+  }
 }

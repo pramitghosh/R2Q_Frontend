@@ -1,4 +1,4 @@
-<h3>Comments</h3>
+<h3>Kommentare</h3>
 
 <?php 
 
@@ -15,10 +15,10 @@
 				$insertion_result = mysqli_query($conn, $insert_comment_sql);
 				
 				if(mysqli_affected_rows($conn) > 0)
-					echo "<small>New comment inserted successfully!</small><br><br>";
+					echo "<small>Neuer Kommentar wurde erstellt!</small><br><br>";
 			} else
 			{
-				echo "<small>Comment cannot be empty!</small><br><br>";
+				echo "<small>Ein Kommentar kann nur mit Inhalt erstellt werden!</small><br><br>";
 			}
 		}
 		
@@ -33,13 +33,13 @@
 		{
 			for ($i = 0; $i < $comments_count; $i++)
 			{
-				echo $comments_result[$i][2] . "<br><hr width=75% align=left>";
+				 echo "<div class='comments'><div class='commentText'>" . $comments_result[$i][2] . "</div><div class='timestamp'>" . $comments_result[$i][3] . "</div></div><br>";
 			}
 		}		
 	}	
 ?>
 
-<h4>Insert Comment</h4>
+<h4>Kommentar erstellen</h4>
 		<form action = "details.php?id=<?php echo $id;?>" method = "POST">				
   			<textarea id="new_comment" name="new_comment" rows=4 cols=50></textarea>
   			<br><br>
