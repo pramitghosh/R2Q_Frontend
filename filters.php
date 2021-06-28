@@ -2,12 +2,16 @@
 
 
 <div>
+
 	
 	<img class="Logo" src="R2Q_Logo.png">
 	<p class="sucheHeader">
 		Suche
 	</p>
 		<form action = "index.php" method = "POST">			
+
+	<h3>Suche</h3>
+
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
   			<input class="buttonFilter" type = "Submit" value = "Suchen">&ensp;<input class="buttonFilter" type = "Reset" value = "Eingabe löschen">
 		</form>
@@ -18,7 +22,7 @@
 		</p>
 
 	<div id="filterField" class="filterField">
-		<form action = "index.php" method = "POST">
+		<form action = "massnahme.php" method = "POST">
 		
 		<br>
 			
@@ -26,10 +30,12 @@
 			
 
 			<h4>Ressource</h4>
+			
 			<div id="filterBox" class="filterBox">
 			<p>
 					<!-- <select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
+					
 					
 				  	<?php
 						require 'sql.php';
@@ -53,6 +59,7 @@
 			</div>
 
 			<h4>Funktion</h4>
+			
 			<div id="filterBox" class="filterBox">
 				
 			<p>
@@ -92,6 +99,7 @@
 			</div>
 
 			<h4>Anwendungsebene</h4>
+			
 			<div id="filterBox" class="filterBox">
 			<p>
 			<?php 
