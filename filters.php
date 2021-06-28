@@ -3,13 +3,13 @@
 
 <div>
 	<h3>Suche</h3>
-		<form action = "index.php" method = "POST">			
+		<form action = "massnahme.php" method = "POST">			
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
   			<input class="buttonFilter" type = "Submit" value = "Bestätigen">&ensp;<input class="buttonFilter" type = "Reset" value = "Zurücksetzen">
 		</form>
 
 	<div id="filterField" class="filterField">
-		<form action = "index.php" method = "POST">
+		<form action = "massnahme.php" method = "POST">
 		
 		
 			<p class="filterHeader">
@@ -20,10 +20,12 @@
 			
 
 			<h4>Ressource</h4>
+			
 			<div id="filterBox" class="filterBox">
 			<p>
 					<!-- <select name="resourceform[]" multiple> -->
 					<!-- <option value="">Select...</option> -->
+					
 					
 				  	<?php
 						require 'sql.php';
@@ -47,6 +49,7 @@
 			</div>
 
 			<h4>Funktion</h4>
+			
 			<div id="filterBox" class="filterBox">
 				
 			<p>
@@ -86,6 +89,7 @@
 			</div>
 
 			<h4>Anwendungsebene</h4>
+			
 			<div id="filterBox" class="filterBox">
 			<p>
 			<?php 

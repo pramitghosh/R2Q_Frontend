@@ -21,6 +21,7 @@
 	
 	if ($resources_count > 0)
 	{
+		
 		$ebene2_prefix = "ebene2 = ";
 		$ebene2 = "";
 		for ($i = 0; $i < $resources_count; $i++)
@@ -41,6 +42,7 @@
 	
 	if ($funcs_count > 0)
 	{
+				
 		$func_prefix = "ebene3 = ";
 		$ebene3 = "";
 		for($i = 0; $i < $funcs_count; $i++)
@@ -58,6 +60,7 @@
 	
 	if($anwendungs_count > 0)
 	{
+		
 		$anwendungs_prefix = "ebene2 = ";
 		$anwendungs_ebene2 = "";
 		for ($i = 0; $i < $anwendungs_count; $i++)
