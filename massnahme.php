@@ -105,14 +105,20 @@
 			<?php
 				if($post_set)
 				{
-					echo "
-						<table>
-							<tr>
-								
-								<th>Name</th>
-								<th>Resource</th>
-								
-							</tr>
+					echo "<p class='filterHeader'>
+						Suchergebnisse
+						<br>
+						</p>
+						<table class='resultsTable'>
+						<colgroup>
+								<col style='width:600px'>
+								<col style='width:100px'>
+						</colgroup>
+						<thead class='resultsTableHeader'>
+							<td style='font-size: 22px;' >Name</td>
+							<td style='font-size: 22px;' >Ressource</td>
+			
+						</thead>
 						";
 							/* $Parsedown = new Parsedown();
 							echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
