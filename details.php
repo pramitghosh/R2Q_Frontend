@@ -39,7 +39,15 @@
 		return $id;
 	}
 
-
+	// function chooseCb($cbValue) {
+	// 	if ($cbValue == 0) {echo "cb0";
+	// 	} elseif ($cbValue == 1) {echo "cb1";
+	// 	} elseif ($cbValue == 2) {echo "cb2";
+	// 	} elseif ($cbValue == 3) {echo "cb3";
+	// 	} elseif ($cbValue == 4) {echo "cb4";
+	// 	}else {echo "cb0";};
+										
+	// }
 
 
 
@@ -53,116 +61,6 @@
 	if (!is_null($m_id))
 
 	{
-		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
-
-		
-		// $q_Titel = $q_template . "ebene1 = 'Titel'";
-		
-		// $q_Kurzbeschreibung = $q_template . "ebene1 = 'Kurzbeschreibung'";
-		
-		// $q_Umsetzungsbeispiel_Beschriftung = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Beschriftung'";
-		// $q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
-		
-		// $q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
-		
-		// $q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
-		
-		// $q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
-		
-		// $q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
-		
-		// $q_Nutzungsdauer_min = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'min'";
-		// $q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
-		// $q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
-		
-		// $q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
-		
-		// $q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
-		
-		// $q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
-		
-		// $q_Systemskizze_Beschriftung = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Beschriftung'";
-		// $q_Systemskizze_Bild = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Bild'";
-		// $q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
-		
-		// $q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
-		// $q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
-		
-		// $q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
-		// $q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
-		// $q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
-		// $q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
-		// $q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
-		// $q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
-		// $q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
-		// $q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
-		// $q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
-		// $q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
-		// $q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
-		// $q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
-		
-		// $q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
-		// $q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
-		
-
-		// $r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
-
-		
-		
-		
-
-		
-		// $r_Kurzbeschreibung = extract_wert(mysqli_query($conn, $q_Kurzbeschreibung));
-		// $r_Umsetzungsbeispiel_Beschriftung = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Beschriftung));
-		// $r_Umsetzungsbeispiel_Bild = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Bild));
-		
-		// $r_Ressource = mysqli_query($conn, $q_Ressource);		
-		// $r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
-		
-		// $r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
-		// $r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
-
-		// $r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
-		// $r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
-		
-		// $r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
-		// $r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
-		
-		// $r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
-		// $r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
-		// $r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
-		
-		// $r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
-		// $r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
-		
-		// $r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
-		
-		// $r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
-		
-		// $r_Systemskizze_Beschriftung = extract_wert(mysqli_query($conn, $q_Systemskizze_Beschriftung));
-		// $r_Systemskizze_Bild = extract_wert(mysqli_query($conn, $q_Systemskizze_Bild));
-		// $r_Systemskizze_uptime = extract_wert(mysqli_query($conn, $q_Systemskizze_uptime));
-		
-		// $r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
-		// $r_Planung_table = mysqli_query($conn, $q_Planung_table);
-		// $r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_ASSOC);
-		
-		// $r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
-		// $r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
-		// $r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
-		// $r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
-		// $r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
-		// $r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
-		// $r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
-		// $r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
-		// $r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
-		// $r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
-		// $r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
-		// $r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
-		
-		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
-		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
-		
 		$parsedown = new Parsedown();
 
 		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
@@ -298,6 +196,9 @@
 		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
 
+		$q_Bewertung_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ökobilanzielle Bewertung' AND (ebene2 = 'Literaturstelle' OR ebene2 = 'Bewertung') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$r_Bewertung_table = mysqli_fetch_all(mysqli_query($conn, $q_Bewertung_table), MYSQLI_NUM);
+
 		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
 		$r_Fallbsp1 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp1), MYSQLI_NUM);
 		$q_Fallbsp2 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '2'";
@@ -409,25 +310,38 @@
 								<tbody>
 									<tr class="hlineHead">
 										<td class="gray"> Wasser </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserVerdunstung==1)? "checked":""; ?> onclick="return false;"> Förderung Verdunstung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserGrundwasserneubildung==1)? "checked":""; ?> onclick="return false;">  Förderung Grundwasserneubildung</td>
-									
-									</tr>
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkWasserVerdunstung==1)? "checked":""; ?> onclick="return false;"> Förderung Verdunstung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkWasserGrundwasserneubildung==1)? "checked":""; ?> onclick="return false;">  Förderung Grundwasserneubildung</td> -->
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserVerdunstung . "'>"?> Förderung Verdunstung</div></td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserGrundwasserneubildung . "'>"?> Förderung Grundwasserneubildung</td>
+										
+										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserVerdunstung . "'>&nbsp;</div>"?> Förderung Verdunstung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserGrundwasserneubildung . "'>&nbsp;</div>"?> Förderung Grundwasserneubildung</td> -->
+										</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserBehandlung==1)? "checked":""; ?> onclick="return false;"> Behandlung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserTrinkwassereinsparung==1)? "checked":""; ?> onclick="return false;">  Trinkwassereinsparung</td>																		
-									</tr>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserBehandlung . "'>"?> Behandlung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserTrinkwassereinsparung . "'>"?> Trinkwassereinsparung</td>
+										
+										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserBehandlung . "'>&nbsp;</div>"?> Behandlung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserTrinkwassereinsparung . "'>&nbsp;</div>"?> Trinkwassereinsparung</td> -->
+										</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserNährstoffrückgewinnung==1)? "checked":""; ?> onclick="return false;">  Nährstoffrückgewinnung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserÜberflutungsvorsorge==1)? "checked":""; ?> onclick="return false;">  Starkregen-, Überflutungsvorsorge</td>	
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserNährstoffrückgewinnung . "'>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserÜberflutungsvorsorge . "'>"?> Starkregen-, Überflutungsvorsorge</td>
+										
+										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserNährstoffrückgewinnung . "'>&nbsp;</div>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserÜberflutungsvorsorge . "'>&nbsp;</div>"?> Starkregen-, Überflutungsvorsorge</td> -->
 																			
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserAbfluss==1)? "checked":""; ?> onclick="return false;">  Minderung Abfluss</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserSammlung==1)? "checked":""; ?> onclick="return false;"> Sammlung und Ableitung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserAbfluss . "'>"?> Minderung Abfluss</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserSammlung . "'>"?> Sammlung und Ableitung</td>
+										
+										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserAbfluss . "'>&nbsp;</div>"?> Minderung Abfluss</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserSammlung . "'>&nbsp;</div>"?> Sammlung und Ableitung</td> -->
 																			
 									</tr>
 <!--  									<tr class="hline">
@@ -796,6 +710,37 @@
 							}
 						?>
 					</p>
+
+					<h4>Ökobilanzielle Bewertung</h4>
+						<?php 
+							if(!empty($r_Bewertung_table))
+							{
+								echo "
+								<table class='resTable'>
+									<colgroup>
+										<col style='width:30%'>
+										<col style='width:70%'>
+									</colgroup>
+									<thead class='headerBlack'>
+										<td>Literaturstelle</td>
+										<td>Bewertung</td>
+									</thead>";
+									for ($i = 0; $i < 10; $i++)
+									{
+										if ($r_Bewertung_table[$i][1]!="" or $r_Bewertung_table[$i+10][1]!="") {
+											$parsedown_Literaturstelle = new Parsedown();
+											$parsedown_Bewertung = new Parsedown();
+
+											echo "<tr class='hline'><td>" . $parsedown_Literaturstelle->text($r_Bewertung_table[$i+10][1]) . "</td>";
+											echo "<td>" . $parsedown_Bewertung->text($r_Bewertung_table[$i][1]) . "</td></tr>";
+										} 
+									}							
+								echo "</table>";
+							}
+						?>
+					</p>
+
+
 					<h4>Kombinationsmöglichkeiten</h4>
 					
 					<?php 
