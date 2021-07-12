@@ -81,29 +81,47 @@
 		$r_funkNiederschlagKlimaanpassung = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Klimaanpassung'"); */
 		
 		$r_funkWasserVerdunstung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Förderung Verdunstung'");
+		if ($r_funkWasserVerdunstung > 4 Or !is_numeric($r_funkWasserVerdunstung)) {$r_funkWasserVerdunstung = 0;}
 		$r_funkWasserGrundwasserneubildung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Förderung Grundwasserneubildung'");
+		if ($r_funkWasserGrundwasserneubildung > 4 Or !is_numeric($r_funkWasserGrundwasserneubildung)) {$r_funkWasserGrundwasserneubildung = 0;}
 		$r_funkWasserAbfluss = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Minderung Abfluss'");
+		if ($r_funkWasserAbfluss > 4 Or !is_numeric($r_funkWasserAbfluss)) {$r_funkWasserAbfluss = 0;}
 		$r_funkWasserSammlung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Sammlung und Ableitung'");
+		if ($r_funkWasserSammlung > 4 Or !is_numeric($r_funkWasserSammlung)) {$r_funkWasserSammlung = 0;}
 		$r_funkWasserBehandlung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Behandlung'");
+		if ($r_funkWasserBehandlung > 4 Or !is_numeric($r_funkWasserBehandlung)) {$r_funkWasserBehandlung = 0;}
 		$r_funkWasserTrinkwassereinsparung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Trinkwassereinsparung'");
+		if ($r_funkWasserTrinkwassereinsparung > 4 Or !is_numeric($r_funkWasserTrinkwassereinsparung)) {$r_funkWasserTrinkwassereinsparung = 0;}
 		$r_funkWasserNährstoffrückgewinnung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Nährstoffrückgewinnung'");
+		if ($r_funkWasserNährstoffrückgewinnung > 4 Or !is_numeric($r_funkWasserNährstoffrückgewinnung)) {$r_funkWasserNährstoffrückgewinnung = 0;}
 		$r_funkWasserÜberflutungsvorsorge = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Starkregen-, Überflutungsvorsorge'");
+		if ($r_funkWasserÜberflutungsvorsorge > 4 Or !is_numeric($r_funkWasserÜberflutungsvorsorge)) {$r_funkWasserÜberflutungsvorsorge = 0;}
 						
 
 		$r_funkBaustoffeVermeidung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Vermeidung'");
+		if ($r_funkBaustoffeVermeidung > 4 Or !is_numeric($r_funkBaustoffeVermeidung)) {$r_funkBaustoffeVermeidung = 0;}
 		$r_funkBaustoffeWiederverwendung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Wiederverwendung'");
+		if ($r_funkBaustoffeWiederverwendung > 4 Or !is_numeric($r_funkBaustoffeWiederverwendung)) {$r_funkBaustoffeWiederverwendung = 0;}
 		$r_funkBaustoffeRecycling = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Recycling'");
+		if ($r_funkBaustoffeRecycling > 4 Or !is_numeric($r_funkBaustoffeRecycling)) {$r_funkBaustoffeRecycling = 0;}
 		$r_funkBaustoffeVerwertung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Verwertung'");
+		if ($r_funkBaustoffeVerwertung > 4 Or !is_numeric($r_funkBaustoffeVerwertung)) {$r_funkBaustoffeVerwertung = 0;}
 		$r_funkBaustoffeBeseitigung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Beseitigung'");
+		if ($r_funkBaustoffeBeseitigung > 4 Or !is_numeric($r_funkBaustoffeBeseitigung)) {$r_funkBaustoffeBeseitigung = 0;}
 /* 		$r_funkBaustoffeRohstoffverfügbarkeit = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffverfügbarkeit'");
 		$r_funkBaustoffeRohstoffaufwand = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffaufwand (gesamt)'"); */
 		
 
 		$r_funkFlächeKlimaanpassung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Klimaanpassung'");
+		if ($r_funkFlächeKlimaanpassung > 4 Or !is_numeric($r_funkFlächeKlimaanpassung)) {$r_funkFlächeKlimaanpassung = 0;}
 		$r_funkFlächeGesundheitsschutz = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Gesundheitsschutz'");
+		if ($r_funkFlächeGesundheitsschutz > 4 Or !is_numeric($r_funkFlächeGesundheitsschutz)) {$r_funkFlächeGesundheitsschutz = 0;}
 		$r_funkFlächeEinsparung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Erhalt d. Grunddaseinsfunktion'");
+		if ($r_funkFlächeEinsparung > 4 Or !is_numeric($r_funkFlächeEinsparung)) {$r_funkFlächeEinsparung = 0;}
 		$r_funkFlächeLuftreinhaltung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Naturschutz'");
+		if ($r_funkFlächeLuftreinhaltung > 4 Or !is_numeric($r_funkFlächeLuftreinhaltung)) {$r_funkFlächeLuftreinhaltung = 0;}
 		$r_funkFlächeBiodiversität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Klimaschutz'");
+		if ($r_funkFlächeBiodiversität > 4 Or !is_numeric($r_funkFlächeBiodiversität)) {$r_funkFlächeBiodiversität = 0;}
 		/* $r_funkFlächeAufenthaltsqualität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Aufenthalts-/ Freiraumqualität'"); */
 
 /* 		$r_funkSchmutzwasserGesundheitsvorsorge = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Gesundheitsvorsorge'");
@@ -112,12 +130,19 @@
 		$r_funkSchmutzwasserNährstoffrückgewinnung = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Nährstoffrückgewinnung'"); */
 
 		$r_funkEnergieEnergiebereitstellung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energiebereitstellung'");
+		if ($r_funkEnergieEnergiebereitstellung > 4 Or !is_numeric($r_funkEnergieEnergiebereitstellung)) {$r_funkEnergieEnergiebereitstellung = 0;}
 		$r_funkEnergieEnergieverteilung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energieverteilung'");
+		if ($r_funkEnergieEnergieverteilung > 4 Or !is_numeric($r_funkEnergieEnergieverteilung)) {$r_funkEnergieEnergieverteilung = 0;}
 		$r_funkEnergieEnergieverbrauch = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energieverbrauch'");
+		if ($r_funkEnergieEnergieverbrauch > 4 Or !is_numeric($r_funkEnergieEnergieverbrauch)) {$r_funkEnergieEnergieverbrauch = 0;}
 		$r_funkEnergieEnergiespeicherung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energiespeicherung'");
+		if ($r_funkEnergieEnergiespeicherung > 4 Or !is_numeric($r_funkEnergieEnergiespeicherung)) {$r_funkEnergieEnergiespeicherung = 0;}
 		$r_funkEnergieElektrizität = get_wert("'Wirkung/Funktion'", "'Energie'", "'Elektrizität'");
+		if ($r_funkEnergieElektrizität > 4 Or !is_numeric($r_funkEnergieElektrizität)) {$r_funkEnergieElektrizität = 0;}
 		$r_funkEnergieWärme = get_wert("'Wirkung/Funktion'", "'Energie'", "'Wärme'");
+		if ($r_funkEnergieWärme > 4 Or !is_numeric($r_funkEnergieWärme)) {$r_funkEnergieWärme = 0;}
 		$r_funkEnergieBrennstoffe = get_wert("'Wirkung/Funktion'", "'Energie'", "'Brennstoffe'");
+		if ($r_funkEnergieBrennstoffe > 4 Or !is_numeric($r_funkEnergieBrennstoffe)) {$r_funkEnergieBrennstoffe = 0;}
 		
 		$r_anwendungsebeneGebäude = get_wert("'Anwendungsebene'", "'Gebäudeebene'");
 		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
@@ -312,36 +337,36 @@
 										<td class="gray"> Wasser </td>
 										<!-- <td><input type="checkbox"  <?php echo ($r_funkWasserVerdunstung==1)? "checked":""; ?> onclick="return false;"> Förderung Verdunstung</td>
 										<td><input type="checkbox"  <?php echo ($r_funkWasserGrundwasserneubildung==1)? "checked":""; ?> onclick="return false;">  Förderung Grundwasserneubildung</td> -->
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserVerdunstung . "'>"?> Förderung Verdunstung</div></td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserGrundwasserneubildung . "'>"?> Förderung Grundwasserneubildung</td>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserVerdunstung . "'>"?> Förderung Verdunstung</div></td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserGrundwasserneubildung . "'>"?> Förderung Grundwasserneubildung</td> -->
 										
-										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserVerdunstung . "'>&nbsp;</div>"?> Förderung Verdunstung</td>
-										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserGrundwasserneubildung . "'>&nbsp;</div>"?> Förderung Grundwasserneubildung</td> -->
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserVerdunstung . "'>&nbsp;</div>"?> Förderung Verdunstung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserGrundwasserneubildung . "'>&nbsp;</div>"?> Förderung Grundwasserneubildung</td>
 										</tr>
 									<tr>
 										<td> </td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserBehandlung . "'>"?> Behandlung</td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserTrinkwassereinsparung . "'>"?> Trinkwassereinsparung</td>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserBehandlung . "'>"?> Behandlung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserTrinkwassereinsparung . "'>"?> Trinkwassereinsparung</td> -->
 										
-										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserBehandlung . "'>&nbsp;</div>"?> Behandlung</td>
-										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserTrinkwassereinsparung . "'>&nbsp;</div>"?> Trinkwassereinsparung</td> -->
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserBehandlung . "'>&nbsp;</div>"?> Behandlung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserTrinkwassereinsparung . "'>&nbsp;</div>"?> Trinkwassereinsparung</td>
 										</tr>
 									<tr>
 										<td> </td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserNährstoffrückgewinnung . "'>"?> Nährstoffrückgewinnung</td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserÜberflutungsvorsorge . "'>"?> Starkregen-, Überflutungsvorsorge</td>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserNährstoffrückgewinnung . "'>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserÜberflutungsvorsorge . "'>"?> Starkregen-, Überflutungsvorsorge</td> -->
 										
-										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserNährstoffrückgewinnung . "'>&nbsp;</div>"?> Nährstoffrückgewinnung</td>
-										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserÜberflutungsvorsorge . "'>&nbsp;</div>"?> Starkregen-, Überflutungsvorsorge</td> -->
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserNährstoffrückgewinnung . "'>&nbsp;</div>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserÜberflutungsvorsorge . "'>&nbsp;</div>"?> Starkregen-, Überflutungsvorsorge</td>
 																			
 									</tr>
 									<tr>
 										<td> </td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserAbfluss . "'>"?> Minderung Abfluss</td>
-										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserSammlung . "'>"?> Sammlung und Ableitung</td>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserAbfluss . "'>"?> Minderung Abfluss</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserSammlung . "'>"?> Sammlung und Ableitung</td> -->
 										
-										<!-- <td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserAbfluss . "'>&nbsp;</div>"?> Minderung Abfluss</td>
-										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserSammlung . "'>&nbsp;</div>"?> Sammlung und Ableitung</td> -->
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserAbfluss . "'>&nbsp;</div>"?> Minderung Abfluss</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserSammlung . "'>&nbsp;</div>"?> Sammlung und Ableitung</td>
 																			
 									</tr>
 <!--  									<tr class="hline">

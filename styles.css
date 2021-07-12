@@ -219,41 +219,41 @@ h5 {
 }
 
 .cb1{
-  border: solid rgb(4,180,219) 6px;
+  border: solid rgb(4,180,219) 4px;
   background-color: rgb(4,180,219);
   border-radius: 6px;
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   display:inline-block;
   vertical-align: middle;
 }
 
 .cb2{
-  border: solid rgb(4,180,219) 6px;  
+  border: solid rgb(4,180,219) 4px;  
   background-color: rgb(255, 135, 22);
   border-radius: 6px;
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   display:inline-block;
   vertical-align: middle;
 }
 
 .cb3{
-  border: solid rgb(4,180,219) 6px;
+  border: solid rgb(4,180,219) 4px;
   background-color: rgb(255, 251, 0);
   border-radius: 6px;
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   display:inline-block;
   vertical-align: middle;
 }
 
 .cb4{
-  border: solid rgb(4,180,219) 6px;
+  border: solid rgb(4,180,219) 4px;
   background-color: seagreen;
   border-radius: 6px;
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   display:inline-block;
   vertical-align: middle;
 }
