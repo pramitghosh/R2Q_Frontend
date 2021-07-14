@@ -460,12 +460,14 @@
 								</tbody>
 							</table>
 							<br>
-							<strong>Legende:&nbsp;</strong> <div id='checkbox' class='cb0'></div> = kein Effekt &nbsp;&nbsp; 
-							<div id='checkbox' class='cb1'></div> = Effekt (ohen Angabe der Stärke) &nbsp;&nbsp; 
-							<div id='checkbox' class='cb2'></div> = leichter Effekt &nbsp;&nbsp; 
-							<div id='checkbox' class='cb3'></div> = mittlerer Effekt &nbsp;&nbsp; 
-							<div id='checkbox' class='cb4'></div> = starker Effekt &nbsp;&nbsp; 
-							</div>
+							<strong>Legende:&nbsp;</strong><br>
+							<div class = cbDescr>
+							<div id='checkbox' class='cb0'></div> kein Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb1'></div> Wirkpotential vorhanden &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb2'></div> geringes Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb3'></div> mittlerer Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb4'></div> hohes Wirkpotential &nbsp;&nbsp;&nbsp; 
+							</div></div>
 						<br>
 						<br>
 
