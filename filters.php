@@ -8,9 +8,9 @@
 	<p class="sucheHeader">
 		Suche
 	</p>
-		<form action = "index.php" method = "POST">			
+		<form action = "massnahme.php" method = "POST">			
 
-	<h3>Suche</h3>
+<!-- 	<h3>Suche</h3> -->
 
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
   			<input class="buttonFilter" type = "Submit" value = "Suchen">&ensp;<input class="buttonFilter" type = "Reset" value = "Eingabe löschen">
