@@ -39,7 +39,15 @@
 		return $id;
 	}
 
-
+	// function chooseCb($cbValue) {
+	// 	if ($cbValue == 0) {echo "cb0";
+	// 	} elseif ($cbValue == 1) {echo "cb1";
+	// 	} elseif ($cbValue == 2) {echo "cb2";
+	// 	} elseif ($cbValue == 3) {echo "cb3";
+	// 	} elseif ($cbValue == 4) {echo "cb4";
+	// 	}else {echo "cb0";};
+										
+	// }
 
 
 
@@ -53,116 +61,6 @@
 	if (!is_null($m_id))
 
 	{
-		// $q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
-
-		
-		// $q_Titel = $q_template . "ebene1 = 'Titel'";
-		
-		// $q_Kurzbeschreibung = $q_template . "ebene1 = 'Kurzbeschreibung'";
-		
-		// $q_Umsetzungsbeispiel_Beschriftung = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Beschriftung'";
-		// $q_Umsetzungsbeispiel_Bild = $q_template . "ebene1 = 'Umsetzungsbeispiel' AND ebene2 = 'Bild'";
-		
-		// $q_Ressource = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ressource' AND wert = 1";
-		
-		// $q_wirkungfunktion = "SELECT ebene2, ebene3 FROM joined_massnahme WHERE ebene1 = 'Wirkung/Funktion' AND wert = 1 AND id = " . $m_id;
-		
-		// $q_Anwendungsebene = "SELECT ebene2 FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Anwendungsebene' AND wert = 1";
-		
-		// $q_Flaechenbedarf = $q_template . "ebene1 = 'Flächenbedarf'";
-		
-		// $q_Nutzungsdauer_min = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'min'";
-		// $q_Nutzungsdauer_max = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'max'";
-		// $q_Nutzungsdauer_ueblich = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Nutzungsdauer' AND ebene2 = 'üblich'";
-		
-		// $q_Entwicklungsstand = "SELECT ebene2 FROM joined_massnahme WHERE ebene1 = 'Entwicklungsstand' AND id = " . $m_id . " AND wert = 1";
-		
-		// $q_Sammelhinweis = $q_template . "ebene1 = 'Sammelhinweis'";
-		
-		// $q_Funktionsbeschreibung = $q_template . "ebene1 = 'Funktionsbeschreibung und Aufbau'";
-		
-		// $q_Systemskizze_Beschriftung = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Beschriftung'";
-		// $q_Systemskizze_Bild = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'Bild'";
-		// $q_Systemskizze_uptime = $q_template . "ebene1 = 'Systemskizze' AND ebene2 = 'uptime'";
-		
-		// $q_Planung_freetext = $q_template . "ebene1 = 'Planung, Bemessung und rechtliche Aspekte' AND ebene2 = 'Fließtext'";
-		// $q_Planung_table = $q_template . "wert != '' AND (ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
-		
-		// $q_Aufwand_freetext = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Fließtext'";
-		// $q_Aufwand_i1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten1'";
-		// $q_Aufwand_i2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten2'";
-		// $q_Aufwand_i3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten3'";
-		// $q_Aufwand_i4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten4'";
-		// $q_Aufwand_i5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Investitionskosten5'";
-		// $q_Aufwand_b1 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten1'";
-		// $q_Aufwand_b2 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten2'";
-		// $q_Aufwand_b3 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten3'";
-		// $q_Aufwand_b4 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten4'";
-		// $q_Aufwand_b5 = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Betriebskosten5'";
-		// $q_Aufwand_hinweis = $q_template . "ebene1 = 'Aufwand und Kosten' AND ebene2 = 'Hinweis'";
-		
-		// $q_Weitergehende_freetext = $q_template . "ebene1 = 'Weitergehende Hinweise' AND ebene2 = 'Fließtext'";
-		// $q_Weitergehende_table = $q_template . "wert != '' AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, ebene3";
-		
-
-		// $r_Titel = extract_wert(mysqli_query($conn, $q_Titel));
-
-		
-		
-		
-
-		
-		// $r_Kurzbeschreibung = extract_wert(mysqli_query($conn, $q_Kurzbeschreibung));
-		// $r_Umsetzungsbeispiel_Beschriftung = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Beschriftung));
-		// $r_Umsetzungsbeispiel_Bild = extract_wert(mysqli_query($conn, $q_Umsetzungsbeispiel_Bild));
-		
-		// $r_Ressource = mysqli_query($conn, $q_Ressource);		
-		// $r_Ressource = mysqli_fetch_all($r_Ressource, MYSQLI_NUM);
-		
-		// $r_wirkungfunktion = mysqli_query($conn, $q_wirkungfunktion);
-		// $r_wirkungfunktion = mysqli_fetch_all($r_wirkungfunktion, MYSQLI_NUM);
-
-		// $r_Anwendungsebene = mysqli_query($conn, $q_Anwendungsebene);
-		// $r_Anwendungsebene = mysqli_fetch_all($r_Anwendungsebene, MYSQLI_NUM);
-		
-		// $r_Flaechenbedarf = mysqli_query($conn, $q_Flaechenbedarf);
-		// $r_Flaechenbedarf = mysqli_fetch_all($r_Flaechenbedarf, MYSQLI_ASSOC);
-		
-		// $r_Nutzungsdauer_min = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_min));
-		// $r_Nutzungsdauer_max = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_max));
-		// $r_Nutzungsdauer_ueblich = extract_wert(mysqli_query($conn, $q_Nutzungsdauer_ueblich));
-		
-		// $r_Entwicklungsstand = mysqli_query($conn, $q_Entwicklungsstand);
-		// $r_Entwicklungsstand = mysqli_fetch_all($r_Entwicklungsstand, MYSQLI_NUM);
-		
-		// $r_Sammelhinweis = extract_wert(mysqli_query($conn, $q_Sammelhinweis));
-		
-		// $r_Funktionsbeschreibung = extract_wert(mysqli_query($conn, $q_Funktionsbeschreibung));
-		
-		// $r_Systemskizze_Beschriftung = extract_wert(mysqli_query($conn, $q_Systemskizze_Beschriftung));
-		// $r_Systemskizze_Bild = extract_wert(mysqli_query($conn, $q_Systemskizze_Bild));
-		// $r_Systemskizze_uptime = extract_wert(mysqli_query($conn, $q_Systemskizze_uptime));
-		
-		// $r_Planung_freetext = extract_wert(mysqli_query($conn, $q_Planung_freetext));
-		// $r_Planung_table = mysqli_query($conn, $q_Planung_table);
-		// $r_Planung_table = mysqli_fetch_all($r_Planung_table, MYSQLI_ASSOC);
-		
-		// $r_Aufwand_freetext = extract_wert(mysqli_query($conn, $q_Aufwand_freetext));
-		// $r_Aufwand_i1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i1), MYSQLI_NUM);
-		// $r_Aufwand_i2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i2), MYSQLI_NUM);
-		// $r_Aufwand_i3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i3), MYSQLI_NUM);
-		// $r_Aufwand_i4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i4), MYSQLI_NUM);
-		// $r_Aufwand_i5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_i5), MYSQLI_NUM);
-		// $r_Aufwand_b1 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b1), MYSQLI_NUM);
-		// $r_Aufwand_b2 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b2), MYSQLI_NUM);
-		// $r_Aufwand_b3 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b3), MYSQLI_NUM);
-		// $r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
-		// $r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
-		// $r_Aufwand_hinweis = extract_wert(mysqli_query($conn, $q_Aufwand_hinweis));
-		
-		// $r_Weitergehende_freetext = extract_wert(mysqli_query($conn, $q_Weitergehende_freetext));
-		// $r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
-		
 		$parsedown = new Parsedown();
 
 		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
@@ -183,29 +81,47 @@
 		$r_funkNiederschlagKlimaanpassung = get_wert("'Wirkung/Funktion'", "'Niederschlagswasser'", "'Klimaanpassung'"); */
 		
 		$r_funkWasserVerdunstung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Förderung Verdunstung'");
+		if ($r_funkWasserVerdunstung > 4 Or !is_numeric($r_funkWasserVerdunstung)) {$r_funkWasserVerdunstung = 0;}
 		$r_funkWasserGrundwasserneubildung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Förderung Grundwasserneubildung'");
+		if ($r_funkWasserGrundwasserneubildung > 4 Or !is_numeric($r_funkWasserGrundwasserneubildung)) {$r_funkWasserGrundwasserneubildung = 0;}
 		$r_funkWasserAbfluss = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Minderung Abfluss'");
+		if ($r_funkWasserAbfluss > 4 Or !is_numeric($r_funkWasserAbfluss)) {$r_funkWasserAbfluss = 0;}
 		$r_funkWasserSammlung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Sammlung und Ableitung'");
+		if ($r_funkWasserSammlung > 4 Or !is_numeric($r_funkWasserSammlung)) {$r_funkWasserSammlung = 0;}
 		$r_funkWasserBehandlung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Behandlung'");
+		if ($r_funkWasserBehandlung > 4 Or !is_numeric($r_funkWasserBehandlung)) {$r_funkWasserBehandlung = 0;}
 		$r_funkWasserTrinkwassereinsparung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Trinkwassereinsparung'");
+		if ($r_funkWasserTrinkwassereinsparung > 4 Or !is_numeric($r_funkWasserTrinkwassereinsparung)) {$r_funkWasserTrinkwassereinsparung = 0;}
 		$r_funkWasserNährstoffrückgewinnung = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Nährstoffrückgewinnung'");
+		if ($r_funkWasserNährstoffrückgewinnung > 4 Or !is_numeric($r_funkWasserNährstoffrückgewinnung)) {$r_funkWasserNährstoffrückgewinnung = 0;}
 		$r_funkWasserÜberflutungsvorsorge = get_wert("'Wirkung/Funktion'", "'Wasser'", "'Starkregen-, Überflutungsvorsorge'");
+		if ($r_funkWasserÜberflutungsvorsorge > 4 Or !is_numeric($r_funkWasserÜberflutungsvorsorge)) {$r_funkWasserÜberflutungsvorsorge = 0;}
 						
 
 		$r_funkBaustoffeVermeidung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Vermeidung'");
+		if ($r_funkBaustoffeVermeidung > 4 Or !is_numeric($r_funkBaustoffeVermeidung)) {$r_funkBaustoffeVermeidung = 0;}
 		$r_funkBaustoffeWiederverwendung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Wiederverwendung'");
+		if ($r_funkBaustoffeWiederverwendung > 4 Or !is_numeric($r_funkBaustoffeWiederverwendung)) {$r_funkBaustoffeWiederverwendung = 0;}
 		$r_funkBaustoffeRecycling = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Recycling'");
+		if ($r_funkBaustoffeRecycling > 4 Or !is_numeric($r_funkBaustoffeRecycling)) {$r_funkBaustoffeRecycling = 0;}
 		$r_funkBaustoffeVerwertung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Verwertung'");
+		if ($r_funkBaustoffeVerwertung > 4 Or !is_numeric($r_funkBaustoffeVerwertung)) {$r_funkBaustoffeVerwertung = 0;}
 		$r_funkBaustoffeBeseitigung = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Beseitigung'");
+		if ($r_funkBaustoffeBeseitigung > 4 Or !is_numeric($r_funkBaustoffeBeseitigung)) {$r_funkBaustoffeBeseitigung = 0;}
 /* 		$r_funkBaustoffeRohstoffverfügbarkeit = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffverfügbarkeit'");
 		$r_funkBaustoffeRohstoffaufwand = get_wert("'Wirkung/Funktion'", "'Baustoffe'", "'Rohstoffaufwand (gesamt)'"); */
 		
 
 		$r_funkFlächeKlimaanpassung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Klimaanpassung'");
+		if ($r_funkFlächeKlimaanpassung > 4 Or !is_numeric($r_funkFlächeKlimaanpassung)) {$r_funkFlächeKlimaanpassung = 0;}
 		$r_funkFlächeGesundheitsschutz = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Gesundheitsschutz'");
+		if ($r_funkFlächeGesundheitsschutz > 4 Or !is_numeric($r_funkFlächeGesundheitsschutz)) {$r_funkFlächeGesundheitsschutz = 0;}
 		$r_funkFlächeEinsparung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Erhalt d. Grunddaseinsfunktion'");
+		if ($r_funkFlächeEinsparung > 4 Or !is_numeric($r_funkFlächeEinsparung)) {$r_funkFlächeEinsparung = 0;}
 		$r_funkFlächeLuftreinhaltung = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Naturschutz'");
+		if ($r_funkFlächeLuftreinhaltung > 4 Or !is_numeric($r_funkFlächeLuftreinhaltung)) {$r_funkFlächeLuftreinhaltung = 0;}
 		$r_funkFlächeBiodiversität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Klimaschutz'");
+		if ($r_funkFlächeBiodiversität > 4 Or !is_numeric($r_funkFlächeBiodiversität)) {$r_funkFlächeBiodiversität = 0;}
 		/* $r_funkFlächeAufenthaltsqualität = get_wert("'Wirkung/Funktion'", "'Fläche'", "'Aufenthalts-/ Freiraumqualität'"); */
 
 /* 		$r_funkSchmutzwasserGesundheitsvorsorge = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Gesundheitsvorsorge'");
@@ -214,12 +130,19 @@
 		$r_funkSchmutzwasserNährstoffrückgewinnung = get_wert("'Wirkung/Funktion'", "'Schmutzwasser'", "'Nährstoffrückgewinnung'"); */
 
 		$r_funkEnergieEnergiebereitstellung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energiebereitstellung'");
+		if ($r_funkEnergieEnergiebereitstellung > 4 Or !is_numeric($r_funkEnergieEnergiebereitstellung)) {$r_funkEnergieEnergiebereitstellung = 0;}
 		$r_funkEnergieEnergieverteilung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energieverteilung'");
+		if ($r_funkEnergieEnergieverteilung > 4 Or !is_numeric($r_funkEnergieEnergieverteilung)) {$r_funkEnergieEnergieverteilung = 0;}
 		$r_funkEnergieEnergieverbrauch = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energieverbrauch'");
+		if ($r_funkEnergieEnergieverbrauch > 4 Or !is_numeric($r_funkEnergieEnergieverbrauch)) {$r_funkEnergieEnergieverbrauch = 0;}
 		$r_funkEnergieEnergiespeicherung = get_wert("'Wirkung/Funktion'", "'Energie'", "'Energiespeicherung'");
+		if ($r_funkEnergieEnergiespeicherung > 4 Or !is_numeric($r_funkEnergieEnergiespeicherung)) {$r_funkEnergieEnergiespeicherung = 0;}
 		$r_funkEnergieElektrizität = get_wert("'Wirkung/Funktion'", "'Energie'", "'Elektrizität'");
+		if ($r_funkEnergieElektrizität > 4 Or !is_numeric($r_funkEnergieElektrizität)) {$r_funkEnergieElektrizität = 0;}
 		$r_funkEnergieWärme = get_wert("'Wirkung/Funktion'", "'Energie'", "'Wärme'");
+		if ($r_funkEnergieWärme > 4 Or !is_numeric($r_funkEnergieWärme)) {$r_funkEnergieWärme = 0;}
 		$r_funkEnergieBrennstoffe = get_wert("'Wirkung/Funktion'", "'Energie'", "'Brennstoffe'");
+		if ($r_funkEnergieBrennstoffe > 4 Or !is_numeric($r_funkEnergieBrennstoffe)) {$r_funkEnergieBrennstoffe = 0;}
 		
 		$r_anwendungsebeneGebäude = get_wert("'Anwendungsebene'", "'Gebäudeebene'");
 		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
@@ -297,6 +220,9 @@
 		
 		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
+
+		$q_Bewertung_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ökobilanzielle Bewertung' AND (ebene2 = 'Literaturstelle' OR ebene2 = 'Bewertung') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$r_Bewertung_table = mysqli_fetch_all(mysqli_query($conn, $q_Bewertung_table), MYSQLI_NUM);
 
 		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
 		$r_Fallbsp1 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp1), MYSQLI_NUM);
@@ -409,25 +335,38 @@
 								<tbody>
 									<tr class="hlineHead">
 										<td class="gray"> Wasser </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserVerdunstung==1)? "checked":""; ?> onclick="return false;"> Förderung Verdunstung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserGrundwasserneubildung==1)? "checked":""; ?> onclick="return false;">  Förderung Grundwasserneubildung</td>
-									
-									</tr>
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkWasserVerdunstung==1)? "checked":""; ?> onclick="return false;"> Förderung Verdunstung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkWasserGrundwasserneubildung==1)? "checked":""; ?> onclick="return false;">  Förderung Grundwasserneubildung</td> -->
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserVerdunstung . "'>"?> Förderung Verdunstung</div></td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserGrundwasserneubildung . "'>"?> Förderung Grundwasserneubildung</td> -->
+										
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserVerdunstung . "'>&nbsp;</div>"?> Förderung Verdunstung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserGrundwasserneubildung . "'>&nbsp;</div>"?> Förderung Grundwasserneubildung</td>
+										</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserBehandlung==1)? "checked":""; ?> onclick="return false;"> Behandlung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserTrinkwassereinsparung==1)? "checked":""; ?> onclick="return false;">  Trinkwassereinsparung</td>																		
-									</tr>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserBehandlung . "'>"?> Behandlung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserTrinkwassereinsparung . "'>"?> Trinkwassereinsparung</td> -->
+										
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserBehandlung . "'>&nbsp;</div>"?> Behandlung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserTrinkwassereinsparung . "'>&nbsp;</div>"?> Trinkwassereinsparung</td>
+										</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserNährstoffrückgewinnung==1)? "checked":""; ?> onclick="return false;">  Nährstoffrückgewinnung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserÜberflutungsvorsorge==1)? "checked":""; ?> onclick="return false;">  Starkregen-, Überflutungsvorsorge</td>	
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserNährstoffrückgewinnung . "'>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserÜberflutungsvorsorge . "'>"?> Starkregen-, Überflutungsvorsorge</td> -->
+										
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserNährstoffrückgewinnung . "'>&nbsp;</div>"?> Nährstoffrückgewinnung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserÜberflutungsvorsorge . "'>&nbsp;</div>"?> Starkregen-, Überflutungsvorsorge</td>
 																			
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserAbfluss==1)? "checked":""; ?> onclick="return false;">  Minderung Abfluss</td>
-										<td><input type="checkbox"  <?php echo ($r_funkWasserSammlung==1)? "checked":""; ?> onclick="return false;"> Sammlung und Ableitung</td>
+										<!-- <td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserAbfluss . "'>"?> Minderung Abfluss</td>
+										<td><?php echo "<img class='cbSize' src='cb" . $r_funkWasserSammlung . "'>"?> Sammlung und Ableitung</td> -->
+										
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserAbfluss . "'>&nbsp;</div>"?> Minderung Abfluss</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkWasserSammlung . "'>&nbsp;</div>"?> Sammlung und Ableitung</td>
 																			
 									</tr>
 <!--  									<tr class="hline">
@@ -443,57 +382,92 @@
 --> 				
 									<tr class="hline">
 										<td class="gray"> Baustoffe </td>
-										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeVermeidung==1)? "checked":""; ?> onclick="return false;"> Vermeidung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeWiederverwendung==1)? "checked":""; ?> onclick="return false;">  Wiederverwendung</td>																				
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkBaustoffeVermeidung . "'>&nbsp;</div>"?> Vermeidung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkBaustoffeWiederverwendung . "'>&nbsp;</div>"?> Wiederverwendung</td>
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkBaustoffeVermeidung==1)? "checked":""; ?> onclick="return false;"> Vermeidung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeWiederverwendung==1)? "checked":""; ?> onclick="return false;">  Wiederverwendung</td>																				 -->
 									</tr>
 									<tr>
-										<td> </td>										
-										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeVerwertung==1)? "checked":""; ?> onclick="return false;">  Verwertung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeBeseitigung==1)? "checked":""; ?> onclick="return false;">  Beseitigung</td>								
+										<td> </td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkBaustoffeVerwertung . "'>&nbsp;</div>"?> Verwertung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkBaustoffeBeseitigung . "'>&nbsp;</div>"?> Beseitigung</td>										
+										
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkBaustoffeVerwertung==1)? "checked":""; ?> onclick="return false;">  Verwertung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeBeseitigung==1)? "checked":""; ?> onclick="return false;">  Beseitigung</td>								 -->
 									</tr>
 									<tr>
-										<td> </td>										
-										<td><input type="checkbox"  <?php echo ($r_funkBaustoffeRecycling==1)? "checked":""; ?> onclick="return false;"> Recycling</td>
+										<td> </td>	
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkBaustoffeRecycling . "'>&nbsp;</div>"?> Recycling</td>									
+										
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkBaustoffeRecycling==1)? "checked":""; ?> onclick="return false;"> Recycling</td> -->
 									</tr>
 									
 									<tr class="hline">
 										<td class="gray"> Energie </td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergiebereitstellung==1)? "checked":""; ?> onclick="return false;"> Energiebereitstellung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergieverteilung==1)? "checked":""; ?> onclick="return false;">  Energieverteilung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieEnergiebereitstellung . "'>&nbsp;</div>"?> Energiebereitstellung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieEnergieverteilung . "'>&nbsp;</div>"?> Energieverteilung</td>	
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkEnergieEnergiebereitstellung==1)? "checked":""; ?> onclick="return false;"> Energiebereitstellung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergieverteilung==1)? "checked":""; ?> onclick="return false;">  Energieverteilung</td> -->
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergieverbrauch==1)? "checked":""; ?> onclick="return false;"> Energieverbrauch</td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergiespeicherung==1)? "checked":""; ?> onclick="return false;">  Energiespeicherung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieEnergieverbrauch . "'>&nbsp;</div>"?> Energieverbrauch</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieEnergiespeicherung . "'>&nbsp;</div>"?> Energiespeicherung</td>	
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkEnergieEnergieverbrauch==1)? "checked":""; ?> onclick="return false;"> Energieverbrauch</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieEnergiespeicherung==1)? "checked":""; ?> onclick="return false;">  Energiespeicherung</td> -->
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieElektrizität==1)? "checked":""; ?> onclick="return false;"> Elektrizität</td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieWärme==1)? "checked":""; ?> onclick="return false;">  Wärme</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieElektrizität . "'>&nbsp;</div>"?> Elektrizität</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieWärme . "'>&nbsp;</div>"?> Wärme</td>
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkEnergieElektrizität==1)? "checked":""; ?> onclick="return false;"> Elektrizität</td>
+										<td><input type="checkbox"  <?php echo ($r_funkEnergieWärme==1)? "checked":""; ?> onclick="return false;">  Wärme</td> -->
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkEnergieBrennstoffe==1)? "checked":""; ?> onclick="return false;"> Brennstoffe</td>										
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkEnergieBrennstoffe . "'>&nbsp;</div>"?> Brennstoffe</td>
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkEnergieBrennstoffe==1)? "checked":""; ?> onclick="return false;"> Brennstoffe</td>										 -->
 									</tr>
 									
 									<tr class="hline">
 										<td class="gray"> Fläche </td>
-										<td><input type="checkbox"  <?php echo ($r_funkFlächeKlimaanpassung==1)? "checked":""; ?> onclick="return false;"> Klimaanpassung</td>
-										<td><input type="checkbox"  <?php echo ($r_funkFlächeGesundheitsschutz==1)? "checked":""; ?> onclick="return false;">  Gesundheitsschutz</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkFlächeKlimaanpassung . "'>&nbsp;</div>"?> Klimaanpassung</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkFlächeGesundheitsschutz . "'>&nbsp;</div>"?> Gesundheitsschutz</td>
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkFlächeKlimaanpassung==1)? "checked":""; ?> onclick="return false;"> Klimaanpassung</td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeGesundheitsschutz==1)? "checked":""; ?> onclick="return false;">  Gesundheitsschutz</td> -->
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkFlächeEinsparung==1)? "checked":""; ?> onclick="return false;"> Erhalt d. Grunddaseinsfunktion</td>
-										<td><input type="checkbox"  <?php echo ($r_funkFlächeLuftreinhaltung==1)? "checked":""; ?> onclick="return false;">  Naturschutz</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkFlächeEinsparung . "'>&nbsp;</div>"?> Erhalt d. Grunddaseinsfunktion</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkFlächeLuftreinhaltung . "'>&nbsp;</div>"?> Naturschutz</td>
+
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkFlächeEinsparung==1)? "checked":""; ?> onclick="return false;"> Erhalt d. Grunddaseinsfunktion</td>
+										<td><input type="checkbox"  <?php echo ($r_funkFlächeLuftreinhaltung==1)? "checked":""; ?> onclick="return false;">  Naturschutz</td> -->
 									</tr>
 									<tr>
 										<td> </td>
-										<td><input type="checkbox"  <?php echo ($r_funkFlächeBiodiversität==1)? "checked":""; ?> onclick="return false;"> Klimaschutz</td>
+										<td><?php echo "<div id='checkbox' class='cb" . $r_funkFlächeBiodiversität . "'>&nbsp;</div>"?> Klimaschutz</td>
+										
+										<!-- <td><input type="checkbox"  <?php echo ($r_funkFlächeBiodiversität==1)? "checked":""; ?> onclick="return false;"> Klimaschutz</td> -->
 										
 									</tr>
 								</tbody>
 							</table>
-							</div>
+							<br>
+							<strong>Legende:&nbsp;</strong><br>
+							<div class = cbDescr>
+							<div id='checkbox' class='cb0'></div> kein Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb1'></div> Wirkpotential vorhanden &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb2'></div> geringes Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb3'></div> mittlerer Wirkpotential &nbsp;&nbsp;&nbsp; 
+							<div id='checkbox' class='cb4'></div> hohes Wirkpotential &nbsp;&nbsp;&nbsp; 
+							</div></div>
 						<br>
 						<br>
 
@@ -796,6 +770,37 @@
 							}
 						?>
 					</p>
+
+					<h4>Ökobilanzielle Bewertung</h4>
+						<?php 
+							if(!empty($r_Bewertung_table))
+							{
+								echo "
+								<table class='resTable'>
+									<colgroup>
+										<col style='width:30%'>
+										<col style='width:70%'>
+									</colgroup>
+									<thead class='headerBlack'>
+										<td>Literaturstelle</td>
+										<td>Bewertung</td>
+									</thead>";
+									for ($i = 0; $i < 10; $i++)
+									{
+										if ($r_Bewertung_table[$i][1]!="" or $r_Bewertung_table[$i+10][1]!="") {
+											$parsedown_Literaturstelle = new Parsedown();
+											$parsedown_Bewertung = new Parsedown();
+
+											echo "<tr class='hline'><td>" . $parsedown_Literaturstelle->text($r_Bewertung_table[$i+10][1]) . "</td>";
+											echo "<td>" . $parsedown_Bewertung->text($r_Bewertung_table[$i][1]) . "</td></tr>";
+										} 
+									}							
+								echo "</table>";
+							}
+						?>
+					</p>
+
+
 					<h4>Kombinationsmöglichkeiten</h4>
 					
 					<?php 
