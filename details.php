@@ -1,4 +1,5 @@
 <?php 
+	// header('Content-Type: text/html; charset=utf-8');
 	include 'parsedown-1.7.4/Parsedown.php';
 
 	require 'sql.php';
@@ -8,6 +9,7 @@
 
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="styles.css">
 		<title>
 			Massnahmenkatalog Frontend
@@ -517,11 +519,6 @@
 											<td class='gray'>Fläche</td>
 											<td>" . $parsedown_table_syn->text($r_AspekteSynFläche) . "</td>";
 											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfFläche) . "</td></tr>";
-
-											echo "<tr class='hline'>
-											<td class='gray'>Ökobilanz</td>
-											<td>" . $parsedown_table_syn->text($r_AspekteSynÖkobilanz) . "</td>";
-											echo "<td>" . $parsedown_table_konf->text($r_AspekteKonfÖkobilanz) . "</td></tr>";
 								echo "</table>";
 							}
 						?>
