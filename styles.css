@@ -17,71 +17,78 @@
   min-height: 100vh;
   display: flex;
 	flex-wrap: wrap;
+  background-color: rgb(214, 214, 214);
+  background-image: url(startBackground2.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
+  background-blend-mode: multiply;
+  background-size: cover;
+  margin: -10px;
 }
+
 
 .filters {
   display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 20px;
+  padding: 1% ;
 }
 
 .page-container > *:nth-child(1) {
-  flex: 1 1 25%
+  flex: 1 1 23%
 }
 
 .page-container > *:nth-child(2) {
-  flex: 1 1 75%
+  flex: 1 1 71%
 }
 
 .filterField {
   padding: 0 12px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #cfcfcf;
+  margin-bottom: 0px;
+  background-color: #ffffffd7;
   /* border: solid black 2px; */
   box-sizing: border-box;
-  border-radius: 10px;
-  width: 90%;
+  /* border-radius: 10px; */
+  width: 95%;
 }
 
 .filterBox {
   padding: 0px 12px;
   border: solid green 3px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   width: 90%;
 }
 
 .buttonFilter{
 	background-color: rgb(4,180,219);
-  font-size: 18px;
+  font-size: 20px;
   color: #ffffff;
   border-color: #00000000;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .buttonFilter:hover{
 	background-color: rgb(67, 207, 238);
-  font-size: 18px;
+  font-size: 20px;
   color: #ffffff;
   border-color: #00000000;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .buttonSelect {
 	background-color: rgb(4,180,219);
-  font-size: 14px;
+  font-size: 20px;
   color: #ffffff;
   border-color: #00000000;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .buttonSelect:hover {
 	background-color: rgb(67, 207, 238);
-  font-size: 14px;
+  font-size: 20px;
   color: #ffffff;
   border-color: #00000000;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .resultsTable, th, td{
@@ -89,7 +96,9 @@
   /* font-size: 0.9em; */
   border-collapse: collapse;
   text-align: left;
-  font-size: 18px;
+  font-size: 28px;
+  
+  width: 60vw;
 }
 
 thead.resultsTableHeader{
@@ -101,11 +110,11 @@ thead.resultsTableHeader{
 
 /* Style the tab */
 .tab {
-  padding: 10px;
+  padding: 30px 10px;
   overflow: visible;
   position: fixed;
   top: 10px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -120,7 +129,7 @@ thead.resultsTableHeader{
   transition: 0.3s;
   text-align: center;
   font-size: 22px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   color: rgb(255, 255, 255);
   margin-right: 20px;
   width: 11em;
@@ -152,14 +161,36 @@ thead.resultsTableHeader{
   text-align: justify;
 }
 
+.directSearch{
+  flex-basis: 3%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 5vh;
+}
+
+.resultsTab{
+  flex-basis: 97%;
+  text-align: center;
+}
+
+.resultsMas {
+  margin: 2vh;
+	text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e3ffe5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .results {
+  margin: 2vh;
 	display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #e3ffe5;
+  background-color: #e3ffe5f5;
   padding-left: 5%;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 .comments {
@@ -169,7 +200,7 @@ thead.resultsTableHeader{
 
 .commentText{
   width: 80%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   background-color: #ffffff;
   border: solid rgb(128, 128, 128) 1px;
   padding: 2px 8px;
@@ -179,7 +210,7 @@ thead.resultsTableHeader{
 .timestamp {
   width: 20%;
   text-align:center;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   background-color: #cfcfcf;
   height: 20px;
   padding-top: 3px;
@@ -300,7 +331,7 @@ h5 {
 
 .filterHeader {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
+  font-size: 35px;
   color: #767171;
   padding-top: 10px;
   padding-bottom: 0;
@@ -342,11 +373,12 @@ h6 {
 .resTable{
   margin-top: 6px;
   min-width: 1000px;
-  /* font-size: 0.9em; */
+  font-size: 14px;
   border-collapse: collapse;
 }
 .resTable td{
   padding: 6px 10px;
+  font-size: 14px;
 
 }
 
@@ -397,6 +429,7 @@ thead.headerBlack {
 
 a.bold{
   font-weight: bold;
+  font-size: 14px;
 }
 
 @media print {
@@ -412,7 +445,7 @@ a.bold{
 }
 
 .footer{
-  margin-top: auto;
+  /* margin-top: auto;
   width: 100%;
   background-color: rgb(4,180,219);
   color: white;
@@ -420,7 +453,18 @@ a.bold{
   vertical-align: middle;
   height: 50px;
   padding: 5px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; */
+
+
+  margin: 2vh;
+    width: 100%;
+    background-color: rgb(4,180,219);
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    height: 50px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer_content1{

@@ -5,6 +5,10 @@
 
 	
 	<img class="Logo" src="R2Q_Logo.png">
+	
+
+	<div id="filterField" class="filterField">
+
 	<p class="sucheHeader">
 		Suche
 	</p>
@@ -15,13 +19,12 @@
   			<input type="text" id="massnahme_search" name="massnahme_search"><br><br>
   			<input class="buttonFilter" type = "Submit" value = "Suchen">&ensp;<input class="buttonFilter" type = "Reset" value = "Eingabe löschen">
 		</form>
-
+		<hr>
 
 		<p class="filterHeader">
 			Filter
 		</p>
 
-	<div id="filterField" class="filterField">
 		<form action = "massnahme.php" method = "POST">
 		
 		<br>
@@ -121,7 +124,6 @@
 			<input class="buttonSelect" type="button" onclick='deSelect("anwendungsform[]")' value="Alle abwählen"/>
 			</p>
 			</div>
-
 			<?php mysqli_close($conn); ?>
 			
 		</form>

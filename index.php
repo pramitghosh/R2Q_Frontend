@@ -25,9 +25,9 @@ include 'parsedown-1.7.4/Parsedown.php';
             Maßnahmen
             </button>
         </div>
-        
+        <?php include 'footer.php'; ?>
     </body>
-    <?php include 'footer.php'; ?>
+    
 </html>
 
 </div>

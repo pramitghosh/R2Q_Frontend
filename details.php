@@ -24,9 +24,6 @@
 	</head>
 	<body>
 	<div class="page-container">
-		<!-- <div class="Logo" id="logo"> 
-			 
-		<div>  -->
 		<div class = "filters">
 		
 			<?php
@@ -552,7 +549,7 @@
 			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				
 		</div>
-		
+		<?php include 'footer.php'; ?>
 	</div>
 
 	 <script>			
@@ -576,7 +573,7 @@
 	 </script>
 	 
 	
-	<?php include 'footer.php'; ?>
+	
 
 	</body>
 	

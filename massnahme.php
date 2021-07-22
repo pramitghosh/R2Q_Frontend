@@ -91,66 +91,77 @@
 				<script type="text/javascript" src = "selectdeselect.js"></script>		
 	</head>
 	<body>
-		<div class = "filters">
-			<?php
-				include 'filters.php';
-			?>
-		</div>
-		<div class = "results">
-			<form action="details.php" method="GET">
-				<label for="id">Bitte geben Sie Massnahmen ID ein, für die Direktsuche: </label>
-				<input type="text" name="id">
-				<input type="submit" value="Bestätigen">				
-			</form>
-			<?php
-                if($post_set)
-                {
-                    echo "<p class='filterHeader'>
-                        Suchergebnisse
-                        <br>
-                        </p>
-                        <table class='resultsTable'>
-                        <colgroup>
-                                <col style='width:600px'>
-                                <col style='width:100px'>
-                        </colgroup>
-                        <thead class='resultsTableHeader'>
-                            <td style='font-size: 22px;' >Name</td>
-                            <td style='font-size: 22px;' >Ressource</td>
-            
-                        </thead>
-                        ";
-                            /* $Parsedown = new Parsedown();
-                            echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
-                            
-                            require 'sql.php';
-                    
-                            if(mysqli_num_rows($result2) > 0)
-                            {
-                                //while($row = mysqli_fetch_assoc($result))
-                                foreach ($result2 as $row2)
-                                {
-                                    $titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
-                                    
-                                    $titel_result = mysqli_query($conn, $titel_query);
-                                    $titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
-                                    if ($titel[0][0]=="") {
-										$titel[0][0] = "!!Titel noch nicht vorhanden!!";
-									}
+		<div class="page-container">
+			<div class = "filters">
+				<?php
+					include 'filters.php';
+				?>
+			</div>
+			<div class = "resultsMas">
+				
+				<div class="resultsTab">
 
-                                    //echo "<tr><td>" . $row2["id"] . "</td>";
-                                    echo "<tr>";
-                                    echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
-                                    echo "<td>" . $row2["ressource"] . "</td>";
-                                    echo "</tr>";
-                                    //echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
-                                }
-                            }                   
-                            mysqli_close($conn);
-                        
-                    echo "</table>";
-                }
-            ?>
+					<?php
+						if($post_set)
+						{
+							echo "<p class='filterHeader'>
+								Suchergebnisse
+								<br>
+								<br>
+								</p>
+								<table class='resultsTable'>
+								<colgroup>
+										<col style='width:90%'>
+										<col style='width:10%;'>
+								</colgroup>
+								<thead class='resultsTableHeader'>
+									<td style='font-size: 22px;' >Name</td>
+									<td style='font-size: 22px;' >Ressource</td>
+					
+								</thead>
+								";
+									/* $Parsedown = new Parsedown();
+									echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+									
+									require 'sql.php';
+							
+									if(mysqli_num_rows($result2) > 0)
+									{
+										//while($row = mysqli_fetch_assoc($result))
+										foreach ($result2 as $row2)
+										{
+											$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
+											
+											$titel_result = mysqli_query($conn, $titel_query);
+											$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+											if ($titel[0][0]=="") {
+												$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+											}
+
+											//echo "<tr><td>" . $row2["id"] . "</td>";
+											echo "<tr>";
+											echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+											echo "<td>" . $row2["ressource"] . "</td>";
+											echo "</tr>";
+											//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+										}
+									}                   
+									mysqli_close($conn);
+								
+							echo "</table>";
+						}
+					?>
+				</div>
+				<div class="directSearch">
+					<form action="details.php" method="GET">
+						<label for="id">Für Direktsuche MaßnahmenID eingeben: <br><br> </label>
+						<input type="text" name="id">
+						<input class="buttonFilter" type="submit" value="Bestätigen">				
+					</form>
+				</div>
+
+			</div>
+			<?php include 'footer.php'; ?>
 		</div>
 		
 	</body>

@@ -23,7 +23,7 @@
     text-align: center;
     background-blend-mode: multiply;
     background-size: cover;
-    background-color: #e3ffe5ad;
+    background-color: #ffffffd7;
     padding: 40px;
     box-sizing: border-box;
     max-width: 65vw;
@@ -60,7 +60,7 @@
   }
 
   .footer{
-    margin-top: 20vh;
+    margin-top: 10vh;
     width: 100%;
     background-color: rgb(4,180,219);
     color: white;
