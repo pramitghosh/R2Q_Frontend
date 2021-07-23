@@ -264,7 +264,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<!-- <link rel="stylesheet" href="styles.css"> -->
+		<link rel="stylesheet" href="styles.css">
 		<!-- <link rel="stylesheet" href="footer-styles.css"> -->
 		<title>
 			Massnahmenkatalog Frontend
@@ -272,6 +272,7 @@
 		<script type="text/javascript" src = "selectdeselect.js"></script>
 	</head>
 	<body>
+		
 	<div class="page-container">
 		<div class = "filters">
 		
