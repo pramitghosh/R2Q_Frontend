@@ -109,14 +109,14 @@
 								<br>
 								<br>
 								</p>
-								<table class='resultsTable'>
+								<table class='searchTable'>
 								<colgroup>
 										<col style='width:90%'>
 										<col style='width:10%;'>
 								</colgroup>
-								<thead class='resultsTableHeader'>
-									<td style='font-size: 22px;' >Name</td>
-									<td style='font-size: 22px;' >Ressource</td>
+								<thead class='search'>
+									<td style='font-size: 30px;' >Name</td>
+									<td style='font-size: 30px;' >Ressource</td>
 					
 								</thead>
 								";
@@ -139,9 +139,9 @@
 											}
 
 											//echo "<tr><td>" . $row2["id"] . "</td>";
-											echo "<tr>";
-											echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
-											echo "<td>" . $row2["ressource"] . "</td>";
+											echo "<tr class='searchRow'>";
+											echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+											echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
 											echo "</tr>";
 											//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
 										}
