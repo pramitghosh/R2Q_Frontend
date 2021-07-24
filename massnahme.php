@@ -105,6 +105,7 @@
 						if($post_set)
 						{
 							echo "<p class='filterHeader'>
+								<br>
 								Suchergebnisse
 								<br>
 								<br>
@@ -155,7 +156,8 @@
 							$default_result = mysqli_query($conn, $default_query);
 
 							echo "<p class='filterHeader'>
-								Suchergebnisse
+								<br>
+								Maßnahmenkatalog
 								<br>
 								<br>
 								</p>
