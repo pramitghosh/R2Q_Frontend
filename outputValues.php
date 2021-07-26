@@ -169,7 +169,7 @@
 		$r_EntwicklungsstandWissenschaftTechnik = get_wert("'Entwicklungsstand'","'Stand der Wissenschaft und Technik'");
 		$r_EntwicklungsstandTechnik = get_wert("'Entwicklungsstand'","'Stand der Technik'");
 		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'mAllgemein annerkannter Stand der Technikin'");
-		$r_Sammelhinweis = get_wert("'Sammelhinweis'","'Hinweis'");
+		$r_Sammelhinweis = get_wert_pd("'Sammelhinweis'","'Hinweis'");
 
 		$r_Funktionsbeschreibung = get_wert_pd("'Funktionsbeschreibung und Aufbau'");
 		$r_Systemskizze_Bild = get_wert("'Systemskizze'","'Bild'");
@@ -220,13 +220,13 @@
 		$r_AspekteSynBaustoffe = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Baustoffe'");
 		$r_AspekteSynEnergie = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Energie'");
 		$r_AspekteSynFläche = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Fläche'");
-		$r_AspekteSynÖkobilanz = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Ökobilanz'");
 		$r_AspekteKonfNiederschlag = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Niederschlagswasser'");
 		$r_AspekteKonfSchmutzwasser = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Schmutzwasser'");
 		$r_AspekteKonfBaustoffe = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Baustoffe'");
 		$r_AspekteKonfEnergie = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Energie'");
 		$r_AspekteKonfFläche = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Fläche'");
 		
+		$r_Bewertung_freetext = get_wert_pd("'Ökobilanzielle Bewertung'","'Fließtext'");
 		$q_Bewertung_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ökobilanzielle Bewertung' AND (ebene2 = 'Literaturstelle' OR ebene2 = 'Bewertung') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_Bewertung_table = mysqli_fetch_all(mysqli_query($conn, $q_Bewertung_table), MYSQLI_NUM);
 		

@@ -210,10 +210,11 @@
 							</tbody>
 						</table>
 
-						<p>
-							<Div class="boldGray">Hinweis:</Div>
-							<?php echo $r_Sammelhinweis;?>
-						</p>
+						<?php 
+						if (strlen($r_Sammelhinweis) != 0) {
+							echo "<p><Div class='boldGray'>Hinweis:</Div>" . $r_Sammelhinweis . "</p>";
+						}
+						?>
 					</div>
 					<br><br><br><br><br><br>
 			</div>
@@ -253,8 +254,13 @@
 						<?php echo $r_Planung_freetext;?>
 					</p>
 					
-					<?php 
-						if(!empty($r_PlanungNormen))
+					<?php
+						$sumLength = 0;
+						for ($i=0; $i < sizeof($r_PlanungNormen); $i++) {
+							$sumLength = $sumLength + strlen($r_PlanungNormen[$i]['wert']);
+						}
+
+						if($sumLength != 0)
 						{
 							echo "
 							<table class='resTable'>
@@ -342,19 +348,25 @@
 						echo "</table>";					
 						?>
 					</p>
-					
-					<p>
-					<Div class="boldGray">Hinweis:</Div>
-						<?php echo $r_Aufwand_hinweis;?>
-					</p>
-				
+
+					<?php 
+						if (strlen($r_Aufwand_hinweis) != 0) {
+							echo "<p><Div class='boldGray'>Hinweis:</Div>" . $r_Aufwand_hinweis . "</p>";
+						}
+					?>
+
 					<h4>Weitergehende Hinweise</h4>				
 					<p>
 						<?php echo $r_Weitergehende_freetext;?>
 					</p>
 					<p>
-						<?php 
-							if(!empty($r_Weitergehende_table))
+						<?php
+							$sumLength = 0;
+							for ($i=0; $i < sizeof($r_Weitergehende_table); $i++) {
+								$sumLength = $sumLength + strlen($r_Weitergehende_table[$i][1]);
+							}
+
+							if($sumLength != 0)
 							{
 								echo "
 								<table class='resTable'>
@@ -429,8 +441,17 @@
 					</p>
 
 					<h4>Ökobilanzielle Bewertung</h4>
-						<?php 
-							if(!empty($r_Bewertung_table))
+						<p>
+							<?php echo $r_Bewertung_freetext;?>
+						</p>
+
+						<?php
+							$sumLength = 0;
+							for ($i=0; $i < sizeof($r_Bewertung_table); $i++) {
+								$sumLength = $sumLength + strlen($r_Bewertung_table[$i][1]);
+							}
+
+							if($sumLength != 0)
 							{
 								echo "
 								<table class='resTable'>
@@ -471,79 +492,91 @@
 					}
 					echo "</table>";
 					?>
-					<p>
+					
+					<?php 
+						$sumLength = 0;
+						for ($i=0; $i < sizeof($r_VorNach_table); $i++) {
+							$sumLength = $sumLength + strlen($r_VorNach_table[$i][1]);
+						}
+						if($sumLength != 0)
+						{
+							echo "<p>
+							<h4>Vor- und Nachteile</h4>
+							<table class='resTable'>
+								<colgroup>
+									<col style='width:50%'>
+									<col style='width:50%'>
+								</colgroup>
+								<thead class='headerBlack'>
+									<td>Vorteile</td>
+									<td>Nachteile</td>
+								</thead>";
+								for ($i = 0; $i < 10; $i++)
+								{
+									if ($r_VorNach_table[$i][1]!="" or $r_VorNach_table[$i+10][1]!="") {
+										$parsedown_vor = new Parsedown();
+										$parsedown_nach = new Parsedown();
+										echo "<tr class='hline'><td>" . $parsedown_vor->text($r_VorNach_table[$i+10][1]) . "</td>";
+										echo "<td>" . $parsedown_nach->text($r_VorNach_table[$i][1]) . "</td></tr>";
+									}
+								}
+							echo "</table></p>";
+						}
+					?>
+					
 
-					<h4>Vor- und Nachteile</h4>
+
+					
 						<?php 
-							if(!empty($r_VorNach_table))
-							{
-								echo "
+							$sumLength = 0;
+							for ($i=0; $i < sizeof($r_Fallbsp1); $i++) {
+								$sumLength = $sumLength + strlen($r_Fallbsp1[$i][0]);
+								$sumLength = $sumLength + strlen($r_Fallbsp2[$i][0]);
+								$sumLength = $sumLength + strlen($r_Fallbsp3[$i][0]);
+							}
+
+							if($sumLength != 0){
+								echo "<p><h4>Fallbeispiele</h4>
 								<table class='resTable'>
 									<colgroup>
-										<col style='width:50%'>
+										<col style='width:20'>
+										<col style='width:15%'>
+										<col style='width:15%'>
 										<col style='width:50%'>
 									</colgroup>
-									<thead class='headerBlack'>
-										<td>Vorteile</td>
-										<td>Nachteile</td>
-									</thead>";
-									for ($i = 0; $i < 10; $i++)
-									{
-										if ($r_VorNach_table[$i][1]!="" or $r_VorNach_table[$i+10][1]!="") {
-											$parsedown_vor = new Parsedown();
-											$parsedown_nach = new Parsedown();
-											echo "<tr class='hline'><td>" . $parsedown_vor->text($r_VorNach_table[$i+10][1]) . "</td>";
-											echo "<td>" . $parsedown_nach->text($r_VorNach_table[$i][1]) . "</td></tr>";
+									<thead class='headerBlack'><td>Projektname</td><td>Stadt</td><td>Land</td><td>Erläuterung</td></thead>
+									<tr class='hline'>";
+										if ($r_Fallbsp1[0][0]!="" or $r_Fallbsp1[1][0]!="" or $r_Fallbsp1[2][0]!="" or $r_Fallbsp1[3][0]!="") {
+											$parsedown = new Parsedown();
+											echo "<td>" . $parsedown->text($r_Fallbsp1[2][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp1[3][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp1[1][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp1[0][0]) . "</td>";
 										}
-									}
-								echo "</table>";
-							}
+									echo "</tr>
+									<tr class='hline'>";
+										if ($r_Fallbsp2[0][0]!="" or $r_Fallbsp2[1][0]!="" or $r_Fallbsp2[2][0]!="" or $r_Fallbsp2[3][0]!="") {
+											$parsedown = new Parsedown();
+											echo "<td>" . $parsedown->text($r_Fallbsp2[2][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp2[3][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp2[1][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp2[0][0]) . "</td>";
+										}
+									echo "</tr>
+									<tr class='hline'>";
+										if ($r_Fallbsp3[0][0]!="" or $r_Fallbsp3[1][0]!="" or $r_Fallbsp3[2][0]!="" or $r_Fallbsp3[3][0]!="") {
+											$parsedown = new Parsedown();
+											echo "<td>" . $parsedown->text($r_Fallbsp3[2][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp3[3][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp3[1][0]) . "</td>";
+											echo "<td>" . $parsedown->text($r_Fallbsp3[0][0]) . "</td>";
+										}
+									echo "</tr>";
+										
+								echo "</table></p>";
+							}					
 						?>
-					</p>
-
-
-					<p>	
-					<h4>Fallbeispiele</h4>		
-						<?php 
-						echo "<table class='resTable'>
-							<colgroup>
-								<col style='width:20'>
-								<col style='width:15%'>
-								<col style='width:15%'>
-								<col style='width:50%'>
-							</colgroup>
-							<thead class='headerBlack'><td>Projektname</td><td>Stadt</td><td>Land</td><td>Erläuterung</td></thead>
-							<tr class='hline'>";
-								if ($r_Fallbsp1[0][0]!="" or $r_Fallbsp1[1][0]!="" or $r_Fallbsp1[2][0]!="" or $r_Fallbsp1[3][0]!="") {
-									$parsedown = new Parsedown();
-									echo "<td>" . $parsedown->text($r_Fallbsp1[2][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp1[3][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp1[1][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp1[0][0]) . "</td>";
-								}
-							echo "</tr>
-							<tr class='hline'>";
-								if ($r_Fallbsp2[0][0]!="" or $r_Fallbsp2[1][0]!="" or $r_Fallbsp2[2][0]!="" or $r_Fallbsp2[3][0]!="") {
-									$parsedown = new Parsedown();
-									echo "<td>" . $parsedown->text($r_Fallbsp2[2][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp2[3][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp2[1][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp2[0][0]) . "</td>";
-								}
-							echo "</tr>
-							<tr class='hline'>";
-								if ($r_Fallbsp3[0][0]!="" or $r_Fallbsp3[1][0]!="" or $r_Fallbsp3[2][0]!="" or $r_Fallbsp3[3][0]!="") {
-									$parsedown = new Parsedown();
-									echo "<td>" . $parsedown->text($r_Fallbsp3[2][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp3[3][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp3[1][0]) . "</td>";
-									echo "<td>" . $parsedown->text($r_Fallbsp3[0][0]) . "</td>";
-								}
-							echo "</tr>";
-								
-						echo "</table>";					
-						?>
-					</p>
+					
 
 
 				</div>	

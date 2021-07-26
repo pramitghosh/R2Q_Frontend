@@ -18,14 +18,14 @@
 .navBarColor1{
   display: block;
   color: white;
-  background-color: #f3b33d;
+  background-color: #008243;
   width: 25px;
 }
 
 .navBarColor2{
   display: block;
   color: white;
-  background-color: #008243;
+  background-color: #f3b33d;
   width: 25px;
 }
 
@@ -295,10 +295,10 @@ thead.resultsTableHeader{
 }
 
 .commentText{
-  width: 80%;
-  /* border-radius: 10px; */
-  background-color: #ffffff;
-  border: solid rgb(128, 128, 128) 1px;
+  width: 40vw;
+  border-radius: 10px;
+  background-color: rgb(4,180,219);
+  /* border: solid rgb(128, 128, 128) 1px; */
   padding: 2px 8px;
   margin-right: 10px;
 }
