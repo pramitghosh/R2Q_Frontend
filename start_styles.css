@@ -26,6 +26,26 @@
   position: fixed;
 }
 
+.navBarColor0{
+  display: block;
+  color: white;
+  width: 25px;
+}
+
+.navBarColor1{
+  display: block;
+  color: white;
+  background-color: #f3b33d;
+  width: 25px;
+}
+
+.navBarColor2{
+  display: block;
+  color: white;
+  background-color: #008243;
+  width: 25px;
+}
+
 .navTab{
   display: block;
   color: white;
