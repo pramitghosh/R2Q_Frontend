@@ -11,6 +11,9 @@ include 'parsedown-1.7.4/Parsedown.php';
                 
     </head>
     <body class ="start" >
+        <?php
+			include 'NavBar.php';
+		?>
         <div class="intro">
             
             

@@ -1,5 +1,36 @@
 
+.navBar {
+  background-color: rgb(4,180,219);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  position: fixed;
+}
 
+.navTab{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navTab a:active{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: rgb(23, 192, 230);
+
+}
+
+/* Change the link color to #111 (black) on hover */
+.navTab:hover {
+  background-color: rgb(38, 108, 124);
+}
 
 
 .Logo {
@@ -12,6 +43,7 @@
 }
 
 
+
 .page-container {
   position: relative;
   min-height: 100vh;
@@ -20,10 +52,15 @@
   background-color: rgb(214, 214, 214);
   background-image: url(startBackground2.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
   background-blend-mode: multiply;
-  background-size: cover;
+  background-size: auto;
   margin: -10px;
+  flex-direction: column;
 }
 
+.mainContent{
+  margin-top: 5vh;
+  display: flex;
+}
 
 .filters {
   display: flex;
@@ -148,7 +185,7 @@ thead.resultsTableHeader{
   padding: 30px 10px;
   overflow: visible;
   position: fixed;
-  top: 10px;
+  top: 30px;
   /* border-radius: 6px; */
 }
 
@@ -209,12 +246,15 @@ thead.resultsTableHeader{
 
 .resultsMas {
   margin: 2vh;
-	text-align: center;
+	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #e3ffe5f5;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-sizing: border-box;
 }
 
 .results {
@@ -224,6 +264,7 @@ thead.resultsTableHeader{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #e3ffe5f5;
   padding-left: 5%;
+  padding-right: 5%;
   box-sizing: border-box;
   font-size: 16px;
 }

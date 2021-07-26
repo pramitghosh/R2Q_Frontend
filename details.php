@@ -22,8 +22,12 @@
 	<body>
 		
 	<div class="page-container">
-		<div class = "filters">
 		
+		<?php
+			include 'NavBar.php';
+		?>
+		<div class="mainContent">
+		<div class = "filters">
 			<?php
 				include 'filters.php';
 			?>
@@ -564,6 +568,7 @@
 			
 			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				
+		</div>
 		</div>
 		<?php include 'footer.php'; ?>
 	</div>

@@ -10,11 +10,43 @@
     padding-left:  1em;
     padding-right: 1em;
 
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.navBar {
+  margin-top: -1vh;
+  background-color: rgb(4,180,219);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  position: fixed;
+}
+
+.navTab{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navTab:active{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: rgb(23, 192, 230);
+
+}
+
+/* Change the link color to #111 (black) on hover */
+.navTab:hover {
+  background-color: rgb(38, 108, 124);
 }
 
 .intro{

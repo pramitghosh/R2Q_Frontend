@@ -92,128 +92,136 @@
 	</head>
 	<body>
 		<div class="page-container">
-			<div class = "filters">
-				<?php
-					include 'filters.php';
-				?>
-			</div>
-			<div class = "resultsMas">
-				
-				<div class="resultsTab">
-
+			
+			<?php
+				include 'NavBar.php';
+			?>
+			
+			<div class="mainContent">
+				<div class = "filters">
 					<?php
-						if($post_set)
-						{
-							echo "<p class='filterHeader'>
-								<br>
-								Suchergebnisse
-								<br>
-								<br>
-								</p>
-								<table class='searchTable'>
-								<colgroup>
-										<col style='width:90%'>
-										<col style='width:10%;'>
-								</colgroup>
-								<thead class='search'>
-									<td style='font-size: 30px;' >Name</td>
-									<td style='font-size: 30px;' >Ressource</td>
-					
-								</thead>
-								";
-									/* $Parsedown = new Parsedown();
-									echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
-									
-									require 'sql.php';
-							
-									if(mysqli_num_rows($result2) > 0)
-									{
-										//while($row = mysqli_fetch_assoc($result))
-										foreach ($result2 as $row2)
-										{
-											$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
-											
-											$titel_result = mysqli_query($conn, $titel_query);
-											$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
-											if ($titel[0][0]=="") {
-												$titel[0][0] = "!!Titel noch nicht vorhanden!!";
-											}
-
-											//echo "<tr><td>" . $row2["id"] . "</td>";
-											echo "<tr class='searchRow'>";
-											echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
-											echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
-											echo "</tr>";
-											//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
-										}
-									}                   
-									mysqli_close($conn);
-								
-							echo "</table>";
-						} else {
-							require 'sql.php';
-							$default_query = "SELECT DISTINCT id, name, ressource FROM r2q.joined_massnahme ORDER BY ressource, name";
-							$default_result = mysqli_query($conn, $default_query);
-
-							echo "<p class='filterHeader'>
-								<br>
-								Maßnahmenkatalog
-								<br>
-								<br>
-								</p>
-								<table class='searchTable'>
-								<colgroup>
-										<col style='width:90%'>
-										<col style='width:10%;'>
-								</colgroup>
-								<thead class='search'>
-									<td style='font-size: 30px;' >Name</td>
-									<td style='font-size: 30px;' >Ressource</td>
-					
-								</thead>
-								";
-									/* $Parsedown = new Parsedown();
-									echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
-									
-									require 'sql.php';
-							
-									if(mysqli_num_rows($default_result) > 0)
-									{
-										//while($row = mysqli_fetch_assoc($result))
-										foreach ($default_result as $row2)
-										{
-											$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
-											
-											$titel_result = mysqli_query($conn, $titel_query);
-											$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
-											if ($titel[0][0]=="") {
-												$titel[0][0] = "!!Titel noch nicht vorhanden!!";
-											}
-
-											//echo "<tr><td>" . $row2["id"] . "</td>";
-											echo "<tr class='searchRow'>";
-											echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
-											echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
-											echo "</tr>";
-											//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
-										}
-									}                   
-									mysqli_close($conn);
-								
-							echo "</table>";
-						}
+						include 'filters.php';
 					?>
 				</div>
-				<div class="directSearch">
-					<form action="details.php" method="GET">
-						<label for="id">Für Direktsuche MaßnahmenID eingeben: <br><br> </label>
-						<input type="text" name="id">
-						<input class="buttonFilter" type="submit" value="Bestätigen">				
-					</form>
-				</div>
+				<div class = "resultsMas">
+					
+					<div class="resultsTab">
 
+						<?php
+							if($post_set)
+							{
+								echo "<p class='filterHeader'>
+									<br>
+									Suchergebnisse
+									<br>
+									<br>
+									</p>
+									<table class='searchTable'>
+									<colgroup>
+											<col style='width:90%'>
+											<col style='width:10%;'>
+									</colgroup>
+									<thead class='search'>
+										<td style='font-size: 30px;' >Name</td>
+										<td style='font-size: 30px;' >Ressource</td>
+						
+									</thead>
+									";
+										/* $Parsedown = new Parsedown();
+										echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+										
+										require 'sql.php';
+								
+										if(mysqli_num_rows($result2) > 0)
+										{
+											//while($row = mysqli_fetch_assoc($result))
+											foreach ($result2 as $row2)
+											{
+												$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
+												
+												$titel_result = mysqli_query($conn, $titel_query);
+												$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+												if ($titel[0][0]=="") {
+													$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+												}
+
+												//echo "<tr><td>" . $row2["id"] . "</td>";
+												echo "<tr class='searchRow'>";
+												echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+												echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+												echo "</tr>";
+												//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+											}
+										}                   
+										mysqli_close($conn);
+									
+								echo "</table>";
+							} else {
+								require 'sql.php';
+								$default_query = "SELECT DISTINCT id, name, ressource FROM r2q.joined_massnahme ORDER BY ressource, name";
+								$default_result = mysqli_query($conn, $default_query);
+
+								echo "<p class='filterHeader'>
+									<br>
+									Maßnahmenkatalog
+									<br>
+									<br>
+									</p>
+									<table class='searchTable'>
+									<colgroup>
+											<col style='width:90%'>
+											<col style='width:10%;'>
+									</colgroup>
+									<thead class='search'>
+										<td style='font-size: 30px;' >Name</td>
+										<td style='font-size: 30px;' >Ressource</td>
+						
+									</thead>
+									";
+										/* $Parsedown = new Parsedown();
+										echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+										
+										require 'sql.php';
+								
+										if(mysqli_num_rows($default_result) > 0)
+										{
+											//while($row = mysqli_fetch_assoc($result))
+											foreach ($default_result as $row2)
+											{
+												$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
+												
+												$titel_result = mysqli_query($conn, $titel_query);
+												$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+												if ($titel[0][0]=="") {
+													$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+												}
+
+												//echo "<tr><td>" . $row2["id"] . "</td>";
+												echo "<tr class='searchRow'>";
+												echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+												echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+												echo "</tr>";
+												//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+											}
+										}                   
+										mysqli_close($conn);
+									
+								echo "</table>";
+							}
+						?>
+					</div>
+					<div class="directSearch">
+						<form action="details.php" method="GET">
+							<label for="id">Für Direktsuche MaßnahmenID eingeben: <br><br> </label>
+							<input type="text" name="id">
+							<input class="buttonFilter" type="submit" value="Bestätigen">				
+						</form>
+					</div>
+
+				</div>
 			</div>
 			<?php include 'footer.php'; ?>
+			
 		</div>
 		
 	</body>
