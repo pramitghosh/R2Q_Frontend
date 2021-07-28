@@ -169,6 +169,7 @@
   font-size: 28px;
   width: 60vw;
   padding: 10px;
+  border: solid rgb(4,180,219) 3px;
 }
 
 thead.search{
