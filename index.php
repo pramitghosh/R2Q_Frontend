@@ -17,7 +17,7 @@ include 'parsedown-1.7.4/Parsedown.php';
         <div class="intro">
             
             
-            <img class="Logo" src="R2Q_Logo.png">
+            <img class="LogoIntro" src="R2Q_Logo.png">
             <br>
             <p>
 		    Platzhalter Einleitung:

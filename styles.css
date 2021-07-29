@@ -57,7 +57,9 @@
   box-sizing: border-box;
 }
 
-
+.LogoLink {
+  background-image: linear-gradient(to right, rgb(106, 228, 255), rgb(4,180,219))
+}
 
 .page-container {
   position: relative;
