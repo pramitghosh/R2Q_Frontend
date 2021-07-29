@@ -10,38 +10,33 @@
 }
 
 .navBarColor0{
-  display: block;
   color: white;
   width: 25px;
 }
 
 .navBarColor1{
-  display: block;
   color: white;
   background-color: #008243;
   width: 25px;
 }
 
 .navBarColor2{
-  display: block;
   color: white;
   background-color: #f3b33d;
   width: 25px;
 }
 
 .navTab{
-  display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px 16px;
   text-decoration: none;
 }
 
 .navTab a:active{
-  display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 20px 16px;
   text-decoration: none;
   background-color: rgb(23, 192, 230);
 
@@ -57,7 +52,7 @@
   padding: 5px;
   padding-right: 10px;
   width: 100%;
-  max-width: 400px;
+  max-width: 200px;
   display: block;
   box-sizing: border-box;
 }
@@ -161,7 +156,7 @@
   font-weight: bold;
 }
 
-.searchTable, th, td{
+.searchTable {
   margin-top: 6px;
   /* font-size: 0.9em; */
   border-collapse: collapse;
@@ -169,7 +164,6 @@
   font-size: 28px;
   width: 60vw;
   padding: 10px;
-  border: solid rgb(4,180,219) 3px;
 }
 
 thead.search{
@@ -177,12 +171,17 @@ thead.search{
   color: white;
   font-weight: bold;
   padding: 5px;
+  border: solid rgb(4,180,219) 3px;
 }
 
 tr.searchrow{
   border-bottom: solid rgb(4,180,219) 2px;
+  border: solid rgb(4,180,219) 3px;
 }
 
+td.searchCell{
+  padding: 10px;
+}
 
 .resultsTable, th, td{
   margin-top: 6px;
@@ -206,7 +205,7 @@ thead.resultsTableHeader{
   padding: 30px 10px;
   overflow: visible;
   position: fixed;
-  top: 30px;
+  top: 45px;
   /* border-radius: 6px; */
 }
 
@@ -266,7 +265,7 @@ thead.resultsTableHeader{
 }
 
 .resultsMas {
-  margin: 2vh;
+  margin-top: 5vh;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #e3ffe5f5;
@@ -279,7 +278,7 @@ thead.resultsTableHeader{
 }
 
 .results {
-  margin: 2vh;
+  margin-top: 5vh;
 	display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
