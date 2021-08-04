@@ -46,6 +46,7 @@
 
 				<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				<br>
+				<br>
 				<h3><?php echo $r_Titel; ?></h3>
 
 				
@@ -222,7 +223,7 @@
 			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 			<div id="Detailinformation" class="tabcontent">
-			
+			<br>
 			<br>
 			<h3><?php echo $r_Titel; ?></h3>
 				<h5>Detailinformationen</h5>

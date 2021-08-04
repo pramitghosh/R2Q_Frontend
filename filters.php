@@ -3,9 +3,9 @@
 
 <div>
 
-	<a href="index.php">
+	<!-- <a href="index.php">
 		<img class="Logo" src="R2Q_Logo.png">
-	</a>
+	</a> -->
 
 	<div id="filterField" class="filterField">
 

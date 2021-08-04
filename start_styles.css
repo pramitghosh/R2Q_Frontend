@@ -83,6 +83,19 @@
 }
 
 .Logo {
+  padding: 5px;
+  padding-right: 10px;
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.LogoLink {
+  background-image: linear-gradient(to right, rgb(106, 228, 255), rgb(4,180,219))
+}
+
+.LogoIntro {
     padding: 5px;
     padding-right: 10px;
     width: 50vw;
