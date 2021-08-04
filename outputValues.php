@@ -168,7 +168,7 @@
 
 		$r_EntwicklungsstandWissenschaftTechnik = get_wert("'Entwicklungsstand'","'Stand der Wissenschaft und Technik'");
 		$r_EntwicklungsstandTechnik = get_wert("'Entwicklungsstand'","'Stand der Technik'");
-		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'mAllgemein annerkannter Stand der Technikin'");
+		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'Allgemein annerkannter Stand der Technik'");
 		$r_Sammelhinweis = get_wert_pd("'Sammelhinweis'","'Hinweis'");
 
 		$r_Funktionsbeschreibung = get_wert_pd("'Funktionsbeschreibung und Aufbau'");

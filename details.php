@@ -205,7 +205,7 @@
 									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_anwendungsebeneQuartier==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Quartier</div></div></td>
 									<td></td>
 									<td><?php echo "Üblich:&nbsp; &nbsp; &nbsp; &nbsp;" . $r_Nutzungsdauer_ueblich ?></td>
-									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_EntwicklungsstandAnerkanntTechnik==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Allgemein annerkanter Stand der Technik</div></div></td>
+									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_EntwicklungsstandAnerkanntTechnik==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Allgemein anerkannte Regeln der Technik</div></div></td>
 								</tr>
 							</tbody>
 						</table>
