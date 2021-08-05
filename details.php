@@ -47,7 +47,7 @@
 				<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				<br>
 				<br>
-				<h3><?php echo $r_Titel; ?></h3>
+				<h3 style = "width: 1000px; text-align: justify;"><?php echo $r_Titel; ?></h3>
 
 				
 				<h5>Kurzinformation</h5>
@@ -56,19 +56,21 @@
 						<?php echo $r_Kurzbeschreibung;?>
 					</p>
 				</div>
-				<div id="imageBox" class="whiteBox">
-					<h4>Umsetzungsbeispiel</h4>
-						<p>
-							<div id="imageCenter" class="img_center">
-								<img class="figure_bsp" src=<?php echo "'" . $r_Umsetzungsbeispiel_Bild . "'"; ?>>
-								<!-- <img class="figure_bsp" src="Umsetzungsbeispiele/N_004_Gruendachbsp.png"> -->
-								<br>
-								<br>
-							
-							<?php $parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");?>
-							</div>
-						</p>
-				</div>
+				<p>
+					<?php
+						if (strlen($r_Umsetzungsbeispiel_Bild) != 0 or strlen($r_Umsetzungsbeispiel_Beschriftung) != 0) {
+							echo "<div id='imageBox' class='whiteBox'>
+							<h4>Umsetzungsbeispiel</h4>
+							<div id='imageCenter' class='img_center'>
+							<img class='figure_bsp' src='" . $r_Umsetzungsbeispiel_Bild . "'; >
+							<br>
+							<br>";
+							$parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");
+							echo "</div>
+							</div>";
+						}
+					?>
+				</p>
 
 				<div id="resBox" class="greenBox">
 					<h6>Ressource</h6>
@@ -225,7 +227,7 @@
 			<div id="Detailinformation" class="tabcontent">
 			<br>
 			<br>
-			<h3><?php echo $r_Titel; ?></h3>
+			<p><h3 style = "width: 1000px; text-align: justify;"><?php echo $r_Titel; ?></h3></p>
 				<h5>Detailinformationen</h5>
 				<div id="resBox" class="greenBox">
 					<h6>Funktionsbeschreibung und Aufbau</h6>
@@ -238,15 +240,18 @@
 
 				
 				<div class="whiteBox">
-				
-					<h4>Systemskizze</h4>
 					<p>
-						<div class="img_center">
-							<img class="figure_bsp" src=<?php echo "'" . $r_Systemskizze_Bild . "'"; ?>>
-							<br>
-							<br>
-							<?php $parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 2: </figcaptionPre>" . $r_Systemskizze_Beschriftung . "</figcaption>") ?>
-						</div>
+						<?php
+							if (strlen($r_Systemskizze_Bild) != 0 or strlen($r_Systemskizze_Beschriftung) != 0) {
+								echo "<h4>Systemskizze</h4>
+								<div id='imageCenter' class='img_center'>
+								<img class='figure_bsp' src='" . $r_Systemskizze_Bild . "'; >
+								<br>
+								<br>";
+								$parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");
+								echo "</div>";
+							}
+						?>
 					</p>
 				
 					<h4>Planung, Bemessung und rechtliche Aspekte</h4>
