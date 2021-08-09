@@ -38,6 +38,10 @@
 			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
 			</div>
 			<div>
+				<form style ="margin-top: 100px" name="getcsvpdf" action="report_csvA.php" method="POST" target="_blank">
+         			<input type="submit" name="submit" value="Download CSV file" class="input-button" />
+          			<input type="submit" name="submitpdf" value="Download pdf file" class="input-button"  onclick="generatePdfA();" />
+      			</form>
 			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
 
@@ -626,6 +630,11 @@
 		
 		document.getElementById("defaultOpen").click();
 		
+		function generatePdfA(){
+   			document.forms['getcsvpdf'].action = 'report_pdf.php';
+   			document.forms['getcsvpdf'].submit();
+		}
+
 	 </script>
 	 
 	

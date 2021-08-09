@@ -1,5 +1,5 @@
 <div class="navBar">
-<a style="background-image: linear-gradient(to right, rgb(106, 228, 255), rgb(4,180,219));" href="index.php">
+<a class="Logolink" href="index.php">
 		<img class="Logo" src="R2Q_Logo.png">
 	</a>
 
