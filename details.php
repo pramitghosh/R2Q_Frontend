@@ -38,10 +38,9 @@
 			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
 			</div>
 			<div>
-				<!-- <form style ="margin-top: 100px" name="getcsvpdf" action="report_csvA.php" method="POST" target="_blank">
-         			<input type="submit" name="submit" value="Download CSV file" class="input-button" />
-          			<input type="submit" name="submitpdf" value="Download pdf file" class="input-button"  onclick="generatePdfA();" />
-      			</form> -->
+				<form style ="margin-top: 100px" name="getcsvpdf" action="mpdf.php" method="POST" target="_blank">
+          			<input type="submit" name="submitpdf" value="Download pdf file" class="input-button"  action="mpdf.php" />
+      			</form>
 			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
 

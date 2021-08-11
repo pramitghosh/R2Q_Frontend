@@ -1,6 +1,7 @@
 <?php
 require_once('./tcpdf/config/tcpdf_config.php');
 require_once('./tcpdf/tcpdf.php');
+ini_set('memory_limit', '640M');
 class MYPDF extends TCPDF {
 
     //Page header
