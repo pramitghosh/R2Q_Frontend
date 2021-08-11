@@ -67,9 +67,9 @@
   display: flex;
 	flex-wrap: wrap;
   background-color: rgb(214, 214, 214);
-  background-image: url(startBackground2.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
+  background-image: url(danist-soh-dqXiw7nCb9Q-unsplash.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
   background-blend-mode: multiply;
-  background-size: auto;
+  background-size: contain;
   margin: -10px;
   flex-direction: column;
 }

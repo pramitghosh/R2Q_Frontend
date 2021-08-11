@@ -3,7 +3,7 @@
 .start{
     display: flex;
     background-color: rgb(153, 153, 153);
-    background-image: url(startBackground2.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
+    background-image: url(chuttersnap-oqJxJ4TYoQg-unsplash.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
     background-blend-mode: multiply;
     background-size: cover;
     height: 100vh;
@@ -75,7 +75,7 @@
     text-align: center;
     background-blend-mode: multiply;
     background-size: cover;
-    background-color: #ffffffd7;
+    background-color: #ffffffce;
     padding: 40px;
     box-sizing: border-box;
     max-width: 55vw;
@@ -98,7 +98,7 @@
 .LogoIntro {
     padding: 5px;
     padding-right: 10px;
-    width: 50vw;
+    width: 40vw;
   }
 
 .intro button{
