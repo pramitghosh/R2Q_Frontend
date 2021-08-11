@@ -38,10 +38,10 @@
 			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
 			</div>
 			<div>
-				<form style ="margin-top: 100px" name="getcsvpdf" action="report_csvA.php" method="POST" target="_blank">
+				<!-- <form style ="margin-top: 100px" name="getcsvpdf" action="report_csvA.php" method="POST" target="_blank">
          			<input type="submit" name="submit" value="Download CSV file" class="input-button" />
           			<input type="submit" name="submitpdf" value="Download pdf file" class="input-button"  onclick="generatePdfA();" />
-      			</form>
+      			</form> -->
 			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
 
@@ -252,7 +252,7 @@
 								<img class='figure_bsp' src='" . $r_Systemskizze_Bild . "'; >
 								<br>
 								<br>";
-								$parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");
+								$parsedown = new Parsedown(); echo $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Systemskizze_Beschriftung . "</figcaption>");
 								echo "</div>";
 							}
 						?>
