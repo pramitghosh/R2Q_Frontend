@@ -3,7 +3,7 @@
 .start{
     display: flex;
     background-color: rgb(153, 153, 153);
-    background-image: url(chuttersnap-oqJxJ4TYoQg-unsplash.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
+    background-image: url(chuttersnap-oqJxJ4TYoQg-unsplash.jpg);  /* OLD -> https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
     background-blend-mode: multiply;
     background-size: cover;
     height: 100vh;
