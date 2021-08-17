@@ -22,15 +22,16 @@
 
   h3 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 45px;
+    font-size: 30px;
     color: green;
     text-align: start;
+
   }
   
   
   h4 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     color: green;
     margin-bottom: 6px;
     margin-top: 40px;
@@ -38,10 +39,11 @@
   
   h5 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     color: #767171;
     text-transform: uppercase;
     margin-bottom: 6px;
+    margin-top: 0;
   }
 
   .greenBox {
@@ -50,7 +52,79 @@
     background-color: rgba(191,224,209,255);
     border-radius: 5px;
     width: 1000px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .resTable{
+    margin-top: 6px;
+    min-width: 1000px;
+    font-size: 16px;
+    border-collapse: collapse;
+  }
+  .resTable td{
+    padding: 6px 10px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  tr.hline {
+    border-top: 1px solid rgb(161, 161, 161);
+  }
+  tr.hlineHead{
+    border-top: 2px solid black;
+  }
+  
+  td.gray {
+    color: rgb(161, 161, 161);
+    font-weight: bold;
   }
 
 
+  .cb1{
+    border: 3px solid rgb(4,180,219);
+    background-color: rgb(4,180,219);
+    border-radius: 6px;
+    width: 11px;
+    height: 11px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+  
+  .cbIMG{
+    width: 20px;
+    height: 17px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+
+  .cb2{
+    border: 3px solid rgb(4,180,219);  
+    background-color: rgb(255, 135, 22);
+    border-radius: 6px;
+    width: 11px;
+    height: 11px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+  
+  .cb3{
+    border: 3px solid rgb(4,180,219);
+    background-color: rgb(255, 251, 0);
+    border-radius: 6px;
+    width: 11px;
+    height: 11px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+  
+  .cb4{
+    border: 3px solid rgb(4,180,219);
+    background-color: rgb(0, 173, 0);
+    border-radius: 6px;
+    width: 11px;
+    height: 11px;
+    display:inline-block;
+    vertical-align: middle;
+  }
+  
   
