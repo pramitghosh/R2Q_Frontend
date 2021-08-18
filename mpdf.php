@@ -4,7 +4,9 @@ require 'outputValues.php';
 require_once __DIR__ . '/vendor/autoload.php';
 $IMGpath = "startBackground2.jpg";
 
-$mpdf = new \Mpdf\Mpdf();
+$mpdf = new \Mpdf\Mpdf([
+	'default_font' => 'Helevetica'
+]);
 $mpdf->setAutoTopMargin = 'stretch';
 // $stylesheet = '<style>'.file_get_contents('pdf_style.css').'</style>';
 $stylesheet = file_get_contents('pdf_style.css');
@@ -14,16 +16,21 @@ $mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
 
 // Header for every Page
 $mpdf->SetHTMLHeader("
-<div class='header'>
-Maßnahmenkatalog
-<div class='hlineHeader'></div>
-</div>");
+<table class='header'>
+    <colgroup>
+        <col style='width:95%'>
+        <col style='width:5%'>
+    </colgroup>
+    <tr><td>Maßnahmensteckbrief " . $r_Titel . "</td>
+    <td style='text-align: right'>{PAGENO}</td></tr>
+</table>
+<div class='hlineHeader'></div>");
 
 
 // Footer for every page
 $mpdf->SetHTMLFooter("
 <div style='text-align: right; font-weight: bold;'>
-    <img class='figure_bsp' src='LogofooterNT.png'; >
+    <img src='FooterResize.jpg'; >
 </div>");
 
 
@@ -47,117 +54,145 @@ if (strlen($r_Umsetzungsbeispiel_Bild) != 0 or strlen($r_Umsetzungsbeispiel_Besc
             <img class='figure_bsp' src='" . $r_Umsetzungsbeispiel_Bild . "'; >
             <br>
             <br>");
-            $parsedown = new Parsedown(); $html = $parsedown->text("<figcaption><figcaptionPre>Abb. 1: </figcaptionPre>" . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");
-            $mpdf->WriteHTML($html . "</div>
+            $parsedown = new Parsedown(); $html = $parsedown->text("<figcaption><strong>Abb. 1:</strong> " . $r_Umsetzungsbeispiel_Beschriftung . "</figcaption>");
+            $mpdf->WriteHTML("<div style='text-align: center; margin-bottom: 10px;'>" . $html . "</div></div>
     </div>");
     }
 
 
 // Ressourcen Checkboxen
-    ($r_ResNiederschlag==1)? $cb1='"checked"':$cb1="";
-    ($r_ResSchmutzwasser==1)? $cb2='"checked"':$cb2="";
-    ($r_ResBaustoffe==1)? $cb3='"checked"':$cb3="";
-    ($r_ResEnergie==1)? $cb4='"checked"':$cb4="";
-    ($r_ResFläche==1)? $cb5='"checked"':$cb5="";
 
 $mpdf->WriteHTML('<div id="resBox" class="greenBox">
 <h6>Ressource</h6>
+<div style="border-top: 2px solid black; margin-top: 5px;">
     <table class="resTable">
         <tbody>
-            <tr class="hlineHead">
-                <td><input type="checkbox" checked='. $cb1 . '>Niederschlagswasser</td>
-                <td><input type="checkbox"  checked='. $cb2 . '> Schmutzwasser</td>
-				<td><input type="checkbox"  checked='. $cb3 . '>  Baustoffe</td>
-				<td><input type="checkbox"  checked='. $cb4 . '> Energie</td>
-				<td><input type="checkbox"  checked='. $cb5 . '> Fläche</td>
+            <tr>
+                <td><img class="cbIMG" src="check' . $r_ResNiederschlag . '.jpeg"> Niederschlagswasser&nbsp;</td>
+                <td><img class="cbIMG" src="check' . $r_ResSchmutzwasser . '.jpeg"> Schmutzwasser&nbsp;</td>
+				<td><img class="cbIMG" src="check' . $r_ResBaustoffe . '.jpeg"> Baustoffe&nbsp;</td>
+				<td><img class="cbIMG" src="check' . $r_ResEnergie . '.jpeg"> Energie&nbsp;</td>
+				<td><img class="cbIMG" src="check' . $r_ResFläche . '.jpeg"> Fläche</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>'
 );
 
 // Funktion
 
 $mpdf->WriteHTML('<h4>Funktion</h4>
-<table class="resTable">
-    <tbody>
-        <tr class="hlineHead">
-            <td class="gray"> Wasser </td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserVerdunstung . '.jpeg">&nbsp;</div> Förderung Verdunstung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserGrundwasserneubildung . '.jpeg">&nbsp;</div> Förderung Grundwasserneubildung</td>
-            </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserBehandlung . '.jpeg">&nbsp;</div> Behandlung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserTrinkwassereinsparung . '.jpeg">&nbsp;</div> Trinkwassereinsparung</td>
-            </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserNährstoffrückgewinnung . '.jpeg">&nbsp;</div> Nährstoffrückgewinnung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserÜberflutungsvorsorge . '.jpeg">&nbsp;</div> Überflutungsvorsorge</td>                                                
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserAbfluss . '.jpeg">&nbsp;</div> Minderung Abfluss</td>
-            <td><img class="cbIMG" src="cb' . $r_funkWasserSammlung . '.jpeg">&nbsp;</div> Sammlung und Ableitung</td>                                                      
-        </tr>
-
-        <tr class="hline">
-            <td class="gray"> Baustoffe </td>
-            <td><img class="cbIMG" src="cb' . $r_funkBaustoffeVermeidung . '.jpeg">&nbsp;</div> Vermeidung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkBaustoffeWiederverwendung . '.jpeg">&nbsp;</div> Wiederverwendung</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkBaustoffeVerwertung . '.jpeg">&nbsp;</div> Verwertung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkBaustoffeBeseitigung . '.jpeg">&nbsp;</div> Beseitigung</td>									
-        </tr>
-        <tr>
-            <td> </td>	
-            <td><img class="cbIMG" src="cb' . $r_funkBaustoffeRecycling . '.jpeg">&nbsp;</div> Recycling</td>								
-        </tr>
-        <tr class="hline">
-            <td class="gray"> Energie </td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieEnergiebereitstellung . '.jpeg">&nbsp;</div> Energiebereitstellung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieEnergieverteilung . '.jpeg">&nbsp;</div> Energieverteilung</td>		
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieEnergieverbrauch . '.jpeg">&nbsp;</div> Energieverbrauch</td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieEnergiespeicherung . '.jpeg">&nbsp;</div> Energiespeicherung</td>	
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieElektrizität . '.jpeg">&nbsp;</div> Elektrizität</td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieWärme . '.jpeg">&nbsp;</div> Wärme</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkEnergieBrennstoffe . '.jpeg">&nbsp;</div> Brennstoffe</td>
-        </tr>
-
-        <tr class="hline">
-            <td class="gray"> Fläche </td>
-            <td><img class="cbIMG" src="cb' . $r_funkFlächeKlimaanpassung . '.jpeg">&nbsp;</div> Klimaanpassung</td>
-            <td><img class="cbIMG" src="cb' . $r_funkFlächeGesundheitsschutz . '.jpeg">&nbsp;</div> Gesundheitsschutz</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkFlächeEinsparung . '.jpeg">&nbsp;</div> Erhalt d. Grunddaseinsfunktion</td>
-            <td><img class="cbIMG" src="cb' . $r_funkFlächeLuftreinhaltung . '.jpeg">&nbsp;</div> Naturschutz</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td><img class="cbIMG" src="cb' . $r_funkFlächeBiodiversität . '.jpeg">&nbsp;</div> Klimaschutz</td>
-        </tr>
-    </tbody>
-</table>
-<br>');
+<div class="funkTableHead">
+    <div class="col1"> Wasser </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkWasserVerdunstung . '.jpeg">&nbsp; Förderung Verdunstung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkWasserGrundwasserneubildung . '.jpeg">&nbsp; Förderung Grundwasserneubildung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkWasserBehandlung . '.jpeg">&nbsp; Förderung Behandlung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkWasserTrinkwassereinsparung . '.jpeg">&nbsp; Trinkwassereinsparung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkWasserNährstoffrückgewinnung . '.jpeg">&nbsp; Nährstoffrückgewinnung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkWasserÜberflutungsvorsorge . '.jpeg">&nbsp; Überflutungsvorsorge</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkWasserAbfluss . '.jpeg">&nbsp; Minderung Abfluss</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkWasserSammlung . '.jpeg">&nbsp; Sammlung und Ableitung</div>
+    </div>
+    <div class="funkTableHline">
+        <div class="col1"> Baustoffe </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkBaustoffeVermeidung . '.jpeg">&nbsp; Vermeidung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkBaustoffeWiederverwendung . '.jpeg">&nbsp; Wiederverwendung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkBaustoffeVerwertung . '.jpeg">&nbsp; Verwertung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkBaustoffeBeseitigung . '.jpeg">&nbsp; Beseitigung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkBaustoffeRecycling . '.jpeg">&nbsp; Recycling</div>
+        <div class="col3">&nbsp;</div>
+    </div>
+    <div class="funkTableHline">
+        <div class="col1"> Energie </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkEnergieEnergiebereitstellung . '.jpeg">&nbsp; Energiebereitstellung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkEnergieEnergieverteilung . '.jpeg">&nbsp; Energieverteilung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkEnergieEnergieverbrauch . '.jpeg">&nbsp; Energieverbrauch</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkEnergieEnergiespeicherung . '.jpeg">&nbsp; Energiespeicherung</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkEnergieElektrizität . '.jpeg">&nbsp; Elektrizität</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkEnergieWärme . '.jpeg">&nbsp; Wärme</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkEnergieBrennstoffe . '.jpeg">&nbsp; Brennstoffe</div>
+        <div class="col3">&nbsp;</div>
+    </div>
+    <div class="funkTableHline">
+        <div class="col1"> Fläche </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkFlächeKlimaanpassung . '.jpeg">&nbsp; Klimaanpassung</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkFlächeGesundheitsschutz . '.jpeg">&nbsp; Gesundheitsschutz</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkFlächeEinsparung . '.jpeg">&nbsp; Erhalt d. Grunddaseinsfunktion</div>
+        <div class="col3"><img class="cbIMG" src="cb' . $r_funkFlächeLuftreinhaltung . '.jpeg">&nbsp; Naturschutz</div>
+    </div>
+    <div class="funkTableRow">
+        <div class="col1"> &nbsp; </div>
+        <div class="col2"><img class="cbIMG" src="cb' . $r_funkFlächeBiodiversität . '.jpeg">&nbsp; Klimaschutz</div>
+        <div class="col3">&nbsp;</div>
+    </div>
+</div>
+<strong style="maring-top: 10px;">Legende:&nbsp;</strong><br>
+<div class="cbDescr">
+    <div style="margin-bottom: 5px">
+        <img class="cbIMG" src="cb0.jpeg"> kein Wirkpotential &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
+        <img class="cbIMG" src="cb1.jpeg"> Wirkpotential vorhanden &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 
+        <img class="cbIMG" src="cb2.jpeg"> geringes Wirkpotential &nbsp;&nbsp;&nbsp;<br>
+    </div>
+    <img class="cbIMG" src="cb3.jpeg"> mittleres Wirkpotential &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+    <img class="cbIMG" src="cb4.jpeg"> hohes Wirkpotential &nbsp;&nbsp;&nbsp;
+</div>');
 
 
 
 // Anwendungsebene + Flächenbedarf + Nutzungsdauer + Entwicklungsstand
-
+$mpdf->WriteHTML('<div style="margin-top: 20px;">
+        <div class="AnwC1H">Anwendungsebene</div>
+        <div class="AnwC2H">Flächenbedarf</div>
+        <div class="AnwC3H">Nutzungsdauer (Jahre)</div>
+        <div class="AnwC4H">Entwicklungsstand</div>
+    </div>
+        <div class="funkTableHead">
+        <div class="AnwC1"></div>
+        <div class="AnwC2"></div>
+        <div class="AnwC3"></div>
+        <div class="AnwC4"></div>
+    </div>
+        <div class="funkTableRow">  
+        <div class="AnwC1"></div>
+        <div class="AnwC2"></div>
+        <div class="AnwC3"></div>
+        <div class="AnwC4"></div>
+    </div>
+        <div class="funkTableRow">
+        <div class="AnwC1"></div>
+        <div class="AnwC2"></div>
+        <div class="AnwC3"></div>
+        <div class="AnwC4"></div>
+    </div>
+</div>');
 
 
 //Detailinformationen//////////////////////////////////////////////////////////////////////////////////////
