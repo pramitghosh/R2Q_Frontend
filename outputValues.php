@@ -234,7 +234,7 @@
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
 		$r_Kombi_titel = $r_Kombi;
 		
-		for ($i=0; $i < 20 ; $i++) {
+		for ($i=0; $i < count($r_Kombi); $i++) {
 			$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
 			$r_Kombi[$i][0] = get_id("'" . $r_Kombi[$i][1] . "'");
 			$name_kombi = get_wert_id("'" . $r_Kombi[$i][0] . "'","'Titel'");

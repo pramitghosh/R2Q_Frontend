@@ -61,12 +61,10 @@
 
   .resTable{
     margin-top: 6px;
-    min-width: 1000px;
-    font-size: 16px;
+    width: 100%;
   }
   .resTable td{
     padding: 3px 5px;
-    font-size: 16px;
   }
 
   .img_center {
@@ -171,47 +169,26 @@
   
   .AnwC1H {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: green;
-    margin-bottom: 6px;
-    font-weight: bold;    
-    width: 23%;
-    float:left;
+    font-weight: bold; 
   }
 
   .AnwC2H {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: green;
-    margin-bottom: 6px;
     font-weight: bold;
-    width: 19%;
-    float:left;
   }
 
   .AnwC3H {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: green;
-    margin-bottom: 6px;
     font-weight: bold;
-    width: 28%;
-    float:left;
-  }
-
-  .AnwC4H {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: green;
-    margin-bottom: 6px;
-    font-weight: bold;    
-    width: 30%;
-    float:left;
   }
 
   .AnwC1 {
-    color: rgb(161, 161, 161);
-    font-weight: bold;
     width: 25%;
     float:left;
   }
@@ -229,4 +206,11 @@
   .AnwC4 {
     width: 30%;
     float:left;
+  }
+
+
+  .cbCenter{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 3px;
   }

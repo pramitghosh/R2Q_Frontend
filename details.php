@@ -489,7 +489,7 @@
 
 					<h4>Kombinationsmöglichkeiten</h4>
 					
-					<?php 
+					<?php
 					echo "<table>";
 					
 					for($i = 0; $i < 20; $i++){
