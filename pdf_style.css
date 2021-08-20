@@ -214,3 +214,25 @@
     margin-bottom: auto;
     margin-right: 3px;
   }
+
+  .boldGray {
+    color: rgb(161, 161, 161);
+    font-weight: bold;
+  }
+
+  .PlanC1H {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold; 
+  }
+
+  .PlanC2H {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .headerBlack {
+    font-size: 18px;
+    font-weight: bold;
+  }

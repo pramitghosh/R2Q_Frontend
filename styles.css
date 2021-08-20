@@ -231,7 +231,7 @@ thead.resultsTableHeader{
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(4,180,219);
   color: rgb(255, 254, 254);
   transform: scale(1.05);
   box-shadow: 3px 3px 6px #0003;
@@ -245,6 +245,37 @@ thead.resultsTableHeader{
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   color: #ffffff;
 }
+
+.tab button.active:hover {
+  background-color: rgb(4,180,219);
+  color: rgb(255, 254, 254);
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
+}
+
+.downButton input {
+  border: none;
+  background-color: #008243;
+  background-image: url(download.png);
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 5% 50%;
+  box-shadow: 1px 1px 3px #0003;
+  outline: none;
+  padding: 14px 16px;
+  font-size: 22px;
+  /* border-radius: 5px; */
+  color: rgb(255, 255, 255);
+  transition: 0.3s;
+  margin-left: 305px;
+  }  
+
+.downButton input:hover {
+  background-color: #0f663a;
+  color: rgb(255, 254, 254);
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
+  }
 
 /* Style the tab content */
 .tabcontent {
@@ -352,9 +383,11 @@ h5 {
 .cbDescr{
   background-color: rgb(240, 240, 240);
   border-radius: 5px;
+  border-top-left-radius: 0px;
   padding: 5px;
   text-align: center;
   margin-top: 4px;
+  border: 2px solid gray;
 }
 
 .cbSize{
@@ -481,7 +514,6 @@ h6 {
   text-align: left;
 }
 
-
 .resTable{
   margin-top: 6px;
   min-width: 1000px;
@@ -514,7 +546,6 @@ td.BorderL {
   border-left: 2px solid black;
 }
 
-
 .boldGray {
   color: rgb(161, 161, 161);
   font-weight: bold;
@@ -542,6 +573,28 @@ thead.headerBlack {
 a.bold{
   font-weight: bold;
   font-size: 16px;
+}
+
+.refMatrix {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(4,180,219);
+  padding: 3px 8px;
+  transition: 0.3s;
+}
+
+.refMatrixDiv a:hover {
+  background-color: rgb(38, 108, 124);
+}
+
+.refMatrixDiv {
+  background-color: rgb(240, 240, 240);
+  border: 2px solid gray;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  padding: 5px;
+  width: max-content;
 }
 
 @media print {
@@ -584,3 +637,4 @@ a.bold{
   text-align: center;
   vertical-align: middle;
 }
+

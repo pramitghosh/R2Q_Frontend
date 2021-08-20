@@ -34,13 +34,16 @@
 		</div>
 		<div class = "results">
 			<div class="tab">
-			  <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Kurzinformation')">Kurzinformation</button>
-			  <button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
+				<button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Kurzinformation')">Kurzinformation</button>
+				<button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
+				<div class="downButton" style="float: left;">
+				
+					<form name="getcsvpdf" action="mpdf.php?id=<?php echo $m_id; ?>" method="POST" target="_blank">
+						<input class="downInp" type="submit" name="submitpdf" value="&nbsp; &nbsp; PDF Download" />
+					</form>			  
+				</div>
 			</div>
 			<div>
-				<form style ="margin-top: 100px" name="getcsvpdf" action="mpdf.php?id=<?php echo $m_id; ?>" method="POST" target="_blank">
-          			<input type="submit" name="submitpdf" value="Download pdf file" class="input-button"   />
-      			</form>
 			<!hr class="hline_top">
 			<div id="Kurzinformation" class="tabcontent">
 
@@ -197,13 +200,13 @@
 							<tbody>
 								<tr class="hline">
 									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_anwendungsebeneGebäude==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Gebäude</div></div></td>
-									<td><div class="cell-flex"><div class="cbCenter"><?php echo $r_FlaechenbedarfEW?></div> <div class="cbCenter"> m²/EW </div></div></td>
+									<td><div class="cell-flex"><div class="cbCenter"><?php echo $r_FlaechenbedarfEW?></div></div></td>
 									<td><?php echo "Min:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" . $r_Nutzungsdauer_min ?></td>
 									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_EntwicklungsstandWissenschaftTechnik==1)? "checked":""; ?> onclick="return false;"></div> <div> Stand der Wissenschaft und Technik</div></div></td>
 								</tr>
 								<tr>
 									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_anwendungsebeneGrundstück==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Grundstück</div></div></td>
-									<td><div class="cell-flex"><div class="cbCenter"><?php echo $r_Flaechenbedarfm2XX ?></div> <div class="cbCenter"> m²/</div> <div class="cbCenter"><?php echo $r_FlaechenbedarfXX ?></div></div></td>
+									<td><div class="cell-flex"><div class="cbCenter"><?php echo $r_Flaechenbedarfm2XX ?></div></td>
 									<td><?php echo "Max: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" . $r_Nutzungsdauer_max ?></td>
 									<td><div class="cell-flex"><div class="cbCenter"><input type="checkbox"  <?php echo ($r_EntwicklungsstandTechnik==1)? "checked":""; ?> onclick="return false;"></div> <div class="cbCenter"> Stand der Technik</div></div></td>
 								</tr>
@@ -300,7 +303,7 @@
 						<?php echo $r_Aufwand_freetext;?>
 					</p>
 
-					<p>			
+					<p>
 						<?php 
 						echo "<table class='resTable'>
 							<colgroup>
@@ -444,11 +447,15 @@
 										<td class='gray'>Fläche</td>
 										<td>" . $r_AspekteSynFläche . "</td>
 										<td>" . $r_AspekteKonfFläche . "</td></tr>
-										</table>";
+										</table>
+										<div style='margin-top: 10px' ><div><strong>Hinweis:&nbsp;</strong></div>
+										<div class='refMatrixDiv'>Weitergehende Informationen zu ressourcenübergreifenden Synergien und Zielkonflikten finden sie
+										<a class='refMatrix' target='_blank'  href='documents\Layout_Massnahmenmatrix_210817.pdf'>HIER</a>
+										</div></div>";
 							}
 						?>
 					</p>
-
+				
 					<h4>Ökobilanzielle Bewertung</h4>
 						<p>
 							<?php echo $r_Bewertung_freetext;?>
@@ -492,14 +499,18 @@
 					<?php
 					echo "<table>";
 					
-					for($i = 0; $i < 20; $i++){
+					for($i = 0; $i < count($r_Kombi); $i++){
 						if ($r_Kombi[$i][1]!="") {						
-						echo "<tr><td><a class='bold' href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
+						echo "<tr><td><a class='bold' target='_blank' href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
 						echo $r_Kombi[$i][1];
 						echo "</a></td></tr>";
 						}
 					}
-					echo "</table>";
+					echo "</table>
+					<div style='margin-top: 10px' ><div><strong>Hinweis:&nbsp;</strong></div>
+					<div class='refMatrixDiv'>Weitergehende Informationen zu Maßnahmenkombinationen finden sie
+					<a class='refMatrix' href='documents\Layout_Massnahmenmatrix_210817.pdf'>HIER</a>
+					</div></div>";
 					?>
 					
 					<?php 
@@ -604,8 +615,8 @@
 			</div>
 		
 			
-			<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-				
+		<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+		
 		</div>
 		</div>
 		<?php include 'footer.php'; ?>

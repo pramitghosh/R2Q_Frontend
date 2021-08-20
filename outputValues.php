@@ -158,9 +158,11 @@
 		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
 		$r_anwendungsebeneQuartier = get_wert("'Anwendungsebene'", "'Quartiersebene'");
 
-		$r_FlaechenbedarfEW = get_wert_pd("'Flächenbedarf'","'m²/EW'");
-		$r_FlaechenbedarfXX = get_wert_pd("'Flächenbedarf'","'XX'");
-		$r_Flaechenbedarfm2XX = get_wert_pd("'Flächenbedarf'","'m²/XX'");
+		$r_FlaechenbedarfEW = get_wert("'Flächenbedarf'","'m²/EW'");
+		$r_FlaechenbedarfEW = textparsedown($r_FlaechenbedarfEW . " m²/EW");
+		$r_FlaechenbedarfXX = get_wert("'Flächenbedarf'","'XX'");
+		$r_Flaechenbedarfm2XX = get_wert("'Flächenbedarf'","'m²/XX'");
+		$r_Flaechenbedarfm2XX = textparsedown($r_Flaechenbedarfm2XX . " m²/" . $r_FlaechenbedarfXX);
 
 		$r_Nutzungsdauer_min = get_wert("'Nutzungsdauer'","'min'");
 		$r_Nutzungsdauer_max = get_wert("'Nutzungsdauer'","'max'");
