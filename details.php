@@ -36,7 +36,7 @@
 			<div class="tab">
 				<button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Kurzinformation')">Kurzinformation</button>
 				<button class="tablinks" onclick="openCity(event, 'Detailinformation')">Detailinformation</button>
-				<div class="downButton" style="float: left;">
+				<div class="downButton">
 				
 					<form name="getcsvpdf" action="mpdf.php?id=<?php echo $m_id; ?>" method="POST" target="_blank">
 						<input class="downInp" type="submit" name="submitpdf" value="&nbsp; &nbsp; PDF Download" />

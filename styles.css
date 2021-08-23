@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 25px;
   position: fixed;
 }
 
@@ -51,10 +51,11 @@
 .Logo {
   padding: 5px;
   padding-right: 10px;
-  width: 100%;
-  max-width: 200px;
+  height: 2.5em;
   display: block;
   box-sizing: border-box;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .LogoLink {
@@ -75,7 +76,7 @@
 }
 
 .mainContent{
-  margin-top: 5vh;
+  margin-top: 5em;
   display: flex;
 }
 
@@ -84,7 +85,6 @@
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  padding: 1% ;
 }
 
 .page-container > *:nth-child(1) {
@@ -119,6 +119,7 @@
   color: #ffffff;
   border-color: #00000000;
   /* border-radius: 5px; */
+  margin-top: 5px;
 }
 
 .buttonFilter:hover{
@@ -129,7 +130,8 @@
   /* border-radius: 5px; */
 }
 
-.buttonSelect {
+.buttonSelect {  
+  margin-top: 5px;
 	background-color: rgb(4,180,219);
   font-size: 20px;
   color: #ffffff;
@@ -207,8 +209,12 @@ thead.resultsTableHeader{
   padding: 30px 10px;
   overflow: visible;
   position: fixed;
-  top: 45px;
+  margin-top: -35px;
   /* border-radius: 6px; */
+  justify-content: space-around;
+  display: flex;  
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -216,7 +222,6 @@ thead.resultsTableHeader{
   border: none;
   background-color: rgb(177, 177, 177);
   box-shadow: 1px 1px 3px #0003;
-  float: left;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -253,6 +258,7 @@ thead.resultsTableHeader{
   box-shadow: 3px 3px 6px #0003;
 }
 
+
 .downButton input {
   border: none;
   background-color: #008243;
@@ -267,7 +273,6 @@ thead.resultsTableHeader{
   /* border-radius: 5px; */
   color: rgb(255, 255, 255);
   transition: 0.3s;
-  margin-left: 305px;
   }  
 
 .downButton input:hover {
@@ -311,7 +316,6 @@ thead.resultsTableHeader{
 }
 
 .results {
-  margin-top: 5vh;
 	display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;

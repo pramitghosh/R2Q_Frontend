@@ -9,9 +9,9 @@
 
 	<div id="filterField" class="filterField">
 
-	<p class="sucheHeader">
+	<div class="sucheHeader">
 		Suche
-	</p>
+	</div>
 		<form action = "massnahme.php" method = "POST">			
 
 <!-- 	<h3>Suche</h3> -->
