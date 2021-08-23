@@ -97,7 +97,7 @@
 			Massnahmenkatalog Frontend
 		</title>		
 		<script type="text/javascript" src = "selectdeselect.js"></script>
-		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>	
+		<link href='fontawesome-free-5.15.4-web/css/all.css' rel="stylesheet">
 	</head>
 	<body>
 		<div class="page-container">
@@ -148,7 +148,7 @@
 											echo "<table class='searchTable'>
 												
 												<thead class='search'>
-													<td style='font-size: 30px;' >Maßnahmen für Baustoffe &nbsp; <i class='fa fa-cubes'></i></td>
+													<td style='font-size: 30px;' >Maßnahmen für Baustoffe &nbsp; <i class='fas fa-cubes'></i></td>
 												</thead>";
 												//while($row = mysqli_fetch_assoc($result))
 												foreach ($result2 as $row2) {

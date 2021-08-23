@@ -88,11 +88,11 @@
 }
 
 .page-container > *:nth-child(1) {
-  flex: 1 1 23vw
+  flex: 1 1 23%
 }
 
 .page-container > *:nth-child(2) {
-  flex: 1 1 71vw
+  flex: 1 1 71%
 }
 
 .filterField {
