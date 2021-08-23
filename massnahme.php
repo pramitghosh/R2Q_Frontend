@@ -112,7 +112,7 @@
 						include 'filters.php';
 					?>
 				</div>
-				<div class = "resultsMas">
+				<div class = "results">
 					
 					<div class="resultsTab">
 
