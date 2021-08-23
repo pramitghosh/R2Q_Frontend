@@ -187,7 +187,7 @@
 											echo "<br><table class='searchTable'>
 												
 												<thead class='search'>
-													<td style='font-size: 30px;' >Maßnahmen für Energie &nbsp; <i class='fas fa-battery-three-quarters'></i></td>
+													<td style='font-size: 30px;' >Maßnahmen für Energie &nbsp; <i class='fa fa-battery-three-quarters'></i></td>
 												</thead>";
 												//while($row = mysqli_fetch_assoc($result))
 												foreach ($result2 as $row2) {
