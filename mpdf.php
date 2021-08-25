@@ -9,6 +9,7 @@ $mpdf = new \Mpdf\Mpdf([
 ]);
 $mpdf->setAutoTopMargin = 'stretch';
 $mpdf->setAutoBottomMargin = 'stretch';
+$mpdf->shrink_tables_to_fit = 0;
 // $stylesheet = '<style>'.file_get_contents('pdf_style.css').'</style>';
 $stylesheet = file_get_contents('pdf_style.css');
 
@@ -266,34 +267,44 @@ $mpdf->WriteHTML("<div><h4>Planung, Bemessung und rechtliche Aspekte</h4>"
 );
 
 $sumLength = 0;
-    for ($i=0; $i < sizeof($r_PlanungNormen); $i++) {
-        $sumLength = $sumLength + strlen($r_PlanungNormen[$i]['wert']);
-    }
+for ($i=0; $i < sizeof($r_PlanungNormen); $i++) {
+    $sumLength = $sumLength + strlen($r_PlanungNormen[$i]['wert']);
+}
 
-    if($sumLength != 0)
-    {
-        $html = "<table style='page-break-inside: avoid;' class='resTable'>
-            <tbody>
-                <tr>
-                    <td style='width:27%;' class='PlanC1H'>Norm/Regelwerk</td>
-                    <td style='width:73%;' class='PlanC2H'>Titel</td>
-                </tr>
-            </tbody>
-        </table>
-        <table class='resTable'  style='border-top: 2px solid black;'>";
+if($sumLength != 0)
+{
+    $Parsedown_Norm = new Parsedown();
+    $Parsedown_Titel = new Parsedown();
 
-        for ($i = 0; $i < 5; $i++)
-        {
-            $Parsedown_Norm = new Parsedown();
-            $Parsedown_Titel = new Parsedown();
-            if ($r_PlanungNormen[$i]['wert']!="" or $r_PlanungNormen[$i+5]['wert']!="" ) {
-                $html = $html . "<tr><td style='width:27%;'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
-                $html = $html . "<td  style='width:73%;'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+5]['wert']) . "</td></tr>";
+    $html = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+        <tbody>
+            <tr>
+                <td style='width:30%;' class='PlanC1H'>Norm/Regelwerk</td>
+                <td style='width:70%;' class='PlanC2H'>Titel</td>
+            </tr>
+        </tbody>
+    </table>";
+
+    $first = 0;
+
+    for ($i = 0; $i < sizeof($r_PlanungNormen)/2; $i++)
+    {            
+        if ($r_PlanungNormen[$i]['wert']!="" or $r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']!="" ) {
+            if ($i == $first) {
+                $html = $html . "<table class='resTable'  style='border-top: 2px solid black;'>
+                <tr><td style='width:30%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
+                $html = $html . "<td  style='width:70%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table></div>";
+            } else {
+                $html = $html . "<table class='resTable'  style='border-top: 1px solid gray;'>
+                <tr><td style='width:30%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
+                $html = $html . "<td  style='width:70%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table>";
             }
+        } else {
+            $first = $first + 1;
         }
-        $html = $html . "</table>";
-        $mpdf->WriteHTML($html);
     }
+    $mpdf->WriteHTML($html);
+}
 
 // Aufwand + Kosen
 
@@ -301,45 +312,122 @@ $mpdf->WriteHTML("<h4>Aufwand und Kosten</h4>"
 . $r_Aufwand_freetext
 );
 
+ if (strlen($r_Aufwand_i5[0][0])>0) {
+    $VBorder = " border-left: 1px solid gray";
+ } else {
+     $VBorder = "";
+ }
 
-$head = '<table class="resTable">
+$head = "<div style='page-break-inside: avoid;'><table class='resTable'>
     <tbody>
         <tr>
-            <td style="width:50%;"><div class="headerBlack">Investitionskosten</div></td>
-            <td style="width:50%;"><div class="headerBlack">Betriebskosten</div></td>
+            <td style='width:50%;'><div class='headerBlack'>Investitionskosten</div></td>
+            <td style='width:50%;'><div class='headerBlack'>Betriebskosten</div></td>
         </tr>
     </tbody>
-    </table>';
+    </table>";
 
-$row1 = "<table class='resTable'>
+$row1 = "<table class='resTable' style='border-top: 2px solid black; border-collapse: collapse;'>
 <tr><td style='color: gray; font-weight: bold; width: 10%'>&nbsp;</td>";
-
 for ($i = 1; $i < 6; $i++) {
-    ( ${"r_Aufwand_i" . $i}[0][0]!="")? $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 6.66666%'>€/" . ${"r_Aufwand_i" . $i}[0][0] . "</td>": $row1 = $row1 . "<td style='width: 6.66666%'>&nbsp;</td>";
+    ( ${"r_Aufwand_i" . $i}[0][0]!="")? $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 6.66666%; text-align: center'>€/" . ${"r_Aufwand_i" . $i}[0][0] . "</td>": $row1 = $row1 . "<td style='width: 6.66666%'>&nbsp;</td>";
     }
-    $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 10%'>&nbsp;</td>";
-    for ($i = 1; $i < 6; $i++) {
-    ( ${"r_Aufwand_b" . $i}[0][0]!="")? $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 6.66666%'>€/" . ${"r_Aufwand_b" . $i}[0][0] . "</td>": $row1 = $row1 . "<td style='width: 6.66666%'>&nbsp;</td>";
-    }
-$row1 = $row1 .  "</tr></table>";
-
-$row2 = "";
+    $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 10%;" . $VBorder . "'>&nbsp;</td>";
+for ($i = 1; $i < 6; $i++) {
+( ${"r_Aufwand_b" . $i}[0][0]!="")? $row1 = $row1 . "<td style='color: gray; font-weight: bold; width: 6.66666%; text-align: center'>€/" . ${"r_Aufwand_b" . $i}[0][0] . "</td>": $row1 = $row1 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row1 = $row1 .  "</tr>";
 
 
+$row2 = "
+<tr><td style='color: gray; font-weight: bold; width: 10%'>min</td>";
+for ($i = 1; $i < 6; $i++) {
+    ( ${"r_Aufwand_i" . $i}[2][0]!="")? $row2 = $row2 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_i" . $i}[2][0] . "</td>": $row2 = $row2 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row2 = $row2 . "<td style='color: gray; font-weight: bold; width: 10%;" . $VBorder . "'>min</td>";
+for ($i = 1; $i < 6; $i++) {
+( ${"r_Aufwand_b" . $i}[2][0]!="")? $row2 = $row2 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_b" . $i}[2][0] . "</td>": $row2 = $row2 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row2 = $row2 .  "</tr>";
 
-$row3 = "";
+
+$row3 = "
+<tr><td style='color: gray; font-weight: bold; width: 10%'>max</td>";
+for ($i = 1; $i < 6; $i++) {
+    ( ${"r_Aufwand_i" . $i}[1][0]!="")? $row3 = $row3 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_i" . $i}[1][0] . "</td>": $row3 = $row3 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row3 = $row3 . "<td style='color: gray; font-weight: bold; width: 10%;" . $VBorder . "'>max</td>";
+for ($i = 1; $i < 6; $i++) {
+( ${"r_Aufwand_b" . $i}[1][0]!="")? $row3 = $row3 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_b" . $i}[1][0] . "</td>": $row3 = $row3 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row3 = $row3 .  "</tr>";
 
 
-$row4 = "";
+$row4 = "
+<tr><td style='color: gray; font-weight: bold; width: 10%'>üblich</td>";
+for ($i = 1; $i < 6; $i++) {
+    ( ${"r_Aufwand_i" . $i}[3][0]!="")? $row4 = $row4 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_i" . $i}[3][0] . "</td>": $row4 = $row4 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row4 = $row4 . "<td style='color: gray; font-weight: bold; width: 10%;" . $VBorder . "'>üblich</td>";
+for ($i = 1; $i < 6; $i++) {
+( ${"r_Aufwand_b" . $i}[3][0]!="")? $row4 = $row4 . "<td style='width: 6.66666%; text-align: center'>" . ${"r_Aufwand_b" . $i}[3][0] . "</td>": $row4 = $row4 . "<td style='width: 6.66666%'>&nbsp;</td>";
+}
+$row4 = $row4 .  "</tr></table></div>";
 
 $mpdf->WriteHTML($head . $row1 . $row2 . $row3 . $row4);
 
 
-
 // Weitergehende Hinweise
 
+$mpdf->WriteHTML("<h4>Weitergehende Hinweise</h4>"
+. $r_Weitergehende_freetext
+);
+
+$sumLength = 0;
+for ($i=0; $i < sizeof($r_Weitergehende_table); $i++) {
+    $sumLength = $sumLength + strlen($r_Weitergehende_table[$i][1]);
+}
+
+$html2 = "";
+
+if($sumLength != 0)
+{
+    $Parsedown_Param = new Parsedown();
+    $Parsedown_Wert = new Parsedown();
+
+    $html2 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+        <tbody>
+            <tr>
+                <td style='width:40%;' class='PlanC1H'>Parameter</td>
+                <td style='width:60%;' class='PlanC2H'>Wert</td>
+            </tr>
+        </tbody>
+    </table>";
+
+    $first = 0;
+
+    for ($i = 0; $i < sizeof($r_Weitergehende_table)/2; $i++)
+    {
+        if ($r_Weitergehende_table[$i][1]!="" or $r_Weitergehende_table[$i+sizeof($r_Weitergehende_table)/2][1]!="" ) {
+            if ($i == $first) {
+                $html2 = $html2 . "<table class='resTable'  style='border-top: 2px solid black;'>
+                <tr><td style='width:40%; vertical-align:top'>" .  $Parsedown_Param->text($r_Weitergehende_table[$i][1]) . "</td>";
+                $html2 = $html2 . "<td  style='width:60%; vertical-align:top'>" . $Parsedown_Wert->text($r_Weitergehende_table[$i+sizeof($r_Weitergehende_table)/2][1]) . "</td></tr></table></div>";
+            } else {
+                $html2 = $html2 . "<table class='resTable'  style='border-top: 1px solid gray;'>
+                <tr><td style='width:40%; vertical-align:top'>" .  $Parsedown_Param->text($r_Weitergehende_table[$i][1]) . "</td>";
+                $html2 = $html2 . "<td  style='width:60%; vertical-align:top'>" . $Parsedown_Wert->text($r_Weitergehende_table[$i+sizeof($r_Weitergehende_table)/2][1]) . "</td></tr></table>";
+            }
+        } else {
+            $first = $first + 1;
+        }
+    }
+}
+
+$mpdf->WriteHTML($html2);
 
 // Ressourcenübergreifende Aspekte
+
 
 
 // Ökobilanzielle Bewertung 

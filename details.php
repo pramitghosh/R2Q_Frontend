@@ -284,13 +284,13 @@
 										<td>Norm/Regelwerk</td>
 										<td>Titel</td>
 									</thead>";
-									for ($i = 0; $i < 5; $i++)
+									for ($i = 0; $i < sizeof($r_PlanungNormen)/2; $i++)
 									{
 										$Parsedown_Norm = new Parsedown();
 										$Parsedown_Titel = new Parsedown();
-										if ($r_PlanungNormen[$i]['wert']!="" or $r_PlanungNormen[$i+5]['wert']!="" ) {
+										if ($r_PlanungNormen[$i]['wert']!="" or $r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']!="" ) {
 											echo "<tr class='hline'><td>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
-											echo "<td>" . $Parsedown_Titel->text($r_PlanungNormen[$i+5]['wert']) . "</td></tr>";
+											echo "<td>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr>";
 										}
 										
 									}							
@@ -366,7 +366,7 @@
 							echo "<p><Div class='boldGray'>Hinweis:</Div>" . $r_Aufwand_hinweis . "</p>";
 						}
 					?>
-
+					
 					<h4>Weitergehende Hinweise</h4>				
 					<p>
 						<?php echo $r_Weitergehende_freetext;?>
