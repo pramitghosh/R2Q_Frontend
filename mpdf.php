@@ -54,14 +54,14 @@ if (strlen($r_Umsetzungsbeispiel_Bild) != 0 or strlen($r_Umsetzungsbeispiel_Besc
             <img class='figure_bsp' src='" . $r_Umsetzungsbeispiel_Bild . "'; >
             <br>
             <br>
-            <div style='text-align: center; margin-bottom: 10px;'>" . $html . "</div></div>
+            <div style='text-align: center; margin-bottom: 14px;'>" . $html . "</div></div>
     </div>");
     } else {$mpdf->WriteHTML("<br>");
 }
 
 // Ressourcen Checkboxen
 
-$mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-bottom: 10px" class="greenBox">
+$mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-bottom: 14px" class="greenBox">
 <h6>Ressource</h6>
     <table style="border-top: 2px solid black;" class="resTable">
         <tbody>
@@ -152,7 +152,7 @@ $mpdf->WriteHTML('<h4>Funktion</h4>
     </div>
 </div>
 <div style="page-break-inside: avoid;">
-<strong style="maring-top: 10px;">Legende:&nbsp;</strong><br>
+<strong style="maring-top: 14px;">Legende:&nbsp;</strong><br>
 <div class="cbDescr">
     <div style="margin-bottom: 5px">
         <img class="cbIMG" src="checkboxes/cb0.jpeg"> kein Wirkpotential &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; 
@@ -163,7 +163,7 @@ $mpdf->WriteHTML('<h4>Funktion</h4>
     <img class="cbIMG" src="checkboxes/cb4.jpeg"> hohes Wirkpotential &nbsp;&nbsp;&nbsp;
 </div></div>');
 
-$mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-top: 10px;">
+$mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-top: 14px;">
 <h6>Anwendungsebene</h6>
     <table style="border-top: 2px solid black;" class="resTable">
         <tbody>
@@ -255,7 +255,7 @@ if (strlen($r_Systemskizze_Bild) != 0 or strlen($r_Systemskizze_Beschriftung) !=
             <img class='figure_bsp' src='" . $r_Systemskizze_Bild . "'; >
             <br>
             <br>
-            <div style='text-align: center; margin-bottom: 10px;'>" . $html . "</div></div>
+            <div style='text-align: center; margin-bottom: 14px;'>" . $html . "</div></div>
     </div>");
     } else {$mpdf->WriteHTML("<br>");
 }
@@ -430,12 +430,219 @@ $mpdf->WriteHTML($html2);
 
 
 
+$mpdf->WriteHTML("<h4>Ressourcenübergreifende Aspekte</h4>");
+
+$html3 = "";
+$first = 1;
+
+$Parsedown_Syn = new Parsedown();
+$Parsedown_Konf = new Parsedown();
+
+$html3 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+        <tbody>
+            <tr>
+                <td style='width:25%;' class='PlanC1H'>&nbsp;</td>
+                <td style='width:37.5%;' class='PlanC1H'>Synergien</td>
+                <td style='width:37.5%;' class='PlanC2H'>Zielkonflikte</td>
+            </tr>
+        </tbody>
+    </table>";
+
+if ($r_AspekteSynNiederschlag != "" or $r_AspekteKonfNiederschlag != "" ) {
+    if (1 == $first) {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 2px solid black; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Niederschlagswasser</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynNiederschlag) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfNiederschlag) . "</td></tr></table></div>";
+    } else {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 1px solid gray; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Niederschlagswasser</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynNiederschlag) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfNiederschlag) . "</td></tr></table>";
+    }
+} else {
+    $first = $first + 1;
+}
+
+if ($r_AspekteSynSchmutzwasser != "" or $r_AspekteKonfSchmutzwasser != "" ) {
+    if (2 == $first) {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 2px solid black; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Schmutzwasser</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynSchmutzwasser) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfSchmutzwasser) . "</td></tr></table></div>";
+    } else {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 1px solid gray; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Schmutzwasser</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynSchmutzwasser) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfSchmutzwasser) . "</td></tr></table>";
+    }
+} else {
+    $first = $first + 1;
+}
+
+if ($r_AspekteSynBaustoffe != "" or $r_AspekteKonfBaustoffe != "" ) {
+    if (3 == $first) {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 2px solid black; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Baustoffe</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynBaustoffe) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfBaustoffe) . "</td></tr></table></div>";
+    } else {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 1px solid gray; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%;'>Baustoffe</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynBaustoffe) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfBaustoffe) . "</td></tr></table>";
+    }
+} else {
+    $first = $first + 1;
+}
+
+if ($r_AspekteSynEnergie != "" or $r_AspekteKonfEnergie != "" ) {
+    if (4 == $first) {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 2px solid black; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Energie</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynEnergie) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfEnergie) . "</td></tr></table></div>";
+    } else {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 1px solid gray; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Energie</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynEnergie) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfEnergie) . "</td></tr></table>";
+    }
+} else {
+    $first = $first + 1;
+}
+
+if ($r_AspekteSynFläche != "" or $r_AspekteKonfFläche != "" ) {
+    if (5 == $first) {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 2px solid black; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Fläche</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynFläche) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfFläche) . "</td></tr></table></div>";
+    } else {
+        $html3 = $html3 . "<table class='resTable'  style='border-top: 1px solid gray; font-size: 14px'>
+        <tr><td style='color: gray; font-weight: bold; width:25%; vertical-align:top'>Fläche</td>
+        <td style='width:37.5%; vertical-align:top'>" .  $Parsedown_Syn->text($r_AspekteSynFläche) . "</td>";
+        $html3 = $html3 . "<td  style='width:37.5%; vertical-align:top'>" . $Parsedown_Konf->text($r_AspekteKonfFläche) . "</td></tr></table>";
+    }
+} else {
+    $first = $first + 1;
+}
+
+$mpdf->WriteHTML($html3);
+
 // Ökobilanzielle Bewertung 
 
+$mpdf->WriteHTML("<h4>Ökobilanzielle  Bewertung</h4>"
+. $r_Bewertung_freetext
+);
 
+$sumLength = 0;
+for ($i=0; $i < sizeof($r_Bewertung_table); $i++) {
+    $sumLength = $sumLength + strlen($r_Bewertung_table[$i][1]);
+}
+
+$html4 = "";
+
+if($sumLength != 0)
+{
+    $Parsedown_Lit = new Parsedown();
+    $Parsedown_Bew = new Parsedown();
+
+    $html4 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+        <tbody>
+            <tr>
+                <td style='width:40%;' class='PlanC1H'>Literaturstelle</td>
+                <td style='width:60%;' class='PlanC2H'>Bewertung</td>
+            </tr>
+        </tbody>
+    </table>";
+
+    $first = 0;
+
+    for ($i = 0; $i < sizeof($r_Bewertung_table)/2; $i++)
+    {
+        if ($r_Bewertung_table[$i][1]!="" or $r_Bewertung_table[$i+sizeof($r_Bewertung_table)/2][1]!="" ) {
+            if ($i == $first) {
+                $html4 = $html4 . "<table class='resTable'  style='border-top: 2px solid black;'>
+                <tr><td style='width:40%; vertical-align:top'>" .  $Parsedown_Lit->text($r_Bewertung_table[$i][1]) . "</td>";
+                $html4 = $html4 . "<td  style='width:60%; vertical-align:top'>" . $Parsedown_Bew->text($r_Bewertung_table[$i+sizeof($r_Bewertung_table)/2][1]) . "</td></tr></table></div>";
+            } else {
+                $html4 = $html4 . "<table class='resTable'  style='border-top: 1px solid gray;'>
+                <tr><td style='width:40%; vertical-align:top'>" .  $Parsedown_Lit->text($r_Bewertung_table[$i][1]) . "</td>";
+                $html4 = $html4 . "<td  style='width:60%; vertical-align:top'>" . $Parsedown_Bew->text($r_Bewertung_table[$i+sizeof($r_Bewertung_table)/2][1]) . "</td></tr></table>";
+            }
+        } else {
+            $first = $first + 1;
+        }
+    }
+}
+
+$mpdf->WriteHTML($html4);
 
 //Kombinationsmöglichkeiten
 
+
+$mpdf->WriteHTML("<h4>Kombinationsmöglichkeiten</h4>"
+);
+				
+$html5 = "<table>";
+
+for($i = 0; $i < count($r_Kombi); $i++){
+    if ($r_Kombi[$i][1]!="") {						
+        $html5 = $html5 . "<tr><td><a class='bold' target='_blank' href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/details.php?id=" . $r_Kombi[$i][0] . "'>";
+        $html5 = $html5 . $r_Kombi[$i][1];
+        $html5 = $html5 .  "</a></td></tr>";
+    }
+}
+$html5 = $html5 . "</table>";
+$mpdf->WriteHTML($html5);
+
+// Vor- und Nachteile 
+
+$mpdf->WriteHTML("<h4>Vor- und Nachteile</h4>");
+
+$sumLength = 0;
+for ($i=0; $i < sizeof($r_VorNach_table); $i++) {
+    $sumLength = $sumLength + strlen($r_VorNach_table[$i][1]);
+}
+
+$html6 = "";
+
+if($sumLength != 0)
+{
+    $Parsedown_Vor = new Parsedown();
+    $Parsedown_Nach = new Parsedown();
+
+    $html6 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+        <tbody>
+            <tr>
+                <td style='width:50%;' class='PlanC1H'>Vorteile</td>
+                <td style='width:50%;' class='PlanC2H'>Nachteile</td>
+            </tr>
+        </tbody>
+    </table>";
+
+    $first = 0;
+
+    for ($i = 0; $i < sizeof($r_VorNach_table)/2; $i++)
+    {
+        if ($r_VorNach_table[$i][1]!="" or $r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]!="" ) {
+            if ($i == $first) {
+                $html6 = $html6 . "<table class='resTable'  style='border-top: 2px solid black;'>
+                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i][1]) . "</td>";
+                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td></tr></table></div>";
+            } else {
+                $html6 = $html6 . "<table class='resTable'  style='border-top: 1px solid gray;'>
+                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i][1]) . "</td>";
+                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td></tr></table>";
+            }
+        } else {
+            $first = $first + 1;
+        }
+    }
+}
+
+$mpdf->WriteHTML($html6);
 
 
 // Fallbeispiele 
