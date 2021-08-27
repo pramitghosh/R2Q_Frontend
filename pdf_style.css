@@ -30,9 +30,12 @@
   
   h4 {
     font-size: 18px;
-    color: green;
+    color: rgb(255, 255, 255);
     margin-bottom: 6px;
     margin-top: 20px;
+    border-radius: 5px;
+    padding: 2px 5px;
+    background-color: rgb(23, 192, 230);
   }
   
   h5 {
