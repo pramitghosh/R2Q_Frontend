@@ -327,6 +327,30 @@ thead.resultsTableHeader{
   flex-direction: column;
 }
 
+.aboutContent {
+	display: flex;
+	text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0.931);
+  margin: 7% 5% 2% 5% ;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 16px;
+  flex-direction: column;
+  min-height: 60vh;
+
+}
+
+
+.aboutPage{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+	flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+}
+
 .comments {
   display: flex;
   flex-direction: row;
@@ -615,26 +639,14 @@ a.bold{
 }
 
 .footer{
-  /* margin-top: auto;
-  width: 100%;
+  margin: 2vh;
   background-color: rgb(4,180,219);
   color: white;
   text-align: center;
   vertical-align: middle;
   height: 50px;
   padding: 5px;
-  font-family: Arial, Helvetica, sans-serif; */
-
-
-  margin: 2vh;
-    width: 100%;
-    background-color: rgb(4,180,219);
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    height: 50px;
-    padding: 5px;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer_content1{

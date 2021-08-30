@@ -2,8 +2,7 @@
 	require_once 'sql.php';
 	
 	$post_set = $_POST?1:0;
-	
-	
+		
 ?>
 
 <html>
@@ -31,7 +30,7 @@
 					?>
 				</div>
 				<div class = "refContent">
-					<h3  style = "width: 1000px; text-align: justify;"> Literaturverweise </h3>
+					<h3  style = "width: 1000px; text-align: justify;"> Bildverweise </h3>
 				</div>
 			</div>
 			<?php include 'footer.php'; ?>

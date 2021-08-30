@@ -2,8 +2,7 @@
 	require_once 'sql.php';
 	
 	$post_set = $_POST?1:0;
-	
-	
+		
 ?>
 
 <html>
@@ -24,16 +23,9 @@
 				include 'NavBar.php';
 			?>
 			
-			<div class="mainContent">
-				<div class = "filters">
-					<?php
-						include 'filters.php';
-					?>
+				<div class = "aboutContent">
+					<h3  style = "width: 1000px; text-align: justify;"> Über </h3>
 				</div>
-				<div class = "refContent">
-					<h3  style = "width: 1000px; text-align: justify;"> Literaturverweise </h3>
-				</div>
-			</div>
 			<?php include 'footer.php'; ?>
 			
 		</div>
