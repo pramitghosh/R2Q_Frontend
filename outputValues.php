@@ -60,6 +60,17 @@
 		return get_wert_id($m_id, $e1, $e2, $e3);
 	}
 
+	function get_wert_NA($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+		$value = get_wert_id($m_id, $e1, $e2, $e3);
+		if (strlen($value) == 0) {
+			$value = "N/A";
+		}
+
+		return $value;
+	}
+
 	function get_wert_pd($e1, $e2=NULL, $e3=NULL){
 		global $conn;
 		global $m_id;
@@ -67,6 +78,15 @@
 		return textparsedown(get_wert_id($m_id, $e1, $e2, $e3));
 	}
 
+	function get_wert_pd_NA($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+		$value = get_wert_id($m_id, $e1, $e2, $e3);
+		if (strlen($value) == 0) {
+			$value = "N/A";
+		}
+		return textparsedown($value);
+	}
 
 	if (!is_null($m_id))
 
@@ -158,15 +178,19 @@
 		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
 		$r_anwendungsebeneQuartier = get_wert("'Anwendungsebene'", "'Quartiersebene'");
 
-		$r_FlaechenbedarfEW = get_wert("'Flächenbedarf'","'m²/EW'");
+		$r_FlaechenbedarfEW = get_wert_NA("'Flächenbedarf'","'m²/EW'");
 		$r_FlaechenbedarfEW = textparsedown($r_FlaechenbedarfEW . " m²/EW");
 		$r_FlaechenbedarfXX = get_wert("'Flächenbedarf'","'XX'");
 		$r_Flaechenbedarfm2XX = get_wert("'Flächenbedarf'","'m²/XX'");
-		$r_Flaechenbedarfm2XX = textparsedown($r_Flaechenbedarfm2XX . " m²/" . $r_FlaechenbedarfXX);
-
-		$r_Nutzungsdauer_min = get_wert("'Nutzungsdauer'","'min'");
-		$r_Nutzungsdauer_max = get_wert("'Nutzungsdauer'","'max'");
-		$r_Nutzungsdauer_ueblich = get_wert("'Nutzungsdauer'","'üblich'");
+		if (strlen($r_Flaechenbedarfm2XX) != 0 or strlen($r_FlaechenbedarfXX) != 0) {
+			$r_Flaechenbedarfm2XX = textparsedown($r_Flaechenbedarfm2XX . " m²/" . $r_FlaechenbedarfXX);
+		} else {
+			$r_Flaechenbedarfm2XX = "";
+		}
+		
+		$r_Nutzungsdauer_min = get_wert_NA("'Nutzungsdauer'","'min'");
+		$r_Nutzungsdauer_max = get_wert_NA("'Nutzungsdauer'","'max'");
+		$r_Nutzungsdauer_ueblich = get_wert_NA("'Nutzungsdauer'","'üblich'");
 
 		$r_EntwicklungsstandWissenschaftTechnik = get_wert("'Entwicklungsstand'","'Stand der Wissenschaft und Technik'");
 		$r_EntwicklungsstandTechnik = get_wert("'Entwicklungsstand'","'Stand der Technik'");
