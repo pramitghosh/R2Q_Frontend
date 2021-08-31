@@ -11,7 +11,6 @@ $mpdf->setAutoTopMargin = 'stretch';
 $mpdf->setAutoBottomMargin = 'stretch';
 $mpdf->shrink_tables_to_fit = 0;
 $mpdf->use_kwt = true;
-$mpdf->showImageErrors = true;
 // $stylesheet = '<style>'.file_get_contents('pdf_style.css').'</style>';
 $stylesheet = file_get_contents('pdf_style.css');
 
