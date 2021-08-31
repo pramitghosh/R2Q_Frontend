@@ -10,6 +10,8 @@ $mpdf = new \Mpdf\Mpdf([
 $mpdf->setAutoTopMargin = 'stretch';
 $mpdf->setAutoBottomMargin = 'stretch';
 $mpdf->shrink_tables_to_fit = 0;
+$mpdf->use_kwt = true;
+$mpdf->showImageErrors = true;
 // $stylesheet = '<style>'.file_get_contents('pdf_style.css').'</style>';
 $stylesheet = file_get_contents('pdf_style.css');
 
@@ -40,9 +42,9 @@ $mpdf->SetHTMLFooter("
 //Kurzinformation///////////////////////////////////////////////////////////////////////////////////
 // Titel + Kurzbeschreibung
 
-$mpdf->WriteHTML("<h3 style = 'width: 1000px; text-align: justify;'>" . $r_Titel . "</h3>
+$mpdf->WriteHTML("<h3 style = 'width: 1000px;'>" . $r_Titel . "</h3>
     <h5>Kurzinformation</h5>
-	<div id='kurzBox' class='greenBox'>" . $r_Kurzbeschreibung . "</div>");
+	<div id='kurzBox' class='greenBox'" . $r_Kurzbeschreibung . "</div>");
 
 // Umsetzungsbeispiel Bild + Beschriftung 
 
@@ -163,8 +165,10 @@ $mpdf->WriteHTML('<h4>Funktion</h4>
     <img class="cbIMG" src="checkboxes/cb4.jpeg"> hohes Wirkpotential &nbsp;&nbsp;&nbsp;
 </div></div>');
 
+// Anwendungsebene
+
 $mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-top: 14px;">
-<h4>Anwendungsebene</h4>
+    <div><h4>Anwendungsebene</h4></div>
     <table style="border-top: 2px solid black;" class="resTable">
         <tbody>
             <tr>
@@ -177,7 +181,7 @@ $mpdf->WriteHTML('<div style="page-break-inside: avoid;"><div style="margin-top:
     </div></div>'
 );
 
-// Anwendungsebene + Flächenbedarf + Nutzungsdauer + Entwicklungsstand
+// Flächenbedarf + Nutzungsdauer + Entwicklungsstand
 
 if (strlen($r_Sammelhinweis) != 0) {
     $hinw = '<table class="resTable">
@@ -190,9 +194,9 @@ if (strlen($r_Sammelhinweis) != 0) {
 }
 
 $mpdf->WriteHTML('<div style="margin-top: 20px; page-break-inside: avoid;">
-        <h4>Flächenbedarf |
+        <div><h4>Flächenbedarf |
         Nutzungsdauer(Jahre) | 
-        Entwicklungsstand</h4>
+        Entwicklungsstand</h4></div>
 
     <table style="border-top: 2px solid black;" class="resTable">
         <tbody>
@@ -258,7 +262,7 @@ if (strlen($r_Systemskizze_Bild) != 0 or strlen($r_Systemskizze_Beschriftung) !=
 
 // Planung + Bemessung + rechtliche Aspekte
 
-$mpdf->WriteHTML("<div><h4>Planung, Bemessung und rechtliche Aspekte</h4>"
+$mpdf->WriteHTML("<div style='text-align: justify';><h4>Planung, Bemessung und rechtliche Aspekte</h4>"
  . $r_Planung_freetext . "</div>"
 );
 
@@ -275,8 +279,8 @@ if($sumLength != 0)
     $html = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
         <tbody>
             <tr>
-                <td style='width:30%;' class='PlanC1H'>Norm/Regelwerk</td>
-                <td style='width:70%;' class='PlanC2H'>Titel</td>
+                <td style='width:32%;' class='PlanC1H'>Norm/Regelwerk</td>
+                <td style='width:68%;' class='PlanC2H'>Titel</td>
             </tr>
         </tbody>
     </table>";
@@ -287,13 +291,13 @@ if($sumLength != 0)
     {            
         if ($r_PlanungNormen[$i]['wert']!="" or $r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']!="" ) {
             if ($i == $first) {
-                $html = $html . "<table class='resTable'  style='border-top: 2px solid black;'>
-                <tr><td style='width:30%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
-                $html = $html . "<td  style='width:70%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table></div>";
+                $html = $html . "<table class='resTable'  style='border-top: 2px solid black; overflow: wrap;'>
+                <tr><td style='width:32%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
+                $html = $html . "<td  style='width:68%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table></div>";
             } else {
-                $html = $html . "<table class='resTable'  style='border-top: 1px solid gray;'>
-                <tr><td style='width:30%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
-                $html = $html . "<td  style='width:70%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table>";
+                $html = $html . "<table class='resTable'  style='border-top: 1px solid gray; overflow: wrap;'>
+                <tr><td style='width:32%; vertical-align:top'>" .  $Parsedown_Norm->text($r_PlanungNormen[$i]['wert']) . "</td>";
+                $html = $html . "<td  style='width:68%; vertical-align:top'>" . $Parsedown_Titel->text($r_PlanungNormen[$i+sizeof($r_PlanungNormen)/2]['wert']) . "</td></tr></table>";
             }
         } else {
             $first = $first + 1;
@@ -302,10 +306,10 @@ if($sumLength != 0)
     $mpdf->WriteHTML($html);
 }
 
-// Aufwand + Kosen
+// Aufwand + Kosten
 
-$mpdf->WriteHTML("<h4>Aufwand und Kosten</h4>"
-. $r_Aufwand_freetext
+$mpdf->WriteHTML("<h4>Aufwand und Kosten</h4><p style='text-align: justify; margin-top: -15px;'>"
+. $r_Aufwand_freetext . "</p>"
 );
 
  if (strlen($r_Aufwand_i5[0][0])>0) {
@@ -316,7 +320,7 @@ $mpdf->WriteHTML("<h4>Aufwand und Kosten</h4>"
 
 $head = "<div>";
 
-$row1 = "<div style='page-break-inside: avoid; float: left; width: 50%; margin-right: -4px'><table class='resTable'  style='overflow: wrap;'>
+$row1 = "<div style='page-break-inside: avoid; float: left; width: 50%; margin-right: -4px'><table class='resTable' style='overflow: wrap;'>
 <tr>
     <td style='width:100%; border-bottom: 2px solid black'><div class='headerBlack'>Investitionskosten</div></td>
 </tr>
@@ -360,7 +364,7 @@ $row5 = "<div style='page-break-inside: avoid; float: left; width: 50%; margin-l
     <td style='width:100%; border-bottom: 2px solid black'><div class='headerBlack'>Bestriebskosten</div></td>
 </tr>
 </table>
-<table class='resTable'  style='overflow: wrap;" . $VBorder . "'>
+<table class='resTable' style='overflow: wrap;" . $VBorder . "'>
 <tr><td style='color: gray; font-weight: bold; width: 10%'>&nbsp;</td>";
 for ($i = 1; $i < 6; $i++) {
 ( ${"r_Aufwand_b" . $i}[0][0]!="")? $row5 = $row5 . "<td style='color: gray; font-weight: bold; width: auto; text-align: center'>€/" . ${"r_Aufwand_b" . $i}[0][0] . "</td>": $row5 = $row5;
@@ -394,11 +398,14 @@ $row8 = $row8 .  "</tr></table></div></div>";
 
 $mpdf->WriteHTML($head . $row1 . $row2 . $row3 . $row4 . $row5 . $row6 . $row7 . $row8);
 
+if (strlen($r_Aufwand_hinweis) != 0) {
+    $mpdf->WriteHTML('<Div class="boldGray" style="margin-top: 5px">Hinweis:</Div>' . $r_Aufwand_hinweis . '</td>');
+}
 
 // Weitergehende Hinweise
 
-$mpdf->WriteHTML("<h4>Weitergehende Hinweise</h4>"
-. $r_Weitergehende_freetext
+$mpdf->WriteHTML("<h4>Weitergehende Hinweise</h4><div style='text-align: justify;'>"
+. $r_Weitergehende_freetext . "</div>"
 );
 
 $sumLength = 0;
@@ -448,15 +455,15 @@ $mpdf->WriteHTML($html2);
 
 
 
-$mpdf->WriteHTML("<h4>Ressourcenübergreifende Aspekte</h4>");
-
 $html3 = "";
 $first = 1;
 
 $Parsedown_Syn = new Parsedown();
 $Parsedown_Konf = new Parsedown();
 
-$html3 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+$html3 = "<div style='page-break-inside: avoid;'>
+    <div><h4>Ressourcenübergreifende Aspekte</h4></div>
+    <table style='page-break-inside: avoid;' class='resTable'>
         <tbody>
             <tr>
                 <td style='width:25%;' class='PlanC1H'>&nbsp;</td>
@@ -550,14 +557,19 @@ $mpdf->WriteHTML($html3);
 
 // Ökobilanzielle Bewertung 
 
-$mpdf->WriteHTML("<h4>Ökobilanzielle  Bewertung</h4>"
-. $r_Bewertung_freetext
-);
 
 $sumLength = 0;
 for ($i=0; $i < sizeof($r_Bewertung_table); $i++) {
     $sumLength = $sumLength + strlen($r_Bewertung_table[$i][1]);
 }
+
+if ($sumLength != 0 or  strlen($r_Bewertung_freetext) != 0) {
+    $mpdf->WriteHTML("<h4>Ökobilanzielle  Bewertung</h4><div style='text-align: justify;'>"
+    . $r_Bewertung_freetext . "</div>"
+    );
+}
+
+
 
 $html4 = "";
 
@@ -599,9 +611,10 @@ $mpdf->WriteHTML($html4);
 
 //Kombinationsmöglichkeiten
 
-
-$mpdf->WriteHTML("<h4>Kombinationsmöglichkeiten</h4>"
-);
+if (count($r_Kombi) != 0) {
+    $mpdf->WriteHTML("<h4>Kombinationsmöglichkeiten</h4>"
+    );
+}
 				
 $html5 = "<table>";
 
@@ -617,8 +630,6 @@ $mpdf->WriteHTML($html5);
 
 // Vor- und Nachteile 
 
-$mpdf->WriteHTML("<h4>Vor- und Nachteile</h4>");
-
 $sumLength = 0;
 for ($i=0; $i < sizeof($r_VorNach_table); $i++) {
     $sumLength = $sumLength + strlen($r_VorNach_table[$i][1]);
@@ -631,7 +642,9 @@ if($sumLength != 0)
     $Parsedown_Vor = new Parsedown();
     $Parsedown_Nach = new Parsedown();
 
-    $html6 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+    $html6 = "<div style='page-break-inside: avoid;'>
+    <div><h4>Vor- und Nachteile</h4></div>
+    <table style='page-break-inside: avoid;' class='resTable'>
         <tbody>
             <tr>
                 <td style='width:50%;' class='PlanC1H'>Vorteile</td>
@@ -665,14 +678,16 @@ $mpdf->WriteHTML($html6);
 
 // Fallbeispiele 
 
-$mpdf->WriteHTML("<h4>Fallbeispiele</h4>");
+$mpdf->WriteHTML("");
 
 $html7 = "";
 
 $first = 1;
 $parsedown= new Parsedown();
 
-$html7 = "<div style='page-break-inside: avoid;'><table style='page-break-inside: avoid;' class='resTable'>
+$html7 = "<div style='page-break-inside: avoid;'>
+    <div><h4>Fallbeispiele</h4></div>
+    <table style='page-break-inside: avoid;' class='resTable'>
         <tbody>
             <tr>
                 <td style='width:20%;' class='PlanC1H'>Projektname</td>

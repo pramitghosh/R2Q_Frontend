@@ -71,6 +71,7 @@
     background-color: rgba(191,224,209,255);
     border-radius: 5px;
     width: 1000px;
+    text-align: justify;
   }
 
   .resTable{

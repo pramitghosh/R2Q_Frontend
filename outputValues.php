@@ -65,7 +65,7 @@
 		global $m_id;
 		$value = get_wert_id($m_id, $e1, $e2, $e3);
 		if (strlen($value) == 0) {
-			$value = "N/A";
+			$value = "k.A.";
 		}
 
 		return $value;
@@ -83,7 +83,7 @@
 		global $m_id;
 		$value = get_wert_id($m_id, $e1, $e2, $e3);
 		if (strlen($value) == 0) {
-			$value = "N/A";
+			$value = "k.A.";
 		}
 		return textparsedown($value);
 	}
