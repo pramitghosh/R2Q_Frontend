@@ -31,9 +31,9 @@ $mpdf->SetHTMLHeader("
 
 // Footer for every page
 $mpdf->SetHTMLFooter("
-<div style='text-align: right; font-weight: bold;'>
+<div class='footer'>
     <br>
-    <img src='FooterResize.jpg'; >
+    <img style='margin-left: 20px; margin-right: -60px; margin-bottom: -20px' src='FooterResize.jpg'; >
 </div>");
 
 
@@ -190,13 +190,9 @@ if (strlen($r_Sammelhinweis) != 0) {
 }
 
 $mpdf->WriteHTML('<div style="margin-top: 20px; page-break-inside: avoid;">
-    <table class="resTable">
-        <tr>
-            <td style="width:22%;" class="AnwC1H">Flächenbedarf</td>
-            <td style="width:31%" class="AnwC2H">Nutzungsdauer (Jahre)</td>
-            <td style="width:47%" class="AnwC3H">Entwicklungsstand</td>
-        </tr>
-    </table>
+        <h4>Flächenbedarf |
+        Nutzungsdauer(Jahre) | 
+        Entwicklungsstand</h4>
 
     <table style="border-top: 2px solid black;" class="resTable">
         <tbody>

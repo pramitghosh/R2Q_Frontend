@@ -53,8 +53,8 @@
 				<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 				<br>
 				<br>
-				<h3 style = "width: 1000px; text-align: justify;"><?php echo $r_Titel; ?></h3>
-
+				<h3 style = "width: 1000px; text-align: center"><?php echo $r_Titel; ?></h3>
+				<hr>
 				
 				<h5>Kurzinformation</h5>
 				<div id="kurzBox" class="greenBox"> 
@@ -233,7 +233,8 @@
 			<div id="Detailinformation" class="tabcontent">
 			<br>
 			<br>
-			<p><h3 style = "width: 1000px; text-align: justify;"><?php echo $r_Titel; ?></h3></p>
+			<h3 style = "width: 1000px; text-align: center;"><?php echo $r_Titel; ?></h3>
+			<hr>
 				<h5>Detailinformationen</h5>
 				<div id="resBox" class="greenBox">
 					<h6>Funktionsbeschreibung und Aufbau</h6>
