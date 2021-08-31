@@ -3,15 +3,16 @@
 	
 	$post_set = $_POST?1:0;
 	
-	$search_query = $_POST["massnahme_search"];
+	$search_query = (isset($_POST["massnahme_search"])) ? $_POST["massnahme_search"] : "" ;
 	
-	$resources = $_POST["resourceform"];
-	$funcs = $_POST["functionsform"];
-	$anwendungs = $_POST["anwendungsform"];
+
+	$resources = (isset($_POST["resourceform"])) ? $_POST["resourceform"] : "" ;
+	$funcs = (isset($_POST["functionsform"])) ? $_POST["functionsform"] : "" ;
+	$anwendungs = (isset($_POST["anwendungsform"])) ? $_POST["anwendungsform"] : "" ;
 	
-	$resources_count = count($resources);
-	$funcs_count = count($funcs);
-	$anwendungs_count = count($anwendungs);
+	$resources_count = ($resources == "") ? 0 : count($resources);
+	$funcs_count = ($funcs == "") ? 0 : count($funcs);
+	$anwendungs_count = ($anwendungs == "") ? 0 : count($anwendungs);
 	
 	if(!is_null($search_query))
 	{
@@ -81,10 +82,13 @@
 		
 		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
 	}
-	
-	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . ")) ORDER BY ressource, name";
-	//echo $filter_query;
+	if (isset($resource_sql) and isset($func_sql) and isset($anwendungs_sql)) {
+		$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . ")) ORDER BY ressource, name";
+		
+	};
 	$result2 = mysqli_query($conn, is_null($search_sql)?$filter_query:$search_sql);
+	//echo $filter_query;
+	
 	
 ?>
 
