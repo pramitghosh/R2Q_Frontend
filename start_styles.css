@@ -219,15 +219,17 @@
 }
 
 .active, .dot:hover {
+  border-radius: 12.5px;
+  width: 35px;
   background-color: rgb(4,180,219);
 }
 
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 1s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
 }
 
 @-webkit-keyframes fade {
