@@ -20,7 +20,7 @@ include 'parsedown-1.7.4/Parsedown.php';
 
 <!-- Full-width images with number and caption text -->
 <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
+    <!-- <div class="numbertext">1 / 3</div> -->
     <img class="LogoIntro" src="R2Q_Logo.png">
     <p style="text-align: justify">
         Platzhalter Einleitung:
@@ -35,7 +35,7 @@ include 'parsedown-1.7.4/Parsedown.php';
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
+  <!-- <div class="numbertext">2 / 3</div> -->
   <h1> Vorgehen </h1>
   <p style="text-align: justify">
         <br>
@@ -47,7 +47,7 @@ include 'parsedown-1.7.4/Parsedown.php';
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
+  <!-- <div class="numbertext">3 / 3</div> -->
   <h1> Der Katalog </h1>
   <p style="text-align: justify">
         <br>
