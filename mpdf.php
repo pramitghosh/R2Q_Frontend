@@ -307,8 +307,8 @@ if($sumLength != 0)
 
 // Aufwand + Kosten
 
-$mpdf->WriteHTML("<h4>Aufwand und Kosten</h4><p style='text-align: justify; margin-top: -15px;'>"
-. $r_Aufwand_freetext . "</p>"
+$mpdf->WriteHTML("<h4>Aufwand und Kosten</h4><div style='text-align: justify; margin-top: -15px;'>"
+. $r_Aufwand_freetext . "</div>"
 );
 
  if (strlen($r_Aufwand_i5[0][0])>0) {
