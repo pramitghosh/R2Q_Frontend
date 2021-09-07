@@ -170,6 +170,14 @@
   padding: 10px;
 }
 
+.refTable {
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  width: 60vw;
+}
+
 thead.search{
   background-color: rgb(4,180,219);
   color: white;
@@ -181,6 +189,12 @@ thead.search{
 tr.searchrow{
   border-bottom: solid rgb(4,180,219) 2px;
   border: solid rgb(4,180,219) 3px;
+}
+
+tr.refRow{
+  border-bottom: solid rgb(4,180,219) 2px;
+  border: solid rgb(4,180,219) 3px;
+  padding: 3px 6px;
 }
 
 td.searchCell{
@@ -195,6 +209,16 @@ td.searchCell{
   font-size: 28px;
   width: 60vw;
 }
+
+.refTable, th, td{
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 18px;
+  width: 60vw;
+}
+
 
 thead.resultsTableHeader{
   border-bottom: solid black 2px;
