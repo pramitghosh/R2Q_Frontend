@@ -43,7 +43,7 @@ $mpdf->SetHTMLFooter("
 
 $mpdf->WriteHTML("<h3 style = 'width: 1000px;'>" . $r_Titel . "</h3>
     <h5>Kurzinformation</h5>
-	<div id='kurzBox' class='greenBox'" . $r_Kurzbeschreibung . "</div>");
+	<div id='kurzBox' class='greenBox'>" . $r_Kurzbeschreibung . "</div>");
 
 // Umsetzungsbeispiel Bild + Beschriftung 
 

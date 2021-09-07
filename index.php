@@ -20,14 +20,14 @@ include 'parsedown-1.7.4/Parsedown.php';
 
 <!-- Full-width images with number and caption text -->
 <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
+    <!-- <div class="numbertext">1 / 3</div> -->
     <img class="LogoIntro" src="R2Q_Logo.png">
     <p style="text-align: justify">
         Platzhalter Einleitung:
         <br>
         Das Verbundprojekt R2Q - RessourcenPlan im Quartier - verfolgt das Ziel, die Verwendung der Ressourcen Wasser, 
         Stoffe, Energie und Fläche/Raum im Quartier zu untersuchen. 
-        Aus den gewonnenen Erkenntnissen ist ein Katalog entstanden, der Maßnahmen vorstellt zur effizienten Bewirtschaftung dieser Ressourcen.
+        Aus den gewonnenen Erkenntnissen ist ein Katalog entstanden, der Maßnahmen vorstellt, die ein effizientes Bewirtschaften dieser Ressourcen ermöglicht.
     </p>
     <button class="massnahmenLink" onclick="window.location.href='massnahme.php';">
             Zum Katalog
@@ -35,7 +35,7 @@ include 'parsedown-1.7.4/Parsedown.php';
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
+  <!-- <div class="numbertext">2 / 3</div> -->
   <h1> Vorgehen </h1>
   <p style="text-align: justify">
         <br>
@@ -47,7 +47,7 @@ include 'parsedown-1.7.4/Parsedown.php';
 </div>
 
 <div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
+  <!-- <div class="numbertext">3 / 3</div> -->
   <h1> Der Katalog </h1>
   <p style="text-align: justify">
         <br>
