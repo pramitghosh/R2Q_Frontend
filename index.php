@@ -41,7 +41,7 @@ include 'parsedown-1.7.4/Parsedown.php';
         <br>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem necessitatibus repellendus ipsa nihil pariatur? Ipsam sit error ullam repellendus dignissimos autem, a enim eum quis, ipsum quia voluptatem consequatur eaque?
     </p>
-    <button class="massnahmenLink" onclick="window.location.href='massnahme.php';">
+    <button class="massnahmenLink" onclick=window.location.href='massnahme.php';>
         Zum Katalog
     </button>
 </div>

@@ -360,7 +360,7 @@ $row4 = $row4 .  "</tr></table></div>";
 
 $row5 = "<div style='page-break-inside: avoid; float: left; width: 50%; margin-left: -4px'><table class='resTable' style='overflow: wrap;'>
 <tr>
-    <td style='width:100%; border-bottom: 2px solid black'><div class='headerBlack'>Bestriebskosten</div></td>
+    <td style='width:100%; border-bottom: 2px solid black'><div class='headerBlack'>Betriebskosten</div></td>
 </tr>
 </table>
 <table class='resTable' style='overflow: wrap;" . $VBorder . "'>

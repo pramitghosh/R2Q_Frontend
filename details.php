@@ -331,20 +331,20 @@
 						echo "</tr>";
 						echo "<tr class='hline'><td class='gray'>min</td>";
 							for ($i = 1; $i < 6; $i++)
-							{echo ( ${"r_Aufwand_i" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
+							{echo ( ${"r_Aufwand_i" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
 							}
 							echo "<td class='gray'>min</td>";
 							for ($i = 1; $i < 6; $i++)
-							{echo ( ${"r_Aufwand_b" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
+							{echo ( ${"r_Aufwand_b" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
 							}
 						echo "</tr>";
 						echo "<tr class='hline'><td class='gray'>max</td>";
 							for ($i = 1; $i < 6; $i++)
-							{echo ( ${"r_Aufwand_i" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
+							{echo ( ${"r_Aufwand_i" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_i" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
 							}
 							echo "<td class='gray'>max</td>";
 							for ($i = 1; $i < 6; $i++)
-							{echo ( ${"r_Aufwand_b" . $i}[2][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[2][0] . "</td>":"<td>&nbsp</td>";
+							{echo ( ${"r_Aufwand_b" . $i}[1][0]!="")?"<td>" . ${"r_Aufwand_b" . $i}[1][0] . "</td>":"<td>&nbsp</td>";
 							}
 						echo "</tr>";
 						echo "<tr class='hline'><td class='gray'>üblich</td>";
