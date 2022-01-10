@@ -659,12 +659,12 @@ if($sumLength != 0)
         if ($r_VorNach_table[$i][1]!="" or $r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]!="" ) {
             if ($i == $first) {
                 $html6 = $html6 . "<table class='resTable'  style='border-top: 2px solid black;'>
-                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i][1]) . "</td>";
-                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td></tr></table></div>";
+                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td>";
+                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i][1]) . "</td></tr></table></div>";
             } else {
                 $html6 = $html6 . "<table class='resTable'  style='border-top: 1px solid gray;'>
-                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i][1]) . "</td>";
-                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td></tr></table>";
+                <tr><td style='width:50%; vertical-align:top'>" .  $Parsedown_Vor->text($r_VorNach_table[$i+sizeof($r_VorNach_table)/2][1]) . "</td>";
+                $html6 = $html6 . "<td  style='width:50%; vertical-align:top'>" . $Parsedown_Nach->text($r_VorNach_table[$i][1]) . "</td></tr></table>";
             }
         } else {
             $first = $first + 1;

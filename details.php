@@ -508,7 +508,7 @@
 				echo "</table>
 				<div style='margin-top: 10px' ><div><strong>Hinweis:&nbsp;</strong></div>
 				<div class='refMatrixDiv'>Weitergehende Informationen zu Maßnahmenkombinationen finden sie
-				<a class='refMatrix' href='documents\Layout_Massnahmenmatrix_210817.pdf'>HIER</a>
+				<a class='refMatrix' target='_blank'  href='documents\Layout_Massnahmenmatrix_210817.pdf'>HIER</a>
 				</div></div>";
 				?>
 				
