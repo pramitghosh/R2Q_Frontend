@@ -3,19 +3,27 @@
 	
 	$post_set = $_POST?1:0;
 	
-	$search_query = $_POST["massnahme_search"];
+	$search_query = (isset($_POST["massnahme_search"])) ? $_POST["massnahme_search"] : "" ;
 	
-	$resources = $_POST["resourceform"];
-	$funcs = $_POST["functionsform"];
-	$anwendungs = $_POST["anwendungsform"];
+
+	$resources = (isset($_POST["resourceform"])) ? $_POST["resourceform"] : "" ;
+	$funcs = (isset($_POST["functionsform"])) ? $_POST["functionsform"] : "" ;
+	$anwendungs = (isset($_POST["anwendungsform"])) ? $_POST["anwendungsform"] : "" ;
 	
-	$resources_count = count($resources);
-	$funcs_count = count($funcs);
-	$anwendungs_count = count($anwendungs);
+	$resources_count = ($resources == "") ? 0 : count($resources);
+	$funcs_count = ($funcs == "") ? 0 : count($funcs);
+	$anwendungs_count = ($anwendungs == "") ? 0 : count($anwendungs);
 	
 	if(!is_null($search_query))
 	{
 		$search_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE name LIKE '%" . $search_query . "%' ORDER BY ressource, name";
+		
+		$search_sql = "SELECT DISTINCT
+			id, name, ressource, kategorieIndex, wert
+		FROM
+			r2q.joined_massnahme
+		WHERE
+			ebene1 = 'Titel' AND wert LIKE '%" . $search_query . "%' ORDER BY ressource, wert";
 		//echo $search_sql;
 	}
 	
@@ -74,10 +82,13 @@
 		
 		$anwendungs_sql = "SELECT DISTINCT id, name, ressource, kategorieIndex FROM r2q.joined_massnahme WHERE ebene1 = 'Anwendungsebene' AND wert = 1 AND (" . $anwendungs_ebene2 . ")"; 
 	}
-	
-	$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . ")) ORDER BY ressource, name";
-	//echo $filter_query;
+	if (isset($resource_sql) and isset($func_sql) and isset($anwendungs_sql)) {
+		$filter_query = $resource_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $func_sql . " AND (id , name, ressource, kategorieIndex) IN (" . $anwendungs_sql . ")) ORDER BY ressource, name";
+		
+	};
 	$result2 = mysqli_query($conn, is_null($search_sql)?$filter_query:$search_sql);
+	//echo $filter_query;
+	
 	
 ?>
 
@@ -85,40 +96,40 @@
 	<head>
 		
 		<link rel="stylesheet" href="styles.css">
+		
 		<title>
 			Massnahmenkatalog Frontend
 		</title>		
-				<script type="text/javascript" src = "selectdeselect.js"></script>		
+		<script type="text/javascript" src = "selectdeselect.js"></script>
+		<link href='fontawesome-free-5.15.4-web/css/all.css' rel="stylesheet">
 	</head>
 	<body>
 		<div class="page-container">
-			<div class = "filters">
-				<?php
-					include 'filters.php';
-				?>
-			</div>
-			<div class = "resultsMas">
-				
-				<div class="resultsTab">
-
+			
+			<?php
+				include 'NavBar.php';
+			?>
+			
+			<div class="mainContent">
+				<div class = "filters">
 					<?php
-						if($post_set)
-						{
-							echo "<p class='filterHeader'>
+						include 'filters.php';
+					?>
+				</div>
+				<div class = "results">
+					
+					<div class="resultsTab">
+
+						<?php
+							if($post_set)
+							{
+								echo "<p class='filterHeader'>
+								<br>
 								Suchergebnisse
 								<br>
 								<br>
 								</p>
-								<table class='resultsTable'>
-								<colgroup>
-										<col style='width:90%'>
-										<col style='width:10%;'>
-								</colgroup>
-								<thead class='resultsTableHeader'>
-									<td style='font-size: 22px;' >Name</td>
-									<td style='font-size: 22px;' >Ressource</td>
-					
-								</thead>
+									
 								";
 									/* $Parsedown = new Parsedown();
 									echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
@@ -127,41 +138,416 @@
 							
 									if(mysqli_num_rows($result2) > 0)
 									{
-										//while($row = mysqli_fetch_assoc($result))
-										foreach ($result2 as $row2)
-										{
-											$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
-											
-											$titel_result = mysqli_query($conn, $titel_query);
-											$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
-											if ($titel[0][0]=="") {
-												$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+										$resCounter = 0;
+										foreach ($result2 as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'B'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
 											}
-
-											//echo "<tr><td>" . $row2["id"] . "</td>";
-											echo "<tr>";
-											echo "<td>" . "<a href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
-											echo "<td>" . $row2["ressource"] . "</td>";
-											echo "</tr>";
-											//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
 										}
-									}                   
-									mysqli_close($conn);
-								
-							echo "</table>";
-						}
-					?>
-				</div>
-				<div class="directSearch">
-					<form action="details.php" method="GET">
-						<label for="id">Für Direktsuche MaßnahmenID eingeben: <br><br> </label>
-						<input type="text" name="id">
-						<input class="buttonFilter" type="submit" value="Bestätigen">				
-					</form>
-				</div>
 
+										if ($resCounter > 0) {
+											echo "<table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Baustoffe &nbsp; <i class='fas fa-cubes'></i></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($result2 as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'B'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="B") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($result2 as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'E'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Energie &nbsp; <i class='fas fa-battery-half'></i></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($result2 as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'E'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="E") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($result2 as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'N'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Niederschlagswasser &nbsp; <i class='fas fa-cloud-rain'></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($result2 as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'N'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="N") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+														
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($result2 as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'S'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Schmutzwasser &nbsp; <i class='fas fa-toilet'></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($result2 as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'S'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="S") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+														
+													}
+																										
+												}
+											echo "</table>";
+										}
+										
+									}                   
+								mysqli_close($conn);
+							} else {
+								require 'sql.php';
+								$default_query = "SELECT DISTINCT id, name, ressource FROM r2q.joined_massnahme ORDER BY ressource, name";
+								$default_result = mysqli_query($conn, $default_query);
+
+								// echo "<p class='filterHeader'>
+								// 	<br>
+								// 	Maßnahmenkatalog
+								// 	<br>
+								// 	<br>
+								// 	</p>
+								// 	<table class='searchTable'>
+								// 	<colgroup>
+								// 			<col style='width:90%'>
+								// 			<col style='width:10%;'>
+								// 	</colgroup>
+								// 	<thead class='search'>
+								// 		<td style='font-size: 30px;' >Name</td>
+								// 		<td style='font-size: 30px;' >Ressource</td>
+						
+								// 	</thead>
+								// 	";
+								// 		/* $Parsedown = new Parsedown();
+								// 		echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+										
+								// 		require 'sql.php';
+								
+								// 		if(mysqli_num_rows($default_result) > 0)
+								// 		{
+								// 			//while($row = mysqli_fetch_assoc($result))
+								// 			foreach ($default_result as $row2)
+								// 			{
+								// 				$titel_query = "SELECT wert FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel'";
+												
+								// 				$titel_result = mysqli_query($conn, $titel_query);
+								// 				$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+								// 				if ($titel[0][0]=="") {
+								// 					$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+								// 				}
+
+								// 				//echo "<tr><td>" . $row2["id"] . "</td>";
+								// 				echo "<tr class='searchRow'>";
+								// 				echo "<td>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+								// 				echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+								// 				echo "</tr>";
+								// 				//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+								// 			}
+								// 		}                   
+								// 		mysqli_close($conn);
+									
+								// echo "</table>";
+
+
+								echo "<p class='filterHeader'>
+								<br>
+								Maßnahmenkatalog
+								<br>
+								<br>
+								</p>
+									
+								";
+									/* $Parsedown = new Parsedown();
+									echo $Parsedown->text('Hello _Parsedown_!'); # prints: <p>Hello <em>Parsedown</em>!</p> */
+									
+									require 'sql.php';
+							
+									if(mysqli_num_rows($default_result) > 0)
+									{
+										$resCounter = 0;
+										foreach ($default_result as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'B'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Baustoffe &nbsp;<i class='fa fa-cubes'></i></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($default_result as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'B'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="B") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($default_result as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'E'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Energie</td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($default_result as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'E'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="E") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($default_result as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'N'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Niederschlagswasser &nbsp; <i class='fas fa-cloud-rain'></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($default_result as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'N'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="N") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+														
+													}
+																										
+												}
+											echo "</table>";
+										}
+
+
+										$resCounter = 0;
+										foreach ($default_result as $row2) {
+											$q_ressource = "SELECT ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ressource = 'S'";
+											$r_ressource = mysqli_query($conn, $q_ressource);
+											$ressource = mysqli_fetch_all($r_ressource, MYSQLI_NUM);
+											if (sizeof($ressource)>0) {
+												$resCounter = $resCounter + 1;
+											}
+										}
+
+										if ($resCounter > 0) {
+											echo "<br><table class='searchTable'>
+												
+												<thead class='search'>
+													<td style='font-size: 30px;' >Maßnahmen für Schmutzwasser &nbsp; <i class='fas fa-toilet'></td>
+												</thead>";
+												//while($row = mysqli_fetch_assoc($result))
+												foreach ($default_result as $row2) {
+													$titel_query = "SELECT wert, ressource FROM joined_massnahme WHERE id = " . $row2["id"] . " AND ebene1 = 'Titel' AND ressource = 'S'";
+													
+													$titel_result = mysqli_query($conn, $titel_query);
+													$titel = mysqli_fetch_all($titel_result, MYSQLI_NUM);
+													if (sizeof($titel)>0 and $titel[0][1]="S") {
+														if ($titel[0][0]=="") {
+															$titel[0][0] = "!!Titel noch nicht vorhanden!!";
+														}
+														//echo "<tr><td>" . $row2["id"] . "</td>";
+														echo "<tr class='searchRow'>";
+														echo "<td class='searchCell'>" . "<a class='resultRef' href='details.php?id=" . $row2["id"] . "'>" . $titel[0][0] . "</a>" . "</td>";
+														// echo "<td style='text-align:center'>" . $row2["ressource"] . "</td>";
+														echo "</tr>";
+														//echo "<td>" . $row2["kategorieIndex"] . "</td></tr>";
+														
+													}
+																										
+												}
+											echo "</table>";
+										}
+										
+									}                   
+								mysqli_close($conn);
+
+
+
+
+
+
+
+
+
+							}
+						?>
+					</div>
+					<div class="directSearch">
+						<form action="details.php" method="GET">
+							<label for="id">Für Direktsuche MaßnahmenID eingeben: <br><br> </label>
+							<input type="text" name="id">
+							<input class="buttonFilter" type="submit" value="Bestätigen">				
+						</form>
+					</div>
+
+				</div>
 			</div>
 			<?php include 'footer.php'; ?>
+			
 		</div>
 		
 	</body>

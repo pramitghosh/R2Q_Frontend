@@ -1,16 +1,66 @@
 
+.navBar {
+  background-color: rgb(4,180,219);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  position: fixed;
+}
 
+.navBarColor0{
+  color: white;
+  width: 25px;
+}
+
+.navBarColor1{
+  color: white;
+  background-color: #008243;
+  width: 25px;
+}
+
+.navBarColor2{
+  color: white;
+  background-color: #f3b33d;
+  width: 25px;
+}
+
+.navTab{
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+}
+
+.navTab a:active{
+  color: white;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  background-color: rgb(23, 192, 230);
+
+}
+
+/* Change the link color to #111 (black) on hover */
+.navTab:hover {
+  background-color: rgb(38, 108, 124);
+}
 
 
 .Logo {
   padding: 5px;
   padding-right: 10px;
-  width: 100%;
-  max-width: 400px;
+  height: 2.5em;
   display: block;
   box-sizing: border-box;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
+.LogoLink {
+  background-image: linear-gradient(to right, rgb(106, 228, 255), rgb(4,180,219))
+}
 
 .page-container {
   position: relative;
@@ -18,19 +68,23 @@
   display: flex;
 	flex-wrap: wrap;
   background-color: rgb(214, 214, 214);
-  background-image: url(startBackground2.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
+  background-image: url(danist-soh-dqXiw7nCb9Q-unsplash.jpg);  /*https://www.usnews.com/news/cities/articles/2018-12-12/a-vertical-forest-is-proposed-in-toronto-canada */
   background-blend-mode: multiply;
-  background-size: cover;
+  background-size: contain;
   margin: -10px;
+  flex-direction: column;
 }
 
+.mainContent{
+  margin-top: 5em;
+  display: flex;
+}
 
 .filters {
   display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  padding: 1% ;
 }
 
 .page-container > *:nth-child(1) {
@@ -65,6 +119,7 @@
   color: #ffffff;
   border-color: #00000000;
   /* border-radius: 5px; */
+  margin-top: 5px;
 }
 
 .buttonFilter:hover{
@@ -75,7 +130,8 @@
   /* border-radius: 5px; */
 }
 
-.buttonSelect {
+.buttonSelect {  
+  margin-top: 5px;
 	background-color: rgb(4,180,219);
   font-size: 20px;
   color: #ffffff;
@@ -91,15 +147,78 @@
   /* border-radius: 5px; */
 }
 
+.resultRef{
+  /* background-color: rgb(4,180,219); */
+  color: rgb(90, 90, 90);
+  padding: 8px;
+}
+
+.resultRef:hover{
+  /* background-color: rgb(4,180,219); */
+  color: rgb(27, 27, 27);
+  padding: 8px;
+  font-weight: bold;
+}
+
+.searchTable {
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 28px;
+  width: 60vw;
+  padding: 10px;
+}
+
+.refTable {
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  width: 60vw;
+}
+
+thead.search{
+  background-color: rgb(4,180,219);
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border: solid rgb(4,180,219) 3px;
+}
+
+tr.searchrow{
+  border-bottom: solid rgb(4,180,219) 2px;
+  border: solid rgb(4,180,219) 3px;
+}
+
+tr.refRow{
+  border-bottom: solid rgb(4,180,219) 2px;
+  border: solid rgb(4,180,219) 3px;
+  padding: 3px 6px;
+}
+
+td.searchCell{
+  padding: 10px;
+}
+
 .resultsTable, th, td{
   margin-top: 6px;
   /* font-size: 0.9em; */
   border-collapse: collapse;
   text-align: left;
   font-size: 28px;
-  
   width: 60vw;
 }
+
+.refTable, th, td{
+  margin-top: 6px;
+  /* font-size: 0.9em; */
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 18px;
+  width: 60vw;
+}
+
 
 thead.resultsTableHeader{
   border-bottom: solid black 2px;
@@ -108,13 +227,18 @@ thead.resultsTableHeader{
 }
 
 
+
 /* Style the tab */
 .tab {
   padding: 30px 10px;
   overflow: visible;
   position: fixed;
-  top: 10px;
+  margin-top: -35px;
   /* border-radius: 6px; */
+  justify-content: space-around;
+  display: flex;  
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -122,7 +246,6 @@ thead.resultsTableHeader{
   border: none;
   background-color: rgb(177, 177, 177);
   box-shadow: 1px 1px 3px #0003;
-  float: left;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -137,7 +260,7 @@ thead.resultsTableHeader{
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(4,180,219);
   color: rgb(255, 254, 254);
   transform: scale(1.05);
   box-shadow: 3px 3px 6px #0003;
@@ -152,8 +275,40 @@ thead.resultsTableHeader{
   color: #ffffff;
 }
 
+.tab button.active:hover {
+  background-color: rgb(4,180,219);
+  color: rgb(255, 254, 254);
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
+}
+
+
+.downButton input {
+  border: none;
+  background-color: #008243;
+  background-image: url(download.png);
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 5% 50%;
+  box-shadow: 1px 1px 3px #0003;
+  outline: none;
+  padding: 14px 16px;
+  font-size: 22px;
+  /* border-radius: 5px; */
+  color: rgb(255, 255, 255);
+  transition: 0.3s;
+  }  
+
+.downButton input:hover {
+  background-color: #0f663a;
+  color: rgb(255, 254, 254);
+  transform: scale(1.05);
+  box-shadow: 3px 3px 6px #0003;
+  }
+
 /* Style the tab content */
 .tabcontent {
+  display: none;
   padding: 6px 12px;
   border: none;
   border-top: none;
@@ -171,25 +326,53 @@ thead.resultsTableHeader{
   text-align: center;
 }
 
-.resultsMas {
-  margin: 2vh;
-	text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #e3ffe5f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .results {
-  margin: 2vh;
 	display: flex;
 	text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #e3ffe5f5;
   padding-left: 5%;
+  padding-right: 5%;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
+  flex-direction: column;
+}
+
+.refContent {
+	display: flex;
+	text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e3ffe5f5;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-sizing: border-box;
+  font-size: 16px;
+  flex-direction: column;
+}
+
+.aboutContent {
+	display: flex;
+	text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0.931);
+  margin: 7% 5% 2% 5% ;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 16px;
+  flex-direction: column;
+  min-height: 60vh;
+
+}
+
+
+.aboutPage{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+	flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
 }
 
 .comments {
@@ -198,10 +381,10 @@ thead.resultsTableHeader{
 }
 
 .commentText{
-  width: 80%;
-  /* border-radius: 10px; */
-  background-color: #ffffff;
-  border: solid rgb(128, 128, 128) 1px;
+  width: 40vw;
+  border-radius: 10px;
+  background-color: rgb(4,180,219);
+  /* border: solid rgb(128, 128, 128) 1px; */
   padding: 2px 8px;
   margin-right: 10px;
 }
@@ -217,7 +400,7 @@ thead.resultsTableHeader{
 
 h3 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
+  font-size: 45px;
   color: green;
   text-align: start;
 }
@@ -232,12 +415,29 @@ h4 {
   margin-top: 40px;
 }
 
+.results h4{
+font-size: 22px;
+color: rgb(255, 255, 255);
+margin-bottom: 6px;
+margin-top: 20px;
+margin-left: -12px;
+margin-right: -17px;
+border-radius: 5px;
+padding: 3px 6px;
+background-color: green;
+}
+
 h5 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  color: #767171;
+  font-size: 22px;
+  background-color: #929292;
+  color: white;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  margin-left: -60px;
+  margin-right: -60px;
+  padding: 2px 65px;
 }
 
 .bg3{
@@ -253,9 +453,11 @@ h5 {
 .cbDescr{
   background-color: rgb(240, 240, 240);
   border-radius: 5px;
+  border-top-left-radius: 0px;
   padding: 5px;
   text-align: center;
   margin-top: 4px;
+  border: 2px solid gray;
 }
 
 .cbSize{
@@ -316,10 +518,13 @@ h5 {
 
 .greenBox {
   padding: 0px 12px;
-  border: solid green 3px;
+  border-left: solid green 5px;
+  /* border: solid green 3px; */
   background-color: #00854949;
   border-radius: 5px;
   width: 1000px;
+  padding-top:2px ;
+  padding-bottom:2px ;
 }
 
 
@@ -369,15 +574,28 @@ h6 {
   text-align: center;
 }
 
+.cbCenter{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 3px;
+}
+
+.cell-flex{
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+}
+
 .resTable{
   margin-top: 6px;
   min-width: 1000px;
-  font-size: 14px;
+  font-size: 16px;
   border-collapse: collapse;
 }
 .resTable td{
   padding: 6px 10px;
-  font-size: 14px;
+  font-size: 16px;
 
 }
 
@@ -401,19 +619,37 @@ td.BorderL {
   border-left: 2px solid black;
 }
 
-
 .boldGray {
   color: rgb(161, 161, 161);
   font-weight: bold;
 }
 
-thead.header {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 21px;
-  color: green;
+.tableSectionCaption{
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;  
+  font-size: 22px;
+  color: rgb(255, 255, 255);
   margin-bottom: 6px;
-  font-weight: bold;
-  border-bottom: solid 2px black;
+  margin-top: 20px;
+  margin-left: -12px;
+  margin-right: -17px;
+  border-radius: 5px;
+  padding: 3px 6px;
+  background-color: green;
+  flex-direction: row;
+}
+
+thead.header {
+  font-family: Arial, Helvetica, sans-serif;  
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 6px;
+  margin-top: 20px;
+  margin-left: -12px;
+  margin-right: -17px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  background-color: green;
 }
 
 thead.headerBlack {
@@ -428,7 +664,29 @@ thead.headerBlack {
 
 a.bold{
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.refMatrix {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(4,180,219);
+  padding: 3px 8px;
+  transition: 0.3s;
+}
+
+.refMatrixDiv a:hover {
+  background-color: rgb(38, 108, 124);
+}
+
+.refMatrixDiv {
+  background-color: rgb(240, 240, 240);
+  border: 2px solid gray;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  padding: 5px;
+  width: max-content;
 }
 
 @media print {
@@ -444,26 +702,14 @@ a.bold{
 }
 
 .footer{
-  /* margin-top: auto;
-  width: 100%;
+  margin: 2vh;
   background-color: rgb(4,180,219);
   color: white;
   text-align: center;
   vertical-align: middle;
   height: 50px;
   padding: 5px;
-  font-family: Arial, Helvetica, sans-serif; */
-
-
-  margin: 2vh;
-    width: 100%;
-    background-color: rgb(4,180,219);
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    height: 50px;
-    padding: 5px;
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer_content1{
@@ -471,3 +717,4 @@ a.bold{
   text-align: center;
   vertical-align: middle;
 }
+

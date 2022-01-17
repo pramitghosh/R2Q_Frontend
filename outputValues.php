@@ -2,7 +2,12 @@
 	require 'sql.php';
 	$m_id = $_GET["id"];
 
-	
+	function textparsedown($textInput){
+		$Parsedown = new Parsedown();
+		return $Parsedown->text($textInput);
+	}
+
+
 	function extract_wert($query_result)
 	{
 		$wert = "";
@@ -55,6 +60,34 @@
 		return get_wert_id($m_id, $e1, $e2, $e3);
 	}
 
+	function get_wert_NA($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+		$value = get_wert_id($m_id, $e1, $e2, $e3);
+		if (strlen($value) == 0) {
+			$value = "k.A.";
+		}
+
+		return $value;
+	}
+
+	function get_wert_pd($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+
+		return textparsedown(get_wert_id($m_id, $e1, $e2, $e3));
+	}
+
+	function get_wert_pd_NA($e1, $e2=NULL, $e3=NULL){
+		global $conn;
+		global $m_id;
+		$value = get_wert_id($m_id, $e1, $e2, $e3);
+		if (strlen($value) == 0) {
+			$value = "k.A.";
+		}
+		return textparsedown($value);
+	}
+
 	if (!is_null($m_id))
 
 	{
@@ -63,7 +96,7 @@
 		$q_template = "SELECT wert FROM joined_massnahme WHERE id = " . $m_id . " AND ";
 
 		$r_Titel = get_wert("'Titel'");
-		$r_Kurzbeschreibung = get_wert("'Kurzbeschreibung'");
+		$r_Kurzbeschreibung =  get_wert_pd("'Kurzbeschreibung'");
 		$r_Umsetzungsbeispiel_Beschriftung = get_wert("'Umsetzungsbeispiel'","'Beschriftung'");
 		$r_Umsetzungsbeispiel_Bild = get_wert("'Umsetzungsbeispiel'","'Bild'");
 		$r_ResNiederschlag = get_wert("'Ressource'","'Niederschlagswasser'");
@@ -145,31 +178,37 @@
 		$r_anwendungsebeneGrundstück = get_wert("'Anwendungsebene'", "'Grundstücksebene'");
 		$r_anwendungsebeneQuartier = get_wert("'Anwendungsebene'", "'Quartiersebene'");
 
-		$r_FlaechenbedarfEW = get_wert("'Flächenbedarf'","'m²/EW'");
+		$r_FlaechenbedarfEW = get_wert_NA("'Flächenbedarf'","'m²/EW'");
+		$r_FlaechenbedarfEW = textparsedown($r_FlaechenbedarfEW . " m²/EW");
 		$r_FlaechenbedarfXX = get_wert("'Flächenbedarf'","'XX'");
 		$r_Flaechenbedarfm2XX = get_wert("'Flächenbedarf'","'m²/XX'");
-
-		$r_Nutzungsdauer_min = get_wert("'Nutzungsdauer'","'min'");
-		$r_Nutzungsdauer_max = get_wert("'Nutzungsdauer'","'max'");
-		$r_Nutzungsdauer_ueblich = get_wert("'Nutzungsdauer'","'üblich'");
+		if (strlen($r_Flaechenbedarfm2XX) != 0 or strlen($r_FlaechenbedarfXX) != 0) {
+			$r_Flaechenbedarfm2XX = textparsedown($r_Flaechenbedarfm2XX . " m²/" . $r_FlaechenbedarfXX);
+		} else {
+			$r_Flaechenbedarfm2XX = "";
+		}
+		
+		$r_Nutzungsdauer_min = get_wert_NA("'Nutzungsdauer'","'min'");
+		$r_Nutzungsdauer_max = get_wert_NA("'Nutzungsdauer'","'max'");
+		$r_Nutzungsdauer_ueblich = get_wert_NA("'Nutzungsdauer'","'üblich'");
 
 		$r_EntwicklungsstandWissenschaftTechnik = get_wert("'Entwicklungsstand'","'Stand der Wissenschaft und Technik'");
 		$r_EntwicklungsstandTechnik = get_wert("'Entwicklungsstand'","'Stand der Technik'");
-		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'mAllgemein annerkannter Stand der Technikin'");
-		$r_Sammelhinweis = get_wert("'Sammelhinweis'","'Hinweis'");
+		$r_EntwicklungsstandAnerkanntTechnik = get_wert("'Entwicklungsstand'","'Allgemein annerkannter Stand der Technik'");
+		$r_Sammelhinweis = get_wert_pd("'Sammelhinweis'","'Hinweis'");
 
-		$r_Funktionsbeschreibung = get_wert("'Funktionsbeschreibung und Aufbau'");
+		$r_Funktionsbeschreibung = get_wert_pd("'Funktionsbeschreibung und Aufbau'");
 		$r_Systemskizze_Bild = get_wert("'Systemskizze'","'Bild'");
 		$r_Systemskizze_Bild = substr($r_Systemskizze_Bild, 2);
 		$r_Systemskizze_Beschriftung = get_wert("'Systemskizze'","'Beschriftung'");
 		$r_Systemskizze_uptime = get_wert("'Systemskizze'","'uptime'");
 
-		$r_Planung_freetext = get_wert("'Planung, Bemessung und rechtliche Aspekte'","'Fließtext'");
+		$r_Planung_freetext = get_wert_pd("'Planung, Bemessung und rechtliche Aspekte'","'Fließtext'");
 		$q_PlanungNormen = $q_template . "(ebene2 LIKE 'Normen/Regelwerke_' OR ebene2 LIKE 'Titel/Inhalt_') ORDER BY ebene2";
 		$r_PlanungNormen = mysqli_query($conn, $q_PlanungNormen);
 		$r_PlanungNormen = mysqli_fetch_all($r_PlanungNormen, MYSQLI_ASSOC);
 
-		$r_Aufwand_freetext = get_wert("'Aufwand und Kosten'","'Fließtext'");
+		$r_Aufwand_freetext = get_wert_pd("'Aufwand und Kosten'","'Fließtext'");
 		// $q_Aufwand_Investitionskosten  = $q_template . "(ebene2 LIKE 'Betriebskosten_' OR ebene2 LIKE 'Investitionskosten_') ORDER BY ebene2";
 		// $r_Aufwand_Investitionskosten  = mysqli_query($conn, $q_Aufwand_Investitionskosten );
 		// $r_Aufwand_Investitionskosten  = mysqli_fetch_all($r_Aufwand_Investitionskosten , MYSQLI_ASSOC);
@@ -195,44 +234,33 @@
 		$r_Aufwand_b4 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b4), MYSQLI_NUM);
 		$r_Aufwand_b5 = mysqli_fetch_all(mysqli_query($conn, $q_Aufwand_b5), MYSQLI_NUM);
 
-		$r_Aufwand_hinweis = get_wert("'Aufwand und Kosten'","'Hinweis'");
+		$r_Aufwand_hinweis = get_wert_pd("'Aufwand und Kosten'","'Hinweis'");
 
 
-		$r_Weitergehende_freetext = get_wert("'Weitergehende Hinweise'","'Fließtext'");
+		$r_Weitergehende_freetext = get_wert_pd("'Weitergehende Hinweise'","'Fließtext'");
 		$q_Weitergehende_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Weitergehende Hinweise' AND (ebene2 = 'Parameter' OR ebene2 = 'Wert') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_Weitergehende_table = mysqli_fetch_all(mysqli_query($conn, $q_Weitergehende_table), MYSQLI_NUM);
 
-		$r_AspekteSynNiederschlag = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Niederschlagswasser'");
-		$r_AspekteSynSchmutzwasser = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Schmutzwasser'");
-		$r_AspekteSynBaustoffe = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Baustoffe'");
-		$r_AspekteSynEnergie = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Energie'");
-		$r_AspekteSynFläche = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Fläche'");
-		$r_AspekteSynÖkobilanz = get_wert("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Ökobilanz'");
-		$r_AspekteKonfNiederschlag = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Niederschlagswasser'");
-		$r_AspekteKonfSchmutzwasser = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Schmutzwasser'");
-		$r_AspekteKonfBaustoffe = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Baustoffe'");
-		$r_AspekteKonfEnergie = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Energie'");
-		$r_AspekteKonfFläche = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Fläche'");
-		$r_AspekteKonfÖkobilanz = get_wert("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Ökobilanz'");
+		$r_AspekteSynNiederschlag = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Niederschlagswasser'");
+		$r_AspekteSynSchmutzwasser = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Schmutzwasser'");
+		$r_AspekteSynBaustoffe = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Baustoffe'");
+		$r_AspekteSynEnergie = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Energie'");
+		$r_AspekteSynFläche = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Synergien'" ,"'Fläche'");
+		$r_AspekteKonfNiederschlag = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Niederschlagswasser'");
+		$r_AspekteKonfSchmutzwasser = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Schmutzwasser'");
+		$r_AspekteKonfBaustoffe = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Baustoffe'");
+		$r_AspekteKonfEnergie = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Energie'");
+		$r_AspekteKonfFläche = get_wert_pd("'Ressourcenübergreifende Aspekte'","'Zielkonflikte'" ,"'Fläche'");
 		
-		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
-		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
-
+		$r_Bewertung_freetext = get_wert_pd("'Ökobilanzielle Bewertung'","'Fließtext'");
 		$q_Bewertung_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Ökobilanzielle Bewertung' AND (ebene2 = 'Literaturstelle' OR ebene2 = 'Bewertung') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
 		$r_Bewertung_table = mysqli_fetch_all(mysqli_query($conn, $q_Bewertung_table), MYSQLI_NUM);
-
-		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
-		$r_Fallbsp1 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp1), MYSQLI_NUM);
-		$q_Fallbsp2 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '2'";
-		$r_Fallbsp2 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp2), MYSQLI_NUM);
-		$q_Fallbsp3 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '3'";
-		$r_Fallbsp3 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp3), MYSQLI_NUM);
-
+		
 		$q_Kombi = "SELECT ebene2, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Kombinationsmöglichkeiten' ORDER BY CONVERT(ebene2, SIGNED INTEGER)";
 		$r_Kombi = mysqli_fetch_all(mysqli_query($conn, $q_Kombi), MYSQLI_NUM);
 		$r_Kombi_titel = $r_Kombi;
 		
-		for ($i=0; $i < 20 ; $i++) {
+		for ($i=0; $i < count($r_Kombi); $i++) {
 			$r_Kombi[$i][1] = substr($r_Kombi[$i][1], 6);
 			$r_Kombi[$i][0] = get_id("'" . $r_Kombi[$i][1] . "'");
 			$name_kombi = get_wert_id("'" . $r_Kombi[$i][0] . "'","'Titel'");
@@ -244,6 +272,18 @@
 			}
 			
 		}
+
+		$q_VorNach_table = "SELECT ebene3, wert FROM joined_massnahme WHERE id = " . $m_id . " AND ebene1 = 'Vor- und Nachteile' AND (ebene2 = 'Vorteile' OR ebene2 = 'Nachteile') ORDER BY ebene2, CONVERT(ebene3, SIGNED INTEGER)";
+		$r_VorNach_table = mysqli_fetch_all(mysqli_query($conn, $q_VorNach_table), MYSQLI_NUM);
+
+		$q_Fallbsp1 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '1'";
+		$r_Fallbsp1 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp1), MYSQLI_NUM);
+		$q_Fallbsp2 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '2'";
+		$r_Fallbsp2 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp2), MYSQLI_NUM);
+		$q_Fallbsp3 = $q_template . "ebene1 = 'Fallbeispiele' AND ebene2 = '3'";
+		$r_Fallbsp3 = mysqli_fetch_all(mysqli_query($conn, $q_Fallbsp3), MYSQLI_NUM);
+
+		
 
 
 	} else echo "Not a valid ID!"; 
